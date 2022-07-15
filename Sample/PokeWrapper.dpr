@@ -26,13 +26,13 @@ begin
     Writeln('');
 
     // <T> is the header value for search
-    FPokeAPI := TPokeAPIJson<TGame>.Create;
-    Writeln(FPokeAPI.Get(integer(generation), 1));
+    FPokeAPI := TPokeAPI<TPokemon>.Create;
+    Writeln(FPokeAPI.Get(integer(pokemon), 1));
     Writeln('');
     Writeln('');
 
     // Get a list based on his enumerate
-    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(generation));
+    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(pokemon));
 
     // prints the entity if not nil
     if FPokeListEntity <> nil then

@@ -20,7 +20,7 @@ uses
 
 type
 
-  TPokeAPIJson<T> = class(TInterfacedObject, IPokeAPI)
+  TPokeAPI<T> = class(TInterfacedObject, IPokeAPI)
   private
     FMVCRESTClient: IMVCRESTClient;
     FPokeResource: IPokeResource;
@@ -43,7 +43,7 @@ implementation
 
 { TPokeAPIJson }
 
-constructor TPokeAPIJson<T>.Create;
+constructor TPokeAPI<T>.Create;
 begin
   FTypeInfo := TypeInfo(T);
   FMVCRESTClient := TMVCRESTClient.Create;
@@ -51,7 +51,7 @@ begin
   FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 
-function TPokeAPIJson<T>.Get(AIndex: integer; AValue: string): string;
+function TPokeAPI<T>.Get(AIndex: integer; AValue: string): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -64,7 +64,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPIJson<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
+function TPokeAPI<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
   : TPokeListEntity;
 var
   LResourceName: string;
@@ -85,7 +85,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPIJson<T>.Get(AIndex: integer; AValue: integer): string;
+function TPokeAPI<T>.Get(AIndex: integer; AValue: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -98,7 +98,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPIJson<T>.GetList(AIndex, AOffset, ALimit: integer): string;
+function TPokeAPI<T>.GetList(AIndex, AOffset, ALimit: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -113,7 +113,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeAPIJson<T>.JSONResponseToObject(AJsonObject: TJsonObject;
+procedure TPokeAPI<T>.JSONResponseToObject(AJsonObject: TJsonObject;
   const AObject: TObject);
 var
   LMVCJSONSerializer: IMVCJSONSerializer;

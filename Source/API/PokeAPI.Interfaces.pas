@@ -20,10 +20,6 @@ type
       ALimit: integer = 20): TPokeListEntity;
     function Get(AIndex: integer; AValue: integer): string; overload;
     function Get(AIndex: integer; AValue: string): string; overload;
-    // function GetAsObject(AIndex: integer; AValue: integer)
-    // : TJDOJsonObject; overload;
-    // function GetAsObject(AIndex: integer; AValue: string)
-    // : TJDOJsonObject; overload;
   end;
 
 implementation
