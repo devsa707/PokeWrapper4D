@@ -23,7 +23,10 @@ begin
     Writeln('');
 
     FPokeAPI := TPokeAPIJson<TPokemon>.Create;
-    Writeln(FPokeAPI.Get(integer(pokemon), 1));
+    Writeln(FPokeAPI.Get(integer(pokeathlon_stat), 1));
+    Writeln('');
+    Writeln('');
+    Writeln(FPokeAPI.List(integer(pokeathlon_stat)));
 
     Writeln('***********************************');
     Writeln('***** PRESS ENTER TO CONTINUE *****');

@@ -3,39 +3,39 @@ unit PokeAPI.Types;
 interface
 
 type
-  TBerries = (berry, //
+  TBerry = (berry, //
     berry_firmness, //
     berry_flavor);
 
-  TContests = (contest_type, //
+  TContest = (contest_type, //
     contest_effect, //
     super_contest_effect);
 
-  TEncounters = (encounter_method, //
+  TEncounter = (encounter_method, //
     enconter_condition, //
     encounter_condition_value);
 
   TEvolution = (evolution_chain, //
     evolution_trigger);
 
-  TGames = (generation, //
+  TGame = (generation, //
     pokedex, //
     version, //
     version_group);
 
-  TItems = (item, //
+  TItem = (item, //
     item_attribute, //
     item_fling_effect, //
     item_pocket);
 
-  TLocations = (location, //
+  TLocation = (location, //
     location_area, //
     pal_park_area, //
     region);
 
-  TMachines = (machine);
+  TMachine = (machine);
 
-  TMoves = (move, //
+  TMove = (move, //
     move_ailment, //
     move_battle_style, //
     move_categorie, //

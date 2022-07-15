@@ -19,11 +19,12 @@ type
   TPokeAPIJson<T> = class(TInterfacedObject, IPokeAPI)
   private
     FMVCRESTClient: IMVCRESTClient;
-    FPokeInfo: IPokeInfo;
+    FPokeResource: IPokeResource;
     FTypeInfo: PTypeInfo;
   public
     constructor Create; overload;
-    function Get(AIndex: integer): string; overload;
+    function GetList(AIndex: integer; AOffset: integer = 20;
+      ALimit: integer = 20): string; overload;
     function Get(AIndex: integer; AValue: integer): string; overload;
     function Get(AIndex: integer; AValue: string): string; overload;
   end;
@@ -36,7 +37,7 @@ constructor TPokeAPIJson<T>.Create;
 begin
   FTypeInfo := TypeInfo(T);
   FMVCRESTClient := TMVCRESTClient.Create;
-  FPokeInfo := TPokeInfo.Create;
+  FPokeResource := TPokeResource.Create;
   FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 
@@ -45,7 +46,7 @@ var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
+  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
   Result := LMVCRESTResponse.Content;
 end;
@@ -55,17 +56,19 @@ var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
+  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
   Result := LMVCRESTResponse.Content;
 end;
 
-function TPokeAPIJson<T>.Get(AIndex: integer): string;
+function TPokeAPIJson<T>.List(AIndex, AOffset, ALimit: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
+  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
+  FMVCRESTClient.AddQueryStringParam('offset', AOffset);
+  FMVCRESTClient.AddQueryStringParam('limit', ALimit);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
   Result := LMVCRESTResponse.Content;
 end;
