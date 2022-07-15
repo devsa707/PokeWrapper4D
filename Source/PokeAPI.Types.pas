@@ -28,6 +28,37 @@ type
     item_fling_effects, //
     item_pockets);
 
+  TLocations = (locations, //
+    location_areas, //
+    pal_park_areas, //
+    regions);
+
+  TMachines = (machines);
+
+  TMoves = (moves, //
+    move_ailments, //
+    move_battle_styles, //
+    move_categories, //
+    move_damage_classes, //
+    move_learn_methods, //
+    move_targets);
+
+  TPokemon = (abilities, //
+    characteristics, //
+    egg_groups, //
+    genders, //
+    growth_rates, //
+    natures, //
+    pokeathlon_stats, //
+    pokemon, //
+    pokemon_location_areas, //
+    pokemon_colors, //
+    pokemon_forms, //
+    pokemon_habitats, //
+    pokemon_shapes, //
+    pokemon_species, //
+    stats, Types);
+
 implementation
 
 end.
