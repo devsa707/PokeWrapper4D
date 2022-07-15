@@ -25,6 +25,8 @@ type
     Fresults: TObjectlist<TResults>;
     procedure SetFresults(const Value: TObjectlist<TResults>);
   public
+    constructor Create; overload;
+    destructor Destroy; override;
     property count: integer read Fcount write Fcount;
     property next: string read Fnext write Fnext;
     property previous: string read Fprevious write Fprevious;
@@ -34,6 +36,17 @@ type
 implementation
 
 { TPokeListEntity }
+
+constructor TPokeListEntity.Create;
+begin
+  Fresults := TObjectlist<TResults>.Create;
+end;
+
+destructor TPokeListEntity.Destroy;
+begin
+  Fresults.Free;
+  inherited;
+end;
 
 procedure TPokeListEntity.SetFresults(const Value: TObjectlist<TResults>);
 begin

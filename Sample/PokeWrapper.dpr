@@ -8,12 +8,15 @@ uses
   PokeAPI.Interfaces in '..\Source\API\PokeAPI.Interfaces.pas',
   PokeAPI in '..\Source\API\PokeAPI.pas',
   PokeAPI.Resources in '..\Source\API\PokeAPI.Resources.pas',
-  PokeAPI.Types in '..\Source\API\PokeAPI.Types.pas';
+  PokeAPI.Types in '..\Source\API\PokeAPI.Types.pas',
+  PokeList.Entity in '..\Source\List\PokeList.Entity.pas';
 
 var
   FPokeAPI: IPokeAPI;
+  FPokeListEntity: TPokeListEntity;
 
 begin
+  FPokeListEntity := nil;
   try
     ReportMemoryLeaksOnShutdown := True;
     Writeln('***********************************');
@@ -23,18 +26,22 @@ begin
     Writeln('');
 
     FPokeAPI := TPokeAPIJson<TPokemon>.Create;
-    Writeln(FPokeAPI.Get(integer(pokeathlon_stat), 1));
+    Writeln(FPokeAPI.Get(integer(pokemon), 1));
     Writeln('');
     Writeln('');
-    Writeln(FPokeAPI.GetList(integer(pokeathlon_stat)));
 
+    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(pokemon));
+    for var I := 0 to FPokeListEntity.results.Count - 1 do
+    begin
+      Writeln(FPokeListEntity.results.Items[I].name);
+      Writeln(FPokeListEntity.results.Items[I].url);
+    end;
     Writeln('***********************************');
     Writeln('***** PRESS ENTER TO CONTINUE *****');
     Writeln('***********************************');
     ReadLn;
-  except
-    on E: Exception do
-      Writeln(E.ClassName, ': ', E.Message);
+  finally
+    FPokeListEntity.Free;
   end;
 
 end.
