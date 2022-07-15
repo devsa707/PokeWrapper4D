@@ -26,6 +26,7 @@ type
     FTypeInfo: PTypeInfo;
   public
     constructor Create; overload;
+    function Get(AIndex: integer): string; overload;
     function Get(AIndex: integer; AValue: integer): string; overload;
     function Get(AIndex: integer; AValue: string): string; overload;
   end;
@@ -60,6 +61,17 @@ begin
   LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
   FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
+  Result := LMVCRESTResponse.Content;
+end;
+
+function TPokeAPIJson<T>.Get(AIndex: integer): string;
+var
+  LResourceName: string;
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
+  FMVCRESTClient.BaseURL(FBaseUrl);
+  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
   Result := LMVCRESTResponse.Content;
 end;
 
