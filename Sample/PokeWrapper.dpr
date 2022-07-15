@@ -1,18 +1,23 @@
 program PokeWrapper;
 
 {$APPTYPE CONSOLE}
-
 {$R *.res}
 
 uses
   System.SysUtils,
-  PokeAPI in '..\PokeAPI.pas';
+  PokeAPI.Interfaces in '..\Source\PokeAPI.Interfaces.pas';
+
+var
+  FPokeAPI: IPokeAPI;
 
 begin
   try
-    { TODO -oUser -cConsole Main : Insert code here }
+    IsConsole := True;
+    FPokeAPI := TPokeAPIJson.Create('https://pokeapi.co/api/v2/');
+
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
+
 end.
