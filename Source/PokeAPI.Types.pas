@@ -7,57 +7,58 @@ type
     berry_firmness, //
     berry_flavor);
 
-  TContests = (contest_types, //
-    contest_effects, //
-    super_contest_effects);
+  TContests = (contest_type, //
+    contest_effect, //
+    super_contest_effect);
 
-  TEncounters = (encounter_methods, //
-    enconter_conditions, //
-    encounter_condition_values);
+  TEncounters = (encounter_method, //
+    enconter_condition, //
+    encounter_condition_value);
 
-  TEvolution = (evolution_chains, //
-    evolution_triggers);
+  TEvolution = (evolution_chain, //
+    evolution_trigger);
 
-  TGames = (generations, //
-    pokedexes, //
+  TGames = (generation, //
+    pokedex, //
     version, //
-    version_groups);
+    version_group);
 
   TItems = (item, //
-    item_attributes, //
-    item_fling_effects, //
-    item_pockets);
+    item_attribute, //
+    item_fling_effect, //
+    item_pocket);
 
-  TLocations = (locations, //
-    location_areas, //
-    pal_park_areas, //
-    regions);
+  TLocations = (location, //
+    location_area, //
+    pal_park_area, //
+    region);
 
-  TMachines = (machines);
+  TMachines = (machine);
 
-  TMoves = (moves, //
-    move_ailments, //
-    move_battle_styles, //
-    move_categories, //
-    move_damage_classes, //
-    move_learn_methods, //
+  TMoves = (move, //
+    move_ailment, //
+    move_battle_style, //
+    move_categorie, //
+    move_damage_class, //
+    move_learn_method, //
     move_targets);
 
-  TPokemon = (abilities, //
-    characteristics, //
-    egg_groups, //
-    genders, //
-    growth_rates, //
-    natures, //
-    pokeathlon_stats, //
+  TPokemon = (ability, //
+    characteristic, //
+    egg_group, //
+    gender, //
+    growth_rate, //
+    nature, //
+    pokeathlon_stat, //
     pokemon, //
-    pokemon_location_areas, //
-    pokemon_colors, //
-    pokemon_forms, //
-    pokemon_habitats, //
-    pokemon_shapes, //
-    pokemon_species, //
-    stats, Types);
+    pokemon_location_area, //
+    pokemon_color, //
+    pokemon_form, //
+    pokemon_habitat, //
+    pokemon_shape, //
+    pokemon_specie, //
+    stat, //
+    type_);
 
 implementation
 
