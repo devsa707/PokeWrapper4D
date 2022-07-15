@@ -61,7 +61,7 @@ begin
   Result := LMVCRESTResponse.Content;
 end;
 
-function TPokeAPIJson<T>.List(AIndex, AOffset, ALimit: integer): string;
+function TPokeAPIJson<T>.GetList(AIndex, AOffset, ALimit: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
