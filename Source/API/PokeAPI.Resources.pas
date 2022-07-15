@@ -30,7 +30,7 @@ function TPokeInfo.GetResourceName(ATypeInfo: PTypeInfo;
   AIndex: Integer): string;
 begin
   Name := GetEnumName(ATypeInfo, AIndex);
-  Result := 'https://pokeapi.co/api/v2/' + FName;
+  Result := FName;
 end;
 
 procedure TPokeInfo.SetFName(const Value: string);

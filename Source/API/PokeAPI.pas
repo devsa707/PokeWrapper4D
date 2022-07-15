@@ -4,11 +4,10 @@ interface
 
 uses
   // System
+  System.TypInfo,
   System.SysUtils,
   System.Generics.Collections,
   //
-  PokeAPI.Types,
-  System.TypInfo,
   PokeAPI.Resources,
   PokeAPI.Interfaces,
   // MVCFramework
@@ -19,8 +18,6 @@ type
 
   TPokeAPIJson<T> = class(TInterfacedObject, IPokeAPI)
   private
-    FPropInfo: TPropInfo;
-    FBaseUrl: string;
     FMVCRESTClient: IMVCRESTClient;
     FPokeInfo: IPokeInfo;
     FTypeInfo: PTypeInfo;
@@ -40,6 +37,7 @@ begin
   FTypeInfo := TypeInfo(T);
   FMVCRESTClient := TMVCRESTClient.Create;
   FPokeInfo := TPokeInfo.Create;
+  FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 
 function TPokeAPIJson<T>.Get(AIndex: integer; AValue: string): string;
@@ -48,7 +46,6 @@ var
   LMVCRESTResponse: IMVCRESTResponse;
 begin
   LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
-  FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
   Result := LMVCRESTResponse.Content;
 end;
@@ -59,7 +56,6 @@ var
   LMVCRESTResponse: IMVCRESTResponse;
 begin
   LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
-  FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
   Result := LMVCRESTResponse.Content;
 end;
@@ -70,7 +66,6 @@ var
   LMVCRESTResponse: IMVCRESTResponse;
 begin
   LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
-  FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
   Result := LMVCRESTResponse.Content;
 end;
