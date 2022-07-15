@@ -16,8 +16,8 @@ var
 begin
   try
     IsConsole := True;
-    FPokeAPI := TPokeAPIJson<TBerries>.Create('https://pokeapi.co/api/v2/');
-    Writeln(FPokeAPI.Get(TBerries.berry_firmness, 1));
+    FPokeAPI := TPokeAPIJson<TPokemon>.Create;
+    Writeln(FPokeAPI.Get(integer(pokemon), 1));
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);

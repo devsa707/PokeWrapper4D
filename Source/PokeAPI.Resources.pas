@@ -9,6 +9,7 @@ uses
 type
 
   IPokeInfo = interface
+    ['{B6B1E0AF-3BB0-4898-BB90-CE5C490F7CC4}']
     function GetResourceName(ATypeInfo: PTypeInfo; AIndex: Integer): string;
   end;
 
@@ -29,7 +30,7 @@ function TPokeInfo.GetResourceName(ATypeInfo: PTypeInfo;
   AIndex: Integer): string;
 begin
   Name := GetEnumName(ATypeInfo, AIndex);
-  Result := FName;
+  Result := 'https://pokeapi.co/api/v2/' + FName;
 end;
 
 procedure TPokeInfo.SetFName(const Value: string);

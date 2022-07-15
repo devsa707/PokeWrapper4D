@@ -19,45 +19,45 @@ type
 
   TPokeAPIJson<T> = class(TInterfacedObject, IPokeAPI)
   private
+    FPropInfo: TPropInfo;
     FBaseUrl: string;
     FMVCRESTClient: IMVCRESTClient;
     FPokeInfo: IPokeInfo;
     FTypeInfo: PTypeInfo;
   public
-    constructor Create(ABaseUrl: string); overload;
-    function Get(AResource: TBerries; AValue: Integer): string; overload;
-    function Get(AResource: TBerries; AValue: string): string; overload;
+    constructor Create; overload;
+    function Get(AIndex: integer; AValue: integer): string; overload;
+    function Get(AIndex: integer; AValue: string): string; overload;
   end;
 
 implementation
 
 { TPokeAPIJson }
 
-constructor TPokeAPIJson<T>.Create(ABaseUrl: string);
+constructor TPokeAPIJson<T>.Create;
 begin
   FTypeInfo := TypeInfo(T);
-  FBaseUrl := ABaseUrl;
   FMVCRESTClient := TMVCRESTClient.Create;
   FPokeInfo := TPokeInfo.Create;
 end;
 
-function TPokeAPIJson<T>.Get(AResource: TBerries; AValue: string): string;
+function TPokeAPIJson<T>.Get(AIndex: integer; AValue: string): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, Integer(AResource));
+  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
   FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
   Result := LMVCRESTResponse.Content;
 end;
 
-function TPokeAPIJson<T>.Get(AResource: TBerries; AValue: Integer): string;
+function TPokeAPIJson<T>.Get(AIndex: integer; AValue: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, Integer(AResource));
+  LResourceName := FPokeInfo.GetResourceName(FTypeInfo, AIndex);
   FMVCRESTClient.BaseURL(FBaseUrl);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
   Result := LMVCRESTResponse.Content;
