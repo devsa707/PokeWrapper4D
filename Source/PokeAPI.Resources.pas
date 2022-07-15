@@ -2,17 +2,39 @@ unit PokeAPI.Resources;
 
 interface
 
-type
-  TResource = (berry_firmness, //
-    berry_flavor);
+uses
+  System.StrUtils,
+  System.TypInfo;
 
-function GetResourceName(AResource: TResource): string;
+type
+
+  IPokeInfo = interface
+    function GetResourceName(ATypeInfo: PTypeInfo; AIndex: Integer): string;
+  end;
+
+  TPokeInfo = class(TInterfacedObject, IPokeInfo)
+  private
+    FName: string;
+    procedure SetFName(const Value: string);
+    property Name: string read FName write SetFName;
+  public
+    function GetResourceName(ATypeInfo: PTypeInfo; AIndex: Integer): string;
+  end;
 
 implementation
 
-function GetResourceName(AResource: TResource): string;
+{ TPokeInfo }
+
+function TPokeInfo.GetResourceName(ATypeInfo: PTypeInfo;
+  AIndex: Integer): string;
 begin
-  result := 'berry-firmness';
+  Name := GetEnumName(ATypeInfo, AIndex);
+  Result := FName;
+end;
+
+procedure TPokeInfo.SetFName(const Value: string);
+begin
+  FName := ReplaceStr(Value, '_', '-') + '/';
 end;
 
 end.
