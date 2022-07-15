@@ -26,7 +26,7 @@ begin
     Writeln(FPokeAPI.Get(integer(pokeathlon_stat), 1));
     Writeln('');
     Writeln('');
-    Writeln(FPokeAPI.List(integer(pokeathlon_stat)));
+    Writeln(FPokeAPI.GetList(integer(pokeathlon_stat)));
 
     Writeln('***********************************');
     Writeln('***** PRESS ENTER TO CONTINUE *****');

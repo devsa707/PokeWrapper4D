@@ -40,9 +40,9 @@ function TPokeResource.GetResourceNameList(ATypeInfo: PTypeInfo): string;
 var
   LName: string;
 begin
-  LName := ATypeInfo.Name;
+  LName := string(ATypeInfo.Name);
   delete(LName, 1, 1);
-  Result := ToLower(LName);
+  Result := Char.ToLower(LName);
 end;
 
 procedure TPokeResource.SetFName(const Value: string);
