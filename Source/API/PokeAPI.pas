@@ -58,7 +58,10 @@ var
 begin
   LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
-  Result := LMVCRESTResponse.Content;
+  if LMVCRESTResponse.Success then
+    Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
 end;
 
 function TPokeAPIJson<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
@@ -73,8 +76,13 @@ begin
   FMVCRESTClient.AddQueryStringParam('offset', AOffset);
   FMVCRESTClient.AddQueryStringParam('limit', ALimit);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
-  JSONResponseToObject(LMVCRESTResponse.ToJSONObject, LPokeListEntity);
-  Result := LPokeListEntity;
+  if LMVCRESTResponse.Success then
+  begin
+    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, LPokeListEntity);
+    Result := LPokeListEntity;
+  end
+  else
+    raise Exception.Create('Not Found');
 end;
 
 function TPokeAPIJson<T>.Get(AIndex: integer; AValue: integer): string;
@@ -84,7 +92,10 @@ var
 begin
   LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
-  Result := LMVCRESTResponse.Content;
+  if LMVCRESTResponse.Success then
+    Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
 end;
 
 function TPokeAPIJson<T>.GetList(AIndex, AOffset, ALimit: integer): string;
@@ -96,7 +107,10 @@ begin
   FMVCRESTClient.AddQueryStringParam('offset', AOffset);
   FMVCRESTClient.AddQueryStringParam('limit', ALimit);
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
-  Result := LMVCRESTResponse.Content;
+  if LMVCRESTResponse.Success then
+    Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
 end;
 
 procedure TPokeAPIJson<T>.JSONResponseToObject(AJsonObject: TJsonObject;

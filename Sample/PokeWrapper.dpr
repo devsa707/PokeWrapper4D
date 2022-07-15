@@ -25,17 +25,30 @@ begin
     Writeln('***********************************');
     Writeln('');
 
-    FPokeAPI := TPokeAPIJson<TPokemon>.Create;
-    Writeln(FPokeAPI.Get(integer(pokemon), 1));
+    // <T> is the header value for search
+    FPokeAPI := TPokeAPIJson<TGame>.Create;
+    Writeln(FPokeAPI.Get(integer(generation), 1));
     Writeln('');
     Writeln('');
 
-    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(pokemon));
-    for var I := 0 to FPokeListEntity.results.Count - 1 do
+    // Get a list based on his enumerate
+    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(generation));
+
+    // prints the entity if not nil
+    if FPokeListEntity <> nil then
     begin
-      Writeln(FPokeListEntity.results.Items[I].name);
-      Writeln(FPokeListEntity.results.Items[I].url);
+      Writeln('Count: ' + FPokeListEntity.count.ToString);
+      Writeln('Next: ' + FPokeListEntity.next);
+      Writeln('Previous: ' + FPokeListEntity.previous);
+      for var I := 0 to FPokeListEntity.results.count - 1 do
+      begin
+        Writeln('Name: ' + FPokeListEntity.results.Items[I].name);
+        Writeln('URL: ' + FPokeListEntity.results.Items[I].url);
+      end;
     end;
+
+    Writeln('');
+    Writeln('');
     Writeln('***********************************');
     Writeln('***** PRESS ENTER TO CONTINUE *****');
     Writeln('***********************************');
