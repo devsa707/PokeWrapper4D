@@ -91,6 +91,8 @@
         <DCCReference Include="..\..\Source\Entities\Berries\Berry.Entity.pas"/>
         <DCCReference Include="..\..\Source\List\PokeList.Entity.pas"/>
         <DCCReference Include="Source\BerryTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Berries\BerryFirmness.Entity.pas"/>
+        <DCCReference Include="Source\BerryFirmnessTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

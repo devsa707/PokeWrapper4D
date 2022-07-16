@@ -49,7 +49,7 @@ end;
 
 procedure TBerryTest.TestEntity;
 begin
-  Write('Testing TBerry.Berry .');
+  Write('Testing TBerry.berry .');
   for var I: integer := 1 to FList - 1 do
   begin
     FPokeAPI.GetAsEntity(FBerryEntity, integer(TBerry.Berry), I);
@@ -75,7 +75,7 @@ var
 begin
   LPokeListEntity := nil;
   try
-    Write('Testing List of TBerry...  ');
+    Write('Testing List of TBerry.berry...  ');
     LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TBerry.Berry));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

@@ -17,12 +17,12 @@ program PokeWrapperTests;
 
 uses
   System.SysUtils,
-{$IFDEF TESTINSIGHT}
+  {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX,
-{$ELSE}
+  {$ELSE}
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
-{$ENDIF }
+  {$ENDIF }
   DUnitX.TestFramework,
   PokeAPI.Interfaces in '..\..\Source\API\PokeAPI.Interfaces.pas',
   PokeAPI in '..\..\Source\API\PokeAPI.pas',
@@ -30,7 +30,9 @@ uses
   PokeAPI.Types in '..\..\Source\API\PokeAPI.Types.pas',
   Berry.Entity in '..\..\Source\Entities\Berries\Berry.Entity.pas',
   PokeList.Entity in '..\..\Source\List\PokeList.Entity.pas',
-  BerryTest in 'Source\BerryTest.pas';
+  BerryTest in 'Source\BerryTest.pas',
+  BerryFirmness.Entity in '..\..\Source\Entities\Berries\BerryFirmness.Entity.pas',
+  BerryFirmnessTest in 'Source\BerryFirmnessTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
