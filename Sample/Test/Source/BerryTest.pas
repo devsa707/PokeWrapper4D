@@ -3,6 +3,8 @@ unit BerryTest;
 interface
 
 uses
+  System.SysUtils,
+  //
   DUnitX.TestFramework,
   // PokeAPI
   PokeAPI,
@@ -47,12 +49,16 @@ end;
 
 procedure TBerryTest.TestEntity;
 begin
-  Write('Testing TBerry.');
+  Write('Testing TBerry.Berry .');
   for var I: integer := 1 to FList - 1 do
   begin
-    Write('.');
     FPokeAPI.GetAsEntity(FBerryEntity, integer(TBerry.Berry), I);
     Assert.IsNotEmpty(FBerryEntity.name);
+    Assert.IsNotEmpty(FBerryEntity.firmness.name);
+    Assert.IsNotEmpty(IntToStr(FBerryEntity.flavors.Count));
+    Assert.IsNotEmpty(FBerryEntity.item.name);
+    Assert.IsNotEmpty(FBerryEntity.natural_gift_type.name);
+    Write('.');
   end;
   Assert.WillRaise(TestEntityWillRaise);
   Write('Finished.');
@@ -71,8 +77,8 @@ begin
   try
     Write('Testing List of TBerry...  ');
     LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TBerry.Berry));
-    Assert.IsNotEmpty(LPokeListEntity.count);
-    FList := LPokeListEntity.count;
+    Assert.IsNotEmpty(LPokeListEntity.Count);
+    FList := LPokeListEntity.Count;
     Write('Finished.');
   finally
     LPokeListEntity.Free;
