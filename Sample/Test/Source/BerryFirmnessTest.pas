@@ -20,7 +20,6 @@ type
   TBerryFirmnessTest = class
   private
     FPokeAPI: IPokeAPI;
-    FBerryFirmnessEntity: TBerryFirmnessEntity;
     FList: integer;
   public
     [Setup]
@@ -39,34 +38,52 @@ implementation
 procedure TBerryFirmnessTest.Setup;
 begin
   FPokeAPI := TPokeAPI<TBerry>.Create;
-  FBerryFirmnessEntity := TBerryFirmnessEntity.Create;
 end;
 
 procedure TBerryFirmnessTest.TearDown;
 begin
-  FBerryFirmnessEntity.Free;
 end;
 
 procedure TBerryFirmnessTest.TestEntity;
+var
+  LBerryFirmnessEntity: TBerryFirmnessEntity;
 begin
   Write('Testing TBerry.berry_firmness .');
   for var I: integer := 1 to FList - 1 do
   begin
-    FPokeAPI.GetAsEntity(FBerryFirmnessEntity,
-      integer(TBerry.berry_firmness), I);
-    Assert.IsNotEmpty(IntToStr(FBerryFirmnessEntity.berries.Count));
-    Assert.IsNotEmpty(IntToStr(FBerryFirmnessEntity.id));
-    Assert.IsNotEmpty(FBerryFirmnessEntity.name);
-    Assert.IsNotEmpty(IntToStr(FBerryFirmnessEntity.names.Count));
-    Write('.');
+    LBerryFirmnessEntity := nil;
+    try
+      LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
+      FPokeAPI.GetAsEntity(LBerryFirmnessEntity,
+        integer(TBerry.berry_firmness), I);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Count);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
+        [LBerryFirmnessEntity.berries.Count - 1].name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
+        [LBerryFirmnessEntity.berries.Count - 1].url);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.id);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Count);
+      Write('.');
+    finally
+      LBerryFirmnessEntity.Free;
+    end;
   end;
   Assert.WillRaise(TestEntityWillRaise);
   Write('Finished.');
 end;
 
 procedure TBerryFirmnessTest.TestEntityWillRaise;
+var
+  LBerryFirmnessEntity: TBerryFirmnessEntity;
 begin
-  FPokeAPI.GetAsEntity(FBerryFirmnessEntity, 50, 9999999);
+  LBerryFirmnessEntity := nil;
+  try
+    LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
+    FPokeAPI.GetAsEntity(LBerryFirmnessEntity, 50, 9999999);
+  finally
+    LBerryFirmnessEntity.Free;
+  end;
 end;
 
 procedure TBerryFirmnessTest.TestList;

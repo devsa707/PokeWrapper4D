@@ -39,34 +39,48 @@ implementation
 procedure TBerryTest.Setup;
 begin
   FPokeAPI := TPokeAPI<TBerry>.Create;
-  FBerryEntity := TBerryEntity.Create;
 end;
 
 procedure TBerryTest.TearDown;
 begin
-  FBerryEntity.Free;
 end;
 
 procedure TBerryTest.TestEntity;
+var
+  LBerryEntity: TBerryEntity;
 begin
   Write('Testing TBerry.berry .');
   for var I: integer := 1 to FList - 1 do
   begin
-    FPokeAPI.GetAsEntity(FBerryEntity, integer(TBerry.Berry), I);
-    Assert.IsNotEmpty(FBerryEntity.name);
-    Assert.IsNotEmpty(FBerryEntity.firmness.name);
-    Assert.IsNotEmpty(IntToStr(FBerryEntity.flavors.Count));
-    Assert.IsNotEmpty(FBerryEntity.item.name);
-    Assert.IsNotEmpty(FBerryEntity.natural_gift_type.name);
-    Write('.');
+    LBerryEntity := nil;
+    try
+      LBerryEntity := TBerryEntity.Create;
+      FPokeAPI.GetAsEntity(LBerryEntity, integer(TBerry.Berry), I);
+      Assert.IsNotEmpty(LBerryEntity.name);
+      Assert.IsNotEmpty(LBerryEntity.firmness.name);
+      Assert.IsNotEmpty(IntToStr(LBerryEntity.flavors.Count));
+      Assert.IsNotEmpty(LBerryEntity.item.name);
+      Assert.IsNotEmpty(LBerryEntity.natural_gift_type.name);
+      Write('.');
+    finally
+      LBerryEntity.Free;
+    end;
   end;
   Assert.WillRaise(TestEntityWillRaise);
   Write('Finished.');
 end;
 
 procedure TBerryTest.TestEntityWillRaise;
+var
+  LBerryEntity: TBerryEntity;
 begin
-  FPokeAPI.GetAsEntity(FBerryEntity, 50, 9999999);
+  LBerryEntity := nil;
+  try
+    LBerryEntity := TBerryEntity.Create;
+    FPokeAPI.GetAsEntity(LBerryEntity, 50, 9999999);
+  finally
+    LBerryEntity.Free;
+  end;
 end;
 
 procedure TBerryTest.TestList;
