@@ -1,1 +1,28 @@
-﻿
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<test-results name="C:\Users\devsa\OneDrive\Documentos\DelphiProjects\PokeWrapper\Sample\Test\Win32\Debug\PokeWrapperTests.exe" total="4" errors="0" failures="0" ignored="0" inconclusive="0" not-run="0" skipped="0" invalid="0" date="2022-07-16" time="8.205">
+  <culture-info current-culture="en" current-uiculture="en" />
+  <test-suite type="Assembly" name="PokeWrapperTests.exe" executed="true" result="Success" success="True" time="8.205" asserts="0">
+    <results>
+        <test-suite type="Namespace" name="BerryTest" executed="true" result="Success" success="True" time="8.204" asserts="0" >
+          <results>
+              <test-suite type="Fixture" name="TBerryTest" executed="True" result="Success" success="True" time="8.204" >
+                <results>
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.253" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="4.093" asserts="0" />
+                </results>
+              </test-suite>
+          </results>
+        </test-suite>
+        <test-suite type="Namespace" name="BerryFirmnessTest" executed="true" result="Success" success="True" time="3.818" asserts="0" >
+          <results>
+              <test-suite type="Fixture" name="TBerryFirmnessTest" executed="True" result="Success" success="True" time="3.818" >
+                <results>
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.393" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="3.397" asserts="0" />
+                </results>
+              </test-suite>
+          </results>
+        </test-suite>
+    </results>
+  </test-suite>
+</test-results>
