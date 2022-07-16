@@ -93,6 +93,7 @@
         <DCCReference Include="Source\BerryTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Berries\BerryFirmness.Entity.pas"/>
         <DCCReference Include="Source\BerryFirmnessTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Berries\BerryFlavor.Entity.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

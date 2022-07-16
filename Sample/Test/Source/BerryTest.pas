@@ -20,13 +20,10 @@ type
   TBerryTest = class
   private
     FPokeAPI: IPokeAPI;
-    FBerryEntity: TBerryEntity;
     FList: integer;
   public
     [Setup]
     procedure Setup;
-    [TearDown]
-    procedure TearDown;
     [Test]
     procedure TestList;
     [Test]
@@ -41,10 +38,6 @@ begin
   FPokeAPI := TPokeAPI<TBerry>.Create;
 end;
 
-procedure TBerryTest.TearDown;
-begin
-end;
-
 procedure TBerryTest.TestEntity;
 var
   LBerryEntity: TBerryEntity;
@@ -56,11 +49,20 @@ begin
     try
       LBerryEntity := TBerryEntity.Create;
       FPokeAPI.GetAsEntity(LBerryEntity, integer(TBerry.Berry), I);
+      // Assertions
       Assert.IsNotEmpty(LBerryEntity.name);
       Assert.IsNotEmpty(LBerryEntity.firmness.name);
-      Assert.IsNotEmpty(IntToStr(LBerryEntity.flavors.Count));
+      Assert.IsNotEmpty(LBerryEntity.flavors.Count);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
+        1].flavor.name);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
+        1].flavor.url);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
+        1].flavor.potency);
       Assert.IsNotEmpty(LBerryEntity.item.name);
+      Assert.IsNotEmpty(LBerryEntity.natural_gift_power);
       Assert.IsNotEmpty(LBerryEntity.natural_gift_type.name);
+      Assert.IsNotEmpty(LBerryEntity.natural_gift_type.url);
       Write('.');
     finally
       LBerryEntity.Free;
@@ -77,7 +79,7 @@ begin
   LBerryEntity := nil;
   try
     LBerryEntity := TBerryEntity.Create;
-    FPokeAPI.GetAsEntity(LBerryEntity, 50, 9999999);
+    FPokeAPI.GetAsEntity(LBerryEntity, integer(TBerry.Berry), 9999999);
   finally
     LBerryEntity.Free;
   end;

@@ -24,8 +24,6 @@ type
   public
     [Setup]
     procedure Setup;
-    [TearDown]
-    procedure TearDown;
     [Test]
     procedure TestList;
     [Test]
@@ -40,10 +38,6 @@ begin
   FPokeAPI := TPokeAPI<TBerry>.Create;
 end;
 
-procedure TBerryFirmnessTest.TearDown;
-begin
-end;
-
 procedure TBerryFirmnessTest.TestEntity;
 var
   LBerryFirmnessEntity: TBerryFirmnessEntity;
@@ -54,8 +48,8 @@ begin
     LBerryFirmnessEntity := nil;
     try
       LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-      FPokeAPI.GetAsEntity(LBerryFirmnessEntity,
-        integer(TBerry.berry_firmness), I);
+      FPokeAPI.GetAsEntity(LBerryFirmnessEntity, integer(TBerry.berry_firmness),
+        I); // Assertions
       Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Count);
       Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
         [LBerryFirmnessEntity.berries.Count - 1].name);
@@ -64,6 +58,12 @@ begin
       Assert.IsNotEmpty(LBerryFirmnessEntity.id);
       Assert.IsNotEmpty(LBerryFirmnessEntity.name);
       Assert.IsNotEmpty(LBerryFirmnessEntity.names.Count);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
+        [LBerryFirmnessEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
+        [LBerryFirmnessEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
+        [LBerryFirmnessEntity.names.Count - 1].name);
       Write('.');
     finally
       LBerryFirmnessEntity.Free;
@@ -80,7 +80,7 @@ begin
   LBerryFirmnessEntity := nil;
   try
     LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-    FPokeAPI.GetAsEntity(LBerryFirmnessEntity, 50, 9999999);
+    FPokeAPI.GetAsEntity(LBerryFirmnessEntity,integer(TBerry.berry_firmness), 9999999);
   finally
     LBerryFirmnessEntity.Free;
   end;

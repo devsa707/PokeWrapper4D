@@ -32,7 +32,8 @@ uses
   PokeList.Entity in '..\..\Source\List\PokeList.Entity.pas',
   BerryTest in 'Source\BerryTest.pas',
   BerryFirmness.Entity in '..\..\Source\Entities\Berries\BerryFirmness.Entity.pas',
-  BerryFirmnessTest in 'Source\BerryFirmnessTest.pas';
+  BerryFirmnessTest in 'Source\BerryFirmnessTest.pas',
+  BerryFlavor.Entity in '..\..\Source\Entities\Berries\BerryFlavor.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
