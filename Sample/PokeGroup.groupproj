@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6AE85409-CBCA-491E-A309-B6BF3169FB83}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PokeWrapper.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\PokeWrapperTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PokeWrapper">
+        <MSBuild Projects="PokeWrapper.dproj"/>
+    </Target>
+    <Target Name="PokeWrapper:Clean">
+        <MSBuild Projects="PokeWrapper.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PokeWrapper:Make">
+        <MSBuild Projects="PokeWrapper.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PokeWrapperTests">
+        <MSBuild Projects="Test\PokeWrapperTests.dproj"/>
+    </Target>
+    <Target Name="PokeWrapperTests:Clean">
+        <MSBuild Projects="Test\PokeWrapperTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PokeWrapperTests:Make">
+        <MSBuild Projects="Test\PokeWrapperTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PokeWrapper;PokeWrapperTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PokeWrapper:Clean;PokeWrapperTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PokeWrapper:Make;PokeWrapperTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
