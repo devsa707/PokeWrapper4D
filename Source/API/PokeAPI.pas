@@ -154,6 +154,8 @@ var
 begin
   LMVCJSONSerializer := TMVCJsonDataObjectsSerializer.Create;
   LMVCJSONSerializer.JsonObjectToObject(AJsonObject, AObject, stDefault, []);
+  // Injected object by the MVCRESTResponse.ToJSONObject
+  AJsonObject.Free;
 end;
 
 end.
