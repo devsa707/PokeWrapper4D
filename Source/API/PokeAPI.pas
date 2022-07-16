@@ -13,8 +13,8 @@ uses
   PokeAPI.Interfaces,
   // MVCFramework
   JsonDataObjects,
-  MVCFramework.RESTClient.Intf,
   MVCFramework.RESTClient,
+  MVCFramework.RESTClient.Intf,
   MVCFramework.Serializer.Commons,
   MVCFramework.Serializer.JsonDataObjects;
 
@@ -33,10 +33,13 @@ type
       ALimit: integer = 20): string; overload;
     function Get(AIndex: integer; AValue: integer): string; overload;
     function Get(AIndex: integer; AValue: string): string; overload;
-
     function GetAsListEntity(AIndex: integer; AOffset: integer = 0;
       ALimit: integer = 20): TPokeListEntity;
 
+    procedure GetAsEntity(AObject: TObject; AIndex: integer;
+      AValue: integer)overload;
+    procedure GetAsEntity(AObject: TObject; AIndex: integer;
+      AValue: string)overload;
   end;
 
 implementation
@@ -60,6 +63,37 @@ begin
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
   if LMVCRESTResponse.Success then
     Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
+end;
+
+procedure TPokeAPI<T>.GetAsEntity(AObject: TObject; AIndex: integer;
+  AValue: string);
+var
+  LResourceName: string;
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
+  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
+  if LMVCRESTResponse.Success then
+  begin
+    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, AObject);
+  end
+  else
+    raise Exception.Create('Not Found');
+end;
+
+procedure TPokeAPI<T>.GetAsEntity(AObject: TObject; AIndex, AValue: integer);
+var
+  LResourceName: string;
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
+  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
+  if LMVCRESTResponse.Success then
+  begin
+    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, AObject);
+  end
   else
     raise Exception.Create('Not Found');
 end;

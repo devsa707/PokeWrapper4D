@@ -9,7 +9,8 @@ uses
   PokeAPI in '..\Source\API\PokeAPI.pas',
   PokeAPI.Resources in '..\Source\API\PokeAPI.Resources.pas',
   PokeAPI.Types in '..\Source\API\PokeAPI.Types.pas',
-  PokeList.Entity in '..\Source\List\PokeList.Entity.pas';
+  PokeList.Entity in '..\Source\List\PokeList.Entity.pas',
+  Berry.Entity in '..\Source\Entities\Berries\Berry.Entity.pas';
 
 var
   FPokeAPI: IPokeAPI;
@@ -31,7 +32,7 @@ begin
     Writeln('');
     Writeln('');
 
-    // Get a list based on his enumerate
+    // Get a list based on its enumerate
     FPokeListEntity := FPokeAPI.GetAsListEntity(integer(pokemon));
 
     // prints the entity if not nil
