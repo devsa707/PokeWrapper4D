@@ -41,12 +41,15 @@ type
     Fcondition: TCondition;
     Fid: integer;
     Fname: string;
+    Fnames: TObjectList<TNames>;
+    procedure SetFnames(const Value: TObjectList<TNames>);
   public
     constructor Create; overload;
     destructor Destroy; override;
     property condition: TCondition read Fcondition write Fcondition;
     property id: integer read Fid write Fid;
     property name: string read Fname write Fname;
+    property names: TObjectList<TNames> read Fnames write SetFnames;
   end;
 
 implementation
@@ -56,12 +59,21 @@ implementation
 constructor TEncounterConditionValueEntity.Create;
 begin
   Fcondition := TCondition.Create;
+  Fnames := TObjectList<TNames>.Create;
 end;
 
 destructor TEncounterConditionValueEntity.Destroy;
 begin
   Fcondition.Free;
+  Fnames.Free;
   inherited;
+end;
+
+procedure TEncounterConditionValueEntity.SetFnames
+  (const Value: TObjectList<TNames>);
+begin
+  FreeAndNil(Fnames);
+  Fnames := Value;
 end;
 
 { TEncounterConditionValueEntity.TNames }
