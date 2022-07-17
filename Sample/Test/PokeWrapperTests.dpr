@@ -30,10 +30,12 @@ uses
   PokeAPI.Types in '..\..\Source\API\PokeAPI.Types.pas',
   Berry.Entity in '..\..\Source\Entities\Berries\Berry.Entity.pas',
   PokeList.Entity in '..\..\Source\List\PokeList.Entity.pas',
-  BerryTest in 'Source\BerryTest.pas',
   BerryFirmness.Entity in '..\..\Source\Entities\Berries\BerryFirmness.Entity.pas',
+  BerryFlavor.Entity in '..\..\Source\Entities\Berries\BerryFlavor.Entity.pas',
   BerryFirmnessTest in 'Source\BerryFirmnessTest.pas',
-  BerryFlavor.Entity in '..\..\Source\Entities\Berries\BerryFlavor.Entity.pas';
+  BerryFlavorTest in 'Source\BerryFlavorTest.pas',
+  BerryTest in 'Source\BerryTest.pas',
+  ContestType.Entity in '..\..\Source\Entities\Contests\ContestType.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
