@@ -38,7 +38,10 @@ uses
   BerryFlavorTest in 'Source\BerryTest\BerryFlavorTest.pas',
   BerryTest in 'Source\BerryTest\BerryTest.pas',
   ContestEffect.Entity in '..\..\Source\Entities\Contests\ContestEffect.Entity.pas',
-  ContestEffectTest in 'Source\ContestTest\ContestEffectTest.pas';
+  ContestEffectTest in 'Source\ContestTest\ContestEffectTest.pas',
+  SuperContestEffect.Entity in '..\..\Source\Entities\Contests\SuperContestEffect.Entity.pas',
+  SuperContestEffectTest in 'Source\ContestTest\SuperContestEffectTest.pas',
+  EncounterMethod.Entity in '..\..\Source\Entities\Encounters\EncounterMethod.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
