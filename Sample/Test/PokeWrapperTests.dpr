@@ -32,10 +32,13 @@ uses
   PokeList.Entity in '..\..\Source\List\PokeList.Entity.pas',
   BerryFirmness.Entity in '..\..\Source\Entities\Berries\BerryFirmness.Entity.pas',
   BerryFlavor.Entity in '..\..\Source\Entities\Berries\BerryFlavor.Entity.pas',
-  BerryFirmnessTest in 'Source\BerryFirmnessTest.pas',
-  BerryFlavorTest in 'Source\BerryFlavorTest.pas',
-  BerryTest in 'Source\BerryTest.pas',
-  ContestType.Entity in '..\..\Source\Entities\Contests\ContestType.Entity.pas';
+  ContestType.Entity in '..\..\Source\Entities\Contests\ContestType.Entity.pas',
+  ContestTypeTest in 'Source\ContestTest\ContestTypeTest.pas',
+  BerryFirmnessTest in 'Source\BerryTest\BerryFirmnessTest.pas',
+  BerryFlavorTest in 'Source\BerryTest\BerryFlavorTest.pas',
+  BerryTest in 'Source\BerryTest\BerryTest.pas',
+  ContestEffect.Entity in '..\..\Source\Entities\Contests\ContestEffect.Entity.pas',
+  ContestEffectTest in 'Source\ContestTest\ContestEffectTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

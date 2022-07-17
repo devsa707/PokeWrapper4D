@@ -113,10 +113,13 @@
         <DCCReference Include="..\..\Source\List\PokeList.Entity.pas"/>
         <DCCReference Include="..\..\Source\Entities\Berries\BerryFirmness.Entity.pas"/>
         <DCCReference Include="..\..\Source\Entities\Berries\BerryFlavor.Entity.pas"/>
-        <DCCReference Include="Source\BerryFirmnessTest.pas"/>
-        <DCCReference Include="Source\BerryFlavorTest.pas"/>
-        <DCCReference Include="Source\BerryTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Contests\ContestType.Entity.pas"/>
+        <DCCReference Include="Source\ContestTest\ContestTypeTest.pas"/>
+        <DCCReference Include="Source\BerryTest\BerryFirmnessTest.pas"/>
+        <DCCReference Include="Source\BerryTest\BerryFlavorTest.pas"/>
+        <DCCReference Include="Source\BerryTest\BerryTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Contests\ContestEffect.Entity.pas"/>
+        <DCCReference Include="Source\ContestTest\ContestEffectTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
