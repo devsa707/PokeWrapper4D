@@ -12,7 +12,7 @@ type
     super_contest_effect);
 
   TEncounter = (encounter_method, //
-    enconter_condition, //
+    encounter_condition, //
     encounter_condition_value);
 
   TEvolution = (evolution_chain, //
