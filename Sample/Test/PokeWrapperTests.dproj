@@ -126,6 +126,10 @@
         <DCCReference Include="Source\EncounterTest\EncounterMethodTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Encounters\EncounterCondition.Entity.pas"/>
         <DCCReference Include="Source\EncounterTest\EncounterConditionTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Encounters\EncounterConditionValue.Entity.pas"/>
+        <DCCReference Include="Source\EncounterTest\EncounterConditionValueTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Evolution\EvolutionChain.Entity.pas"/>
+        <DCCReference Include="Source\EvolutionTest\EvolutionChainTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

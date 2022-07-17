@@ -44,7 +44,11 @@ uses
   EncounterMethod.Entity in '..\..\Source\Entities\Encounters\EncounterMethod.Entity.pas',
   EncounterMethodTest in 'Source\EncounterTest\EncounterMethodTest.pas',
   EncounterCondition.Entity in '..\..\Source\Entities\Encounters\EncounterCondition.Entity.pas',
-  EncounterConditionTest in 'Source\EncounterTest\EncounterConditionTest.pas';
+  EncounterConditionTest in 'Source\EncounterTest\EncounterConditionTest.pas',
+  EncounterConditionValue.Entity in '..\..\Source\Entities\Encounters\EncounterConditionValue.Entity.pas',
+  EncounterConditionValueTest in 'Source\EncounterTest\EncounterConditionValueTest.pas',
+  EvolutionChain.Entity in '..\..\Source\Entities\Evolution\EvolutionChain.Entity.pas',
+  EvolutionChainTest in 'Source\EvolutionTest\EvolutionChainTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
