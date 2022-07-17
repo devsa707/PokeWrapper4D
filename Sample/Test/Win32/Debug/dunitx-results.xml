@@ -1,74 +1,84 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<test-results name="C:\Users\devsa\OneDrive\Documentos\DelphiProjects\PokeWrapper\Sample\Test\Win32\Debug\PokeWrapperTests.exe" total="14" errors="0" failures="0" ignored="0" inconclusive="0" not-run="0" skipped="0" invalid="0" date="2022-07-17" time="34.974">
+<test-results name="C:\Users\devsa\OneDrive\Documentos\DelphiProjects\PokeWrapper\Sample\Test\Win32\Debug\PokeWrapperTests.exe" total="16" errors="0" failures="0" ignored="0" inconclusive="0" not-run="0" skipped="0" invalid="0" date="2022-07-17" time="24.854">
   <culture-info current-culture="en" current-uiculture="en" />
-  <test-suite type="Assembly" name="PokeWrapperTests.exe" executed="true" result="Success" success="True" time="34.974" asserts="0">
+  <test-suite type="Assembly" name="PokeWrapperTests.exe" executed="true" result="Success" success="True" time="24.854" asserts="0">
     <results>
-        <test-suite type="Namespace" name="EncounterMethodTest" executed="true" result="Success" success="True" time="34.974" asserts="0" >
+        <test-suite type="Namespace" name="EncounterMethodTest" executed="true" result="Success" success="True" time="24.854" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TEncounterMethodTest" executed="True" result="Success" success="True" time="34.974" >
+              <test-suite type="Fixture" name="TEncounterMethodTest" executed="True" result="Success" success="True" time="24.854" >
                 <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.673" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="14.822" asserts="0" />
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.293" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.125" asserts="0" />
                 </results>
               </test-suite>
           </results>
         </test-suite>
-        <test-suite type="Namespace" name="SuperContestEffectTest" executed="true" result="Success" success="True" time="19.424" asserts="0" >
+        <test-suite type="Namespace" name="SuperContestEffectTest" executed="true" result="Success" success="True" time="22.391" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TSuperContestEffectTest" executed="True" result="Success" success="True" time="19.424" >
+              <test-suite type="Fixture" name="TSuperContestEffectTest" executed="True" result="Success" success="True" time="22.391" >
                 <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.044" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.483" asserts="0" />
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.055" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="1.594" asserts="0" />
                 </results>
               </test-suite>
           </results>
         </test-suite>
-        <test-suite type="Namespace" name="ContestTypeTest" executed="true" result="Success" success="True" time="16.890" asserts="0" >
+        <test-suite type="Namespace" name="ContestTypeTest" executed="true" result="Success" success="True" time="20.730" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TContestTypeTest" executed="True" result="Success" success="True" time="16.890" >
+              <test-suite type="Fixture" name="TContestTypeTest" executed="True" result="Success" success="True" time="20.730" >
                 <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.036" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.757" asserts="0" />
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.061" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="0.974" asserts="0" />
                 </results>
               </test-suite>
           </results>
         </test-suite>
-        <test-suite type="Namespace" name="ContestEffectTest" executed="true" result="Success" success="True" time="14.087" asserts="0" >
+        <test-suite type="Namespace" name="EncounterConditionTest" executed="true" result="Success" success="True" time="19.681" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TContestEffectTest" executed="True" result="Success" success="True" time="14.087" >
+              <test-suite type="Fixture" name="TEncounterConditionTest" executed="True" result="Success" success="True" time="19.681" >
                 <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.033" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="3.373" asserts="0" />
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="4.269" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="6.533" asserts="0" />
                 </results>
               </test-suite>
           </results>
         </test-suite>
-        <test-suite type="Namespace" name="BerryFirmnessTest" executed="true" result="Success" success="True" time="10.672" asserts="0" >
+        <test-suite type="Namespace" name="ContestEffectTest" executed="true" result="Success" success="True" time="8.869" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TBerryFirmnessTest" executed="True" result="Success" success="True" time="10.672" >
-                <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.041" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.584" asserts="0" />
-                </results>
-              </test-suite>
-          </results>
-        </test-suite>
-        <test-suite type="Namespace" name="BerryFlavorTest" executed="true" result="Success" success="True" time="8.036" asserts="0" >
-          <results>
-              <test-suite type="Fixture" name="TBerryFlavorTest" executed="True" result="Success" success="True" time="8.036" >
+              <test-suite type="Fixture" name="TContestEffectTest" executed="True" result="Success" success="True" time="8.869" >
                 <results>
                   <test-case name="TestList" executed="True" result="Success" success="True" time="0.035" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.558" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="2.393" asserts="0" />
                 </results>
               </test-suite>
           </results>
         </test-suite>
-        <test-suite type="Namespace" name="BerryTest" executed="true" result="Success" success="True" time="5.421" asserts="0" >
+        <test-suite type="Namespace" name="BerryFirmnessTest" executed="true" result="Success" success="True" time="6.430" asserts="0" >
           <results>
-              <test-suite type="Fixture" name="TBerryTest" executed="True" result="Success" success="True" time="5.421" >
+              <test-suite type="Fixture" name="TBerryFirmnessTest" executed="True" result="Success" success="True" time="6.430" >
                 <results>
-                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.038" asserts="0" />
-                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="5.371" asserts="0" />
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.039" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="1.180" asserts="0" />
+                </results>
+              </test-suite>
+          </results>
+        </test-suite>
+        <test-suite type="Namespace" name="BerryFlavorTest" executed="true" result="Success" success="True" time="5.201" asserts="0" >
+          <results>
+              <test-suite type="Fixture" name="TBerryFlavorTest" executed="True" result="Success" success="True" time="5.201" >
+                <results>
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.045" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="1.067" asserts="0" />
+                </results>
+              </test-suite>
+          </results>
+        </test-suite>
+        <test-suite type="Namespace" name="BerryTest" executed="true" result="Success" success="True" time="4.079" asserts="0" >
+          <results>
+              <test-suite type="Fixture" name="TBerryTest" executed="True" result="Success" success="True" time="4.079" >
+                <results>
+                  <test-case name="TestList" executed="True" result="Success" success="True" time="0.044" asserts="0" />
+                  <test-case name="TestEntity" executed="True" result="Success" success="True" time="4.025" asserts="0" />
                 </results>
               </test-suite>
           </results>

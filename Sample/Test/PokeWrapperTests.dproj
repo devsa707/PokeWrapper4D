@@ -123,6 +123,9 @@
         <DCCReference Include="..\..\Source\Entities\Contests\SuperContestEffect.Entity.pas"/>
         <DCCReference Include="Source\ContestTest\SuperContestEffectTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Encounters\EncounterMethod.Entity.pas"/>
+        <DCCReference Include="Source\EncounterTest\EncounterMethodTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Encounters\EncounterCondition.Entity.pas"/>
+        <DCCReference Include="Source\EncounterTest\EncounterConditionTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

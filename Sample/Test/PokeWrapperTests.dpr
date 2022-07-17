@@ -41,7 +41,10 @@ uses
   ContestEffectTest in 'Source\ContestTest\ContestEffectTest.pas',
   SuperContestEffect.Entity in '..\..\Source\Entities\Contests\SuperContestEffect.Entity.pas',
   SuperContestEffectTest in 'Source\ContestTest\SuperContestEffectTest.pas',
-  EncounterMethod.Entity in '..\..\Source\Entities\Encounters\EncounterMethod.Entity.pas';
+  EncounterMethod.Entity in '..\..\Source\Entities\Encounters\EncounterMethod.Entity.pas',
+  EncounterMethodTest in 'Source\EncounterTest\EncounterMethodTest.pas',
+  EncounterCondition.Entity in '..\..\Source\Entities\Encounters\EncounterCondition.Entity.pas',
+  EncounterConditionTest in 'Source\EncounterTest\EncounterConditionTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
