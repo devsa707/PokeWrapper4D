@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   EncounterConditionValue.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TEncounterConditionValueTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TEncounterConditionValueTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TEncounter>.Create;
+  FPokeWrapper := TPokeWrapper<TEncounter>.Create;
 end;
 
 procedure TEncounterConditionValueTest.TestEntity;
@@ -48,7 +48,7 @@ begin
     LEncounterConditionValueEntity := nil;
     try
       LEncounterConditionValueEntity := TEncounterConditionValueEntity.Create;
-      FPokeAPI.GetAsEntity(LEncounterConditionValueEntity,
+      FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity,
         integer(TEncounter.encounter_condition_value), I);
       // Assertions
       Assert.IsNotEmpty(LEncounterConditionValueEntity.condition.name);
@@ -77,7 +77,7 @@ begin
   LEncounterConditionValueEntity := nil;
   try
     LEncounterConditionValueEntity := TEncounterConditionValueEntity.Create;
-    FPokeAPI.GetAsEntity(LEncounterConditionValueEntity,
+    FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity,
       integer(TEncounter.encounter_condition_value), 9999999);
   finally
     LEncounterConditionValueEntity.Free;
@@ -91,7 +91,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEncounter.encounter_condition_value...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
       (integer(TEncounter.encounter_condition_value));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

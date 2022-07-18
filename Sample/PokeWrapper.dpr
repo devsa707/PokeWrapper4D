@@ -5,10 +5,10 @@ program PokeWrapper;
 
 uses
   System.SysUtils,
-  PokeAPI.Interfaces in '..\Source\API\PokeAPI.Interfaces.pas',
-  PokeAPI in '..\Source\API\PokeAPI.pas',
-  PokeAPI.Resources in '..\Source\API\PokeAPI.Resources.pas',
-  PokeAPI.Types in '..\Source\API\PokeAPI.Types.pas',
+  PokeWrapper.Interfaces in '..\Source\API\PokeWrapper.Interfaces.pas',
+  PokeWrapper in '..\Source\API\PokeWrapper.pas',
+  PokeWrapper.Resources in '..\Source\API\PokeWrapper.Resources.pas',
+  PokeWrapper.Types in '..\Source\API\PokeWrapper.Types.pas',
   PokeList.Entity in '..\Source\List\PokeList.Entity.pas',
   Berry.Entity in '..\Source\Entities\Berries\Berry.Entity.pas';
 

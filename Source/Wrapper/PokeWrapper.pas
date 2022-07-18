@@ -1,4 +1,4 @@
-unit PokeAPI;
+unit PokeWrapper;
 
 interface
 
@@ -9,8 +9,8 @@ uses
   System.Generics.Collections,
   //
   PokeList.Entity,
-  PokeAPI.Resources,
-  PokeAPI.Interfaces,
+  PokeWrapper.Resources,
+  PokeWrapper.Interfaces,
   // MVCFramework
   JsonDataObjects,
   MVCFramework.RESTClient,
@@ -20,7 +20,7 @@ uses
 
 type
 
-  TPokeAPI<T> = class(TInterfacedObject, IPokeAPI)
+  TPokeWrapper<T> = class(TInterfacedObject, IPokeWrapper)
   private
     FMVCRESTClient: IMVCRESTClient;
     FPokeResource: IPokeResource;
@@ -46,7 +46,7 @@ implementation
 
 { TPokeAPIJson }
 
-constructor TPokeAPI<T>.Create;
+constructor TPokeWrapper<T>.Create;
 begin
   FTypeInfo := TypeInfo(T);
   FMVCRESTClient := TMVCRESTClient.Create;
@@ -54,7 +54,7 @@ begin
   FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 
-function TPokeAPI<T>.Get(AIndex: integer; AValue: string): string;
+function TPokeWrapper<T>.Get(AIndex: integer; AValue: string): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -67,7 +67,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeAPI<T>.GetAsEntity(AObject: TObject; AIndex: integer;
+procedure TPokeWrapper<T>.GetAsEntity(AObject: TObject; AIndex: integer;
   AValue: string);
 var
   LResourceName: string;
@@ -83,7 +83,8 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeAPI<T>.GetAsEntity(AObject: TObject; AIndex, AValue: integer);
+procedure TPokeWrapper<T>.GetAsEntity(AObject: TObject;
+  AIndex, AValue: integer);
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -98,7 +99,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPI<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
+function TPokeWrapper<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
   : TPokeListEntity;
 var
   LResourceName: string;
@@ -119,7 +120,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPI<T>.Get(AIndex: integer; AValue: integer): string;
+function TPokeWrapper<T>.Get(AIndex: integer; AValue: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -132,7 +133,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeAPI<T>.GetList(AIndex, AOffset, ALimit: integer): string;
+function TPokeWrapper<T>.GetList(AIndex, AOffset, ALimit: integer): string;
 var
   LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
@@ -147,7 +148,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeAPI<T>.JSONResponseToObject(AJsonObject: TJsonObject;
+procedure TPokeWrapper<T>.JSONResponseToObject(AJsonObject: TJsonObject;
   const AObject: TObject);
 var
   LMVCJSONSerializer: IMVCJSONSerializer;

@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   BerryFlavor.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TBerryFlavorTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TBerryFlavorTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TBerry>.Create;
+  FPokeWrapper := TPokeWrapper<TBerry>.Create;
 end;
 
 procedure TBerryFlavorTest.TestEntity;
@@ -48,7 +48,8 @@ begin
     LBerryFlavorEntity := nil;
     try
       LBerryFlavorEntity := TBerryFlavorEntity.Create;
-      FPokeAPI.GetAsEntity(LBerryFlavorEntity, integer(TBerry.berry_flavor), I);
+      FPokeWrapper.GetAsEntity(LBerryFlavorEntity,
+        integer(TBerry.berry_flavor), I);
       // Assertions
       Assert.IsNotEmpty(LBerryFlavorEntity.berries.Count);
       Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items
@@ -84,7 +85,7 @@ begin
   LBerryFlavorEntity := nil;
   try
     LBerryFlavorEntity := TBerryFlavorEntity.Create;
-    FPokeAPI.GetAsEntity(LBerryFlavorEntity,
+    FPokeWrapper.GetAsEntity(LBerryFlavorEntity,
       integer(TBerry.berry_flavor), 9999999);
   finally
     LBerryFlavorEntity.Free;
@@ -98,7 +99,8 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry_flavor...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TBerry.berry_flavor));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
+      (integer(TBerry.berry_flavor));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

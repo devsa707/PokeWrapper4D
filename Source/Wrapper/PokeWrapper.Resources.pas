@@ -1,4 +1,4 @@
-unit PokeAPI.Resources;
+unit PokeWrapper.Resources;
 
 interface
 

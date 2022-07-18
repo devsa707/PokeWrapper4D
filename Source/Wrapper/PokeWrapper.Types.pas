@@ -1,4 +1,4 @@
-unit PokeAPI.Types;
+unit PokeWrapper.Types;
 
 interface
 

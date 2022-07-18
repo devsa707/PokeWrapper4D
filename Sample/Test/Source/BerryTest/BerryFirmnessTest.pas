@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   BerryFirmness.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TBerryFirmnessTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TBerryFirmnessTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TBerry>.Create;
+  FPokeWrapper := TPokeWrapper<TBerry>.Create;
 end;
 
 procedure TBerryFirmnessTest.TestEntity;
@@ -48,8 +48,8 @@ begin
     LBerryFirmnessEntity := nil;
     try
       LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-      FPokeAPI.GetAsEntity(LBerryFirmnessEntity, integer(TBerry.berry_firmness),
-        I); // Assertions
+      FPokeWrapper.GetAsEntity(LBerryFirmnessEntity,
+        integer(TBerry.berry_firmness), I); // Assertions
       Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Count);
       Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
         [LBerryFirmnessEntity.berries.Count - 1].name);
@@ -80,7 +80,8 @@ begin
   LBerryFirmnessEntity := nil;
   try
     LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-    FPokeAPI.GetAsEntity(LBerryFirmnessEntity,integer(TBerry.berry_firmness), 9999999);
+    FPokeWrapper.GetAsEntity(LBerryFirmnessEntity,
+      integer(TBerry.berry_firmness), 9999999);
   finally
     LBerryFirmnessEntity.Free;
   end;
@@ -93,7 +94,8 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry_firmness...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TBerry.berry_firmness));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
+      (integer(TBerry.berry_firmness));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

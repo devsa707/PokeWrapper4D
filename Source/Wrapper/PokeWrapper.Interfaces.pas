@@ -1,4 +1,4 @@
-unit PokeAPI.Interfaces;
+unit PokeWrapper.Interfaces;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   MVCFramework.RESTClient.Intf;
 
 type
-  IPokeAPI = interface
+  IPokeWrapper = interface
     ['{001F71D8-64A6-406D-98AF-08F7F23B138D}']
     // Function
     function GetList(AIndex: integer; //
