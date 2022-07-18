@@ -1,4 +1,4 @@
-unit Evolution.Entity;
+unit Generation.Entity;
 
 interface
 
@@ -9,7 +9,7 @@ uses
 
 type
 
-  TEvolutionEntity = class
+  TGenerationEntity = class
   type
     TAbilities = class
     private
@@ -121,7 +121,7 @@ implementation
 
 { TEvolutionEntity }
 
-constructor TEvolutionEntity.Create;
+constructor TGenerationEntity.Create;
 begin
   Fabilities := TObjectList<TAbilities>.Create;
   Fmain_region := TMainRegion.Create;
@@ -132,7 +132,7 @@ begin
   Fversion_groups := TObjectList<TVersionGroups>.Create;
 end;
 
-destructor TEvolutionEntity.Destroy;
+destructor TGenerationEntity.Destroy;
 begin
   Fabilities.Free;
   Fmain_region.Free;
@@ -144,38 +144,38 @@ begin
   inherited;
 end;
 
-procedure TEvolutionEntity.SetFabilities(const Value: TObjectList<TAbilities>);
+procedure TGenerationEntity.SetFabilities(const Value: TObjectList<TAbilities>);
 begin
   FreeAndNil(Fabilities);
   Fabilities := Value;
 end;
 
-procedure TEvolutionEntity.SetFmoves(const Value: TObjectList<TMoves>);
+procedure TGenerationEntity.SetFmoves(const Value: TObjectList<TMoves>);
 begin
   FreeAndNil(Fmoves);
   Fmoves := Value;
 end;
 
-procedure TEvolutionEntity.SetFnames(const Value: TObjectList<TNames>);
+procedure TGenerationEntity.SetFnames(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fnames);
   Fnames := Value;
 end;
 
-procedure TEvolutionEntity.SetFpokemon_species(const Value
+procedure TGenerationEntity.SetFpokemon_species(const Value
   : TObjectList<TPokemonSpecies>);
 begin
   FreeAndNil(Fpokemon_species);
   Fpokemon_species := Value;
 end;
 
-procedure TEvolutionEntity.SetFtypes(const Value: TObjectList<TTypes>);
+procedure TGenerationEntity.SetFtypes(const Value: TObjectList<TTypes>);
 begin
   FreeAndNil(Ftypes);
   Ftypes := Value;
 end;
 
-procedure TEvolutionEntity.SetFversion_groups(const Value
+procedure TGenerationEntity.SetFversion_groups(const Value
   : TObjectList<TVersionGroups>);
 begin
   FreeAndNil(Fversion_groups);
@@ -184,12 +184,12 @@ end;
 
 { TEvolutionEntity.TNames }
 
-constructor TEvolutionEntity.TNames.Create;
+constructor TGenerationEntity.TNames.Create;
 begin
   Flanguage := TLanguage.Create;
 end;
 
-destructor TEvolutionEntity.TNames.Destroy;
+destructor TGenerationEntity.TNames.Destroy;
 begin
   Flanguage.Free;
   inherited;
