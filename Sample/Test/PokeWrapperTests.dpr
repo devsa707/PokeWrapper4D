@@ -49,7 +49,8 @@ uses
   PokeWrapper.Interfaces in '..\..\Source\Wrapper\PokeWrapper.Interfaces.pas',
   PokeWrapper in '..\..\Source\Wrapper\PokeWrapper.pas',
   PokeWrapper.Resources in '..\..\Source\Wrapper\PokeWrapper.Resources.pas',
-  PokeWrapper.Types in '..\..\Source\Wrapper\PokeWrapper.Types.pas';
+  PokeWrapper.Types in '..\..\Source\Wrapper\PokeWrapper.Types.pas',
+  EvolutionTriggerTest in 'Source\EvolutionTest\EvolutionTriggerTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

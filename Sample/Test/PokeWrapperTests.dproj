@@ -137,6 +137,7 @@
         <DCCReference Include="..\..\Source\Wrapper\PokeWrapper.pas"/>
         <DCCReference Include="..\..\Source\Wrapper\PokeWrapper.Resources.pas"/>
         <DCCReference Include="..\..\Source\Wrapper\PokeWrapper.Types.pas"/>
+        <DCCReference Include="Source\EvolutionTest\EvolutionTriggerTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -168,7 +169,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\PokeWrapperTests.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\PokeWrapper\Unit Test\Win32\Debug\PokeWrapperTests.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PokeWrapperTests.exe</RemoteName>
                         <Overwrite>true</Overwrite>

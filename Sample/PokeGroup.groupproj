@@ -3,7 +3,7 @@
         <ProjectGuid>{6AE85409-CBCA-491E-A309-B6BF3169FB83}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="PokeWrapper.dproj">
+        <Projects Include="PokeWrapperConsole.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Test\PokeWrapperTests.dproj">
@@ -17,14 +17,14 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="PokeWrapper">
-        <MSBuild Projects="PokeWrapper.dproj"/>
+    <Target Name="PokeWrapperConsole">
+        <MSBuild Projects="PokeWrapperConsole.dproj"/>
     </Target>
-    <Target Name="PokeWrapper:Clean">
-        <MSBuild Projects="PokeWrapper.dproj" Targets="Clean"/>
+    <Target Name="PokeWrapperConsole:Clean">
+        <MSBuild Projects="PokeWrapperConsole.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="PokeWrapper:Make">
-        <MSBuild Projects="PokeWrapper.dproj" Targets="Make"/>
+    <Target Name="PokeWrapperConsole:Make">
+        <MSBuild Projects="PokeWrapperConsole.dproj" Targets="Make"/>
     </Target>
     <Target Name="PokeWrapperTests">
         <MSBuild Projects="Test\PokeWrapperTests.dproj"/>
@@ -36,13 +36,13 @@
         <MSBuild Projects="Test\PokeWrapperTests.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="PokeWrapper;PokeWrapperTests"/>
+        <CallTarget Targets="PokeWrapperConsole;PokeWrapperTests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="PokeWrapper:Clean;PokeWrapperTests:Clean"/>
+        <CallTarget Targets="PokeWrapperConsole:Clean;PokeWrapperTests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="PokeWrapper:Make;PokeWrapperTests:Make"/>
+        <CallTarget Targets="PokeWrapperConsole:Make;PokeWrapperTests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

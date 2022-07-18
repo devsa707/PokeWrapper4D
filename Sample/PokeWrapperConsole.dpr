@@ -1,19 +1,19 @@
-program PokeWrapper;
+program PokeWrapperConsole;
 
 {$APPTYPE CONSOLE}
 {$R *.res}
 
 uses
   System.SysUtils,
-  PokeWrapper.Interfaces in '..\Source\API\PokeWrapper.Interfaces.pas',
-  PokeWrapper in '..\Source\API\PokeWrapper.pas',
-  PokeWrapper.Resources in '..\Source\API\PokeWrapper.Resources.pas',
-  PokeWrapper.Types in '..\Source\API\PokeWrapper.Types.pas',
+  PokeWrapper.Interfaces in '..\Source\Wrapper\PokeWrapper.Interfaces.pas',
+  PokeWrapper in '..\Source\Wrapper\PokeWrapper.pas',
+  PokeWrapper.Resources in '..\Source\Wrapper\PokeWrapper.Resources.pas',
+  PokeWrapper.Types in '..\Source\Wrapper\PokeWrapper.Types.pas',
   PokeList.Entity in '..\Source\List\PokeList.Entity.pas',
   Berry.Entity in '..\Source\Entities\Berries\Berry.Entity.pas';
 
 var
-  FPokeAPI: IPokeAPI;
+  FPokeAPI: IPokeWrapper;
   FPokeListEntity: TPokeListEntity;
 
 begin
@@ -27,7 +27,7 @@ begin
     Writeln('');
 
     // <T> is the header value for search
-    FPokeAPI := TPokeAPI<TPokemon>.Create;
+    FPokeAPI := TPokeWrapper<TPokemon>.Create;
     Writeln(FPokeAPI.Get(integer(pokemon), 1));
     Writeln('');
     Writeln('');
