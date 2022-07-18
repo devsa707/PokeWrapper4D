@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   Berry.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TBerryTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TBerryTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TBerry>.Create;
+  FPokeWrapper := TPokeWrapper<TBerry>.Create;
 end;
 
 procedure TBerryTest.TestEntity;
@@ -48,7 +48,7 @@ begin
     LBerryEntity := nil;
     try
       LBerryEntity := TBerryEntity.Create;
-      FPokeAPI.GetAsEntity(LBerryEntity, integer(TBerry.Berry), I);
+      FPokeWrapper.GetAsEntity(LBerryEntity, integer(TBerry.Berry), I);
       // Assertions
       Assert.IsNotEmpty(LBerryEntity.name);
       Assert.IsNotEmpty(LBerryEntity.firmness.name);
@@ -79,7 +79,7 @@ begin
   LBerryEntity := nil;
   try
     LBerryEntity := TBerryEntity.Create;
-    FPokeAPI.GetAsEntity(LBerryEntity, integer(TBerry.Berry), 9999999);
+    FPokeWrapper.GetAsEntity(LBerryEntity, integer(TBerry.Berry), 9999999);
   finally
     LBerryEntity.Free;
   end;
@@ -92,7 +92,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TBerry.Berry));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TBerry.Berry));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

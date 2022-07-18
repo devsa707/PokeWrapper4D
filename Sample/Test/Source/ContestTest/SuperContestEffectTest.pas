@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   SuperContestEffect.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TSuperContestEffectTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TSuperContestEffectTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TContest>.Create;
+  FPokeWrapper := TPokeWrapper<TContest>.Create;
 end;
 
 procedure TSuperContestEffectTest.TestEntity;
@@ -51,7 +51,7 @@ begin
       // https://pokeapi.co/api/v2/super-contest-effect/3 is missing
       if I <> 3 then
       begin
-        FPokeAPI.GetAsEntity(LSuperContestEffectEntity,
+        FPokeWrapper.GetAsEntity(LSuperContestEffectEntity,
           integer(TContest.super_contest_effect), I);
         // Assertions
         Assert.IsNotEmpty(LSuperContestEffectEntity.appeal);
@@ -86,7 +86,7 @@ begin
   LSuperContestEffectEntity := nil;
   try
     LSuperContestEffectEntity := TSuperContestEffectEntity.Create;
-    FPokeAPI.GetAsEntity(LSuperContestEffectEntity,
+    FPokeWrapper.GetAsEntity(LSuperContestEffectEntity,
       integer(TContest.super_contest_effect), 9999999);
   finally
     LSuperContestEffectEntity.Free;
@@ -100,7 +100,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.super_contest_effect...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
       (integer(TContest.super_contest_effect));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

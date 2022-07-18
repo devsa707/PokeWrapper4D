@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   EncounterMethod.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TEncounterMethodTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TEncounterMethodTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TEncounter>.Create;
+  FPokeWrapper := TPokeWrapper<TEncounter>.Create;
 end;
 
 procedure TEncounterMethodTest.TestEntity;
@@ -48,7 +48,7 @@ begin
     LEncounterMethodEntity := nil;
     try
       LEncounterMethodEntity := TEncounterMethodEntity.Create;
-      FPokeAPI.GetAsEntity(LEncounterMethodEntity,
+      FPokeWrapper.GetAsEntity(LEncounterMethodEntity,
         integer(TEncounter.encounter_method), I);
       // Assertions
       Assert.IsNotEmpty(LEncounterMethodEntity.id);
@@ -76,7 +76,7 @@ begin
   LEncounterMethodEntity := nil;
   try
     LEncounterMethodEntity := TEncounterMethodEntity.Create;
-    FPokeAPI.GetAsEntity(LEncounterMethodEntity,
+    FPokeWrapper.GetAsEntity(LEncounterMethodEntity,
       integer(TEncounter.encounter_method), 9999999);
   finally
     LEncounterMethodEntity.Free;
@@ -90,7 +90,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEncounter.encounter_method...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
       (integer(TEncounter.encounter_method));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

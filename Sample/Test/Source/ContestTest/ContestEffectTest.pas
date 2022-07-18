@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   ContestEffect.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TContestEffectTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TContestEffectTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TContest>.Create;
+  FPokeWrapper := TPokeWrapper<TContest>.Create;
 end;
 
 procedure TContestEffectTest.TestEntity;
@@ -48,7 +48,7 @@ begin
     LContestEffectEntity := nil;
     try
       LContestEffectEntity := TContestEffectEntity.Create;
-      FPokeAPI.GetAsEntity(LContestEffectEntity,
+      FPokeWrapper.GetAsEntity(LContestEffectEntity,
         integer(TContest.contest_effect), I);
       // Assertions
       Assert.IsNotEmpty(LContestEffectEntity.appeal);
@@ -82,7 +82,7 @@ begin
   LContestEffectEntity := nil;
   try
     LContestEffectEntity := TContestEffectEntity.Create;
-    FPokeAPI.GetAsEntity(LContestEffectEntity,
+    FPokeWrapper.GetAsEntity(LContestEffectEntity,
       integer(TContest.contest_effect), 9999999);
   finally
     LContestEffectEntity.Free;
@@ -96,7 +96,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.contest_effect...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity
+    LPokeListEntity := FPokeWrapper.GetAsListEntity
       (integer(TContest.contest_effect));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

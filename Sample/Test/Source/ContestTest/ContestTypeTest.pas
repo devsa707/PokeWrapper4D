@@ -7,9 +7,9 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
-  PokeAPI,
-  PokeAPI.Interfaces,
-  PokeAPI.Types,
+  PokeWrapper,
+  PokeWrapper.Interfaces,
+  PokeWrapper.Types,
   //
   PokeList.Entity,
   ContestType.Entity;
@@ -19,7 +19,7 @@ type
   [TestFixture]
   TContestTypeTest = class
   private
-    FPokeAPI: IPokeAPI;
+    FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
     [Setup]
@@ -35,7 +35,7 @@ implementation
 
 procedure TContestTypeTest.Setup;
 begin
-  FPokeAPI := TPokeAPI<TContest>.Create;
+  FPokeWrapper := TPokeWrapper<TContest>.Create;
 end;
 
 procedure TContestTypeTest.TestEntity;
@@ -48,7 +48,7 @@ begin
     LContestTypeEntity := nil;
     try
       LContestTypeEntity := TContestTypeEntity.Create;
-      FPokeAPI.GetAsEntity(LContestTypeEntity,
+      FPokeWrapper.GetAsEntity(LContestTypeEntity,
         integer(TContest.contest_type), I);
       // Assertions
       Assert.IsNotEmpty(LContestTypeEntity.berry_flavor.name);
@@ -79,7 +79,7 @@ begin
   LContestTypeEntity := nil;
   try
     LContestTypeEntity := TContestTypeEntity.Create;
-    FPokeAPI.GetAsEntity(LContestTypeEntity,
+    FPokeWrapper.GetAsEntity(LContestTypeEntity,
       integer(TContest.contest_type), 9999999);
   finally
     LContestTypeEntity.Free;
@@ -93,7 +93,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.contest_type...  ');
-    LPokeListEntity := FPokeAPI.GetAsListEntity(integer(TContest.contest_type));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TContest.contest_type));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');
