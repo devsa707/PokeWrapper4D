@@ -50,7 +50,9 @@ uses
   PokeWrapper in '..\..\Source\Wrapper\PokeWrapper.pas',
   PokeWrapper.Resources in '..\..\Source\Wrapper\PokeWrapper.Resources.pas',
   PokeWrapper.Types in '..\..\Source\Wrapper\PokeWrapper.Types.pas',
-  EvolutionTriggerTest in 'Source\EvolutionTest\EvolutionTriggerTest.pas';
+  EvolutionTriggerTest in 'Source\EvolutionTest\EvolutionTriggerTest.pas',
+  Generation.Entity in '..\..\Source\Entities\Games\Generation.Entity.pas',
+  GenerationTest in 'Source\GamesTest\GenerationTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
