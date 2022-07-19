@@ -25,7 +25,7 @@ type
     FMVCRESTClient: IMVCRESTClient;
     FPokeResource: IPokeResource;
     FTypeInfo: PTypeInfo;
-    procedure JSONResponseToObject(AJsonObject: TJsonObject;
+    procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse;
       const AObject: TObject);
   public
     constructor Create; overload;
@@ -77,7 +77,7 @@ begin
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
   if LMVCRESTResponse.Success then
   begin
-    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, AObject);
+    JSONResponseToObject(LMVCRESTResponse, AObject);
   end
   else
     raise Exception.Create('Not Found');
@@ -93,7 +93,7 @@ begin
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
   if LMVCRESTResponse.Success then
   begin
-    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, AObject);
+    JSONResponseToObject(LMVCRESTResponse, AObject);
   end
   else
     raise Exception.Create('Not Found');
@@ -113,7 +113,7 @@ begin
   LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
   if LMVCRESTResponse.Success then
   begin
-    JSONResponseToObject(LMVCRESTResponse.ToJSONObject, LPokeListEntity);
+    JSONResponseToObject(LMVCRESTResponse, LPokeListEntity);
     Result := LPokeListEntity;
   end
   else
@@ -148,15 +148,20 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeWrapper<T>.JSONResponseToObject(AJsonObject: TJsonObject;
-  const AObject: TObject);
+procedure TPokeWrapper<T>.JSONResponseToObject(AMVCRESTResponse
+  : IMVCRESTResponse; const AObject: TObject);
 var
   LMVCJSONSerializer: IMVCJSONSerializer;
+  LTJsonObject: TJsonObject;
 begin
-  LMVCJSONSerializer := TMVCJsonDataObjectsSerializer.Create;
-  LMVCJSONSerializer.JsonObjectToObject(AJsonObject, AObject, stDefault, []);
-  // Injected object by the MVCRESTResponse.ToJSONObject
-  AJsonObject.Free;
+  LTJsonObject := nil;
+  try
+    LTJsonObject := AMVCRESTResponse.ToJSONObject;
+    LMVCJSONSerializer := TMVCJsonDataObjectsSerializer.Create;
+    LMVCJSONSerializer.JsonObjectToObject(LTJsonObject, AObject, stDefault, []);
+  finally
+    LTJsonObject.Free;
+  end;
 end;
 
 end.
