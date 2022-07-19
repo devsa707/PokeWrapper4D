@@ -143,6 +143,7 @@
         <DCCReference Include="..\..\Source\Entities\Games\Pokedex.Entity.pas"/>
         <DCCReference Include="Source\GamesTest\PokedexTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Games\Version.Entity.pas"/>
+        <DCCReference Include="Source\GamesTest\VersionTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

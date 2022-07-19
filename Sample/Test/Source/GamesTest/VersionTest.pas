@@ -55,8 +55,16 @@ begin
         // Assertions
         Assert.IsNotEmpty(LVersionEntity.id);
         Assert.IsNotEmpty(LVersionEntity.name);
-        // node descriptions
-
+        // node Language
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
+          - 1].language.name);
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
+          - 1].language.url);
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
+          - 1].name);
+        // node version_group
+        Assert.IsNotEmpty(LVersionEntity.version_group.name);
+        Assert.IsNotEmpty(LVersionEntity.version_group.url);
         Write('.');
       end;
     finally
