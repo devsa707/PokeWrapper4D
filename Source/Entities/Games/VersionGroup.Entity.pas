@@ -1,4 +1,4 @@
-unit VersionGoup.Entity;
+unit VersionGroup.Entity;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   System.Generics.Collections;
 
 type
-  TVersionGoupEntity = class
+  TVersionGroupEntity = class
   type
     TGeneration = class
     private
@@ -88,7 +88,7 @@ implementation
 
 { TVersionGoupEntity }
 
-constructor TVersionGoupEntity.Create;
+constructor TVersionGroupEntity.Create;
 begin
   Fgeneration := TGeneration.Create;
   Fmove_learn_methods := TObjectList<TMoveLearnMethods>.Create;
@@ -97,7 +97,7 @@ begin
   Fversions := TObjectList<TVersions>.Create;
 end;
 
-destructor TVersionGoupEntity.Destroy;
+destructor TVersionGroupEntity.Destroy;
 begin
   Fgeneration.Free;
   Fmove_learn_methods.Free;
@@ -107,27 +107,27 @@ begin
   inherited;
 end;
 
-procedure TVersionGoupEntity.SetFmove_learn_methods
+procedure TVersionGroupEntity.SetFmove_learn_methods
   (const Value: TObjectList<TMoveLearnMethods>);
 begin
   FreeAndNil(Fmove_learn_methods);
   Fmove_learn_methods := Value;
 end;
 
-procedure TVersionGoupEntity.SetFpokedexes(const Value
+procedure TVersionGroupEntity.SetFpokedexes(const Value
   : TObjectList<TPokedexes>);
 begin
   FreeAndNil(Fpokedexes);
   Fpokedexes := Value;
 end;
 
-procedure TVersionGoupEntity.SetFregions(const Value: TObjectList<TRegions>);
+procedure TVersionGroupEntity.SetFregions(const Value: TObjectList<TRegions>);
 begin
   FreeAndNil(Fregions);
   Fregions := Value;
 end;
 
-procedure TVersionGoupEntity.SetFversions(const Value: TObjectList<TVersions>);
+procedure TVersionGroupEntity.SetFversions(const Value: TObjectList<TVersions>);
 begin
   FreeAndNil(Fversions);
   Fversions := Value;
