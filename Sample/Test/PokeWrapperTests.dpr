@@ -54,7 +54,8 @@ uses
   Generation.Entity in '..\..\Source\Entities\Games\Generation.Entity.pas',
   GenerationTest in 'Source\GamesTest\GenerationTest.pas',
   Pokedex.Entity in '..\..\Source\Entities\Games\Pokedex.Entity.pas',
-  PokedexTest in 'Source\GamesTest\PokedexTest.pas';
+  PokedexTest in 'Source\GamesTest\PokedexTest.pas',
+  Version.Entity in '..\..\Source\Entities\Games\Version.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
