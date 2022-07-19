@@ -52,7 +52,9 @@ uses
   PokeWrapper.Types in '..\..\Source\Wrapper\PokeWrapper.Types.pas',
   EvolutionTriggerTest in 'Source\EvolutionTest\EvolutionTriggerTest.pas',
   Generation.Entity in '..\..\Source\Entities\Games\Generation.Entity.pas',
-  GenerationTest in 'Source\GamesTest\GenerationTest.pas';
+  GenerationTest in 'Source\GamesTest\GenerationTest.pas',
+  Pokedex.Entity in '..\..\Source\Entities\Games\Pokedex.Entity.pas',
+  PokedexTest in 'Source\GamesTest\PokedexTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

@@ -65,20 +65,20 @@ type
 
     TRegion = class
     private
-      Fname: string;
-      Furl: string;
+      Fname: NullableString;
+      Furl: NullableString;
     public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
+      property name: NullableString read Fname write Fname;
+      property url: NullableString read Furl write Furl;
     end;
 
     TVersionGroups = class
     private
-      Fname: string;
-      Furl: string;
+      Fname: NullableString;
+      Furl: NullableString;
     public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
+      property name: NullableString read Fname write Fname;
+      property url: NullableString read Furl write Furl;
     end;
   private
     Fdescriptions: TObjectList<TDescriptions>;
@@ -176,7 +176,7 @@ end;
 
 constructor TPokedexEntity.TNames.Create;
 begin
-  Flanguage := TLanguages.Create;
+  Flanguage := TLanguage.Create;
 end;
 
 destructor TPokedexEntity.TNames.Destroy;
