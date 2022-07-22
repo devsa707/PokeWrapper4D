@@ -56,7 +56,11 @@ uses
   Pokedex.Entity in '..\..\Source\Entities\Games\Pokedex.Entity.pas',
   PokedexTest in 'Source\GamesTest\PokedexTest.pas',
   Version.Entity in '..\..\Source\Entities\Games\Version.Entity.pas',
-  VersionTest in 'Source\GamesTest\VersionTest.pas';
+  VersionTest in 'Source\GamesTest\VersionTest.pas',
+  VersionGroup.Entity in '..\..\Source\Entities\Games\VersionGroup.Entity.pas',
+  VersionGroupTest in 'Source\GamesTest\VersionGroupTest.pas',
+  Item.Entity in '..\..\Source\Entities\Items\Item.Entity.pas',
+  ItemTest in 'Source\ItemsTest\ItemTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
