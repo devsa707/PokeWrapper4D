@@ -4,7 +4,9 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  // MVC Framework
+  MVCFramework.Nullables;
 
 type
   TItemAttributeEntity = class
@@ -31,11 +33,11 @@ type
 
     TItems = class
     private
-      Fname: string;
-      Furl: string;
+      Fname: nullablestring;
+      Furl: nullablestring;
     public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
+      property name: nullablestring read Fname write Fname;
+      property url: nullablestring read Furl write Furl;
     end;
 
     TNames = class
@@ -53,8 +55,10 @@ type
     Fid: integer;
     Fitems: TObjectList<TItems>;
     Fname: string;
+    Fnames: TObjectList<TNames>;
     procedure SetFdescriptions(const Value: TObjectList<TDescriptions>);
     procedure SetFitems(const Value: TObjectList<TItems>);
+    procedure SetFnames(const Value: TObjectList<TNames>);
   public
     constructor Create; overload;
     destructor Destroy; override;
@@ -63,7 +67,7 @@ type
     property id: integer read Fid write Fid;
     property items: TObjectList<TItems> read Fitems write SetFitems;
     property name: string read Fname write Fname;
-
+    property names: TObjectList<TNames> read Fnames write SetFnames;
   end;
 
 implementation
@@ -87,12 +91,14 @@ constructor TItemAttributeEntity.Create;
 begin
   Fdescriptions := TObjectList<TDescriptions>.Create;
   Fitems := TObjectList<TItems>.Create;
+  Fnames := TObjectList<TNames>.Create;
 end;
 
 destructor TItemAttributeEntity.Destroy;
 begin
   Fdescriptions.Free;
   Fitems.Free;
+  Fnames.Free;
   inherited;
 end;
 
@@ -107,6 +113,12 @@ procedure TItemAttributeEntity.SetFitems(const Value: TObjectList<TItems>);
 begin
   FreeAndNil(Fitems);
   Fitems := Value;
+end;
+
+procedure TItemAttributeEntity.SetFnames(const Value: TObjectList<TNames>);
+begin
+  FreeAndNil(Fnames);
+  Fnames := Value;
 end;
 
 { TItemAttributeEntity.TNames }

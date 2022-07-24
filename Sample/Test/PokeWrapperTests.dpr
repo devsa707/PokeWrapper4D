@@ -60,7 +60,8 @@ uses
   VersionGroup.Entity in '..\..\Source\Entities\Games\VersionGroup.Entity.pas',
   VersionGroupTest in 'Source\GamesTest\VersionGroupTest.pas',
   Item.Entity in '..\..\Source\Entities\Items\Item.Entity.pas',
-  ItemTest in 'Source\ItemsTest\ItemTest.pas';
+  ItemTest in 'Source\ItemsTest\ItemTest.pas',
+  ItemAttribute.Entity in '..\..\Source\Entities\Items\ItemAttribute.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
