@@ -61,7 +61,10 @@ uses
   VersionGroupTest in 'Source\GamesTest\VersionGroupTest.pas',
   Item.Entity in '..\..\Source\Entities\Items\Item.Entity.pas',
   ItemTest in 'Source\ItemsTest\ItemTest.pas',
-  ItemAttribute.Entity in '..\..\Source\Entities\Items\ItemAttribute.Entity.pas';
+  ItemAttribute.Entity in '..\..\Source\Entities\Items\ItemAttribute.Entity.pas',
+  ItemAttributeTest in 'Source\ItemsTest\ItemAttributeTest.pas',
+  ItemFlingEffect.Entity in '..\..\Source\Entities\Items\ItemFlingEffect.Entity.pas',
+  ItemFlingEffectTest in 'Source\ItemsTest\ItemFlingEffectTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
