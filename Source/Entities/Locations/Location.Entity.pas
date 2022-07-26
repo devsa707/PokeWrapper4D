@@ -63,7 +63,7 @@ type
     private
       Fname: string;
       Furl: string;
-    published
+    public
       property name: string read Fname write Fname;
       property url: string read Furl write Furl;
     end;

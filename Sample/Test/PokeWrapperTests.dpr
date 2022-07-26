@@ -65,7 +65,10 @@ uses
   ItemAttributeTest in 'Source\ItemsTest\ItemAttributeTest.pas',
   ItemFlingEffect.Entity in '..\..\Source\Entities\Items\ItemFlingEffect.Entity.pas',
   ItemFlingEffectTest in 'Source\ItemsTest\ItemFlingEffectTest.pas',
-  ItemPocket.Entity in '..\..\Source\Entities\Items\ItemPocket.Entity.pas';
+  ItemPocket.Entity in '..\..\Source\Entities\Items\ItemPocket.Entity.pas',
+  ItemPocketTest in 'Source\ItemsTest\ItemPocketTest.pas',
+  Location.Entity in '..\..\Source\Entities\Locations\Location.Entity.pas',
+  LocationTest in 'Source\LocationsTest\LocationTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
