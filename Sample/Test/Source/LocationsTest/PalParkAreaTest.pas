@@ -43,7 +43,7 @@ var
   LPalParkAreaEntity: TPalParkAreaEntity;
 begin
   Write('Testing TLocation.pal_park_area .');
-  for var I: integer := 1 to 10 do
+  for var I: integer := 1 to FList - 1 do
   begin
     LPalParkAreaEntity := nil;
     try
