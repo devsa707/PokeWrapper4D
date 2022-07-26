@@ -152,6 +152,7 @@
         <DCCReference Include="Source\ItemsTest\ItemAttributeTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Items\ItemFlingEffect.Entity.pas"/>
         <DCCReference Include="Source\ItemsTest\ItemFlingEffectTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Items\ItemPocket.Entity.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

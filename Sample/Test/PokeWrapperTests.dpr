@@ -64,7 +64,8 @@ uses
   ItemAttribute.Entity in '..\..\Source\Entities\Items\ItemAttribute.Entity.pas',
   ItemAttributeTest in 'Source\ItemsTest\ItemAttributeTest.pas',
   ItemFlingEffect.Entity in '..\..\Source\Entities\Items\ItemFlingEffect.Entity.pas',
-  ItemFlingEffectTest in 'Source\ItemsTest\ItemFlingEffectTest.pas';
+  ItemFlingEffectTest in 'Source\ItemsTest\ItemFlingEffectTest.pas',
+  ItemPocket.Entity in '..\..\Source\Entities\Items\ItemPocket.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
