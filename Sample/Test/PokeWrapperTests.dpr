@@ -68,7 +68,9 @@ uses
   ItemPocket.Entity in '..\..\Source\Entities\Items\ItemPocket.Entity.pas',
   ItemPocketTest in 'Source\ItemsTest\ItemPocketTest.pas',
   Location.Entity in '..\..\Source\Entities\Locations\Location.Entity.pas',
-  LocationTest in 'Source\LocationsTest\LocationTest.pas';
+  LocationTest in 'Source\LocationsTest\LocationTest.pas',
+  LocationArea.Entity in '..\..\Source\Entities\Locations\LocationArea.Entity.pas',
+  LocationAreaTest in 'Source\LocationsTest\LocationAreaTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

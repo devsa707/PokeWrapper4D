@@ -43,13 +43,12 @@ type
       TVersionDetails = class
       private
         Frate: integer;
-        Fversion: TObjectList<TVersion>;
-        procedure SetFversion(const Value: TObjectList<TVersion>);
+        Fversion: TVersion;
       public
         constructor Create; overload;
         destructor Destroy; override;
         property rate: integer read Frate write Frate;
-        property version: TObjectList<TVersion> read Fversion write SetFversion;
+        property version: TVersion read Fversion write Fversion;
       end;
     private
       Fencounter_method: TEncounterMethod;
@@ -210,20 +209,13 @@ end;
 
 constructor TLocationAreaEntity.TEncounterMethodRates.TVersionDetails.Create;
 begin
-  Fversion := TObjectList<TVersion>.Create;
+  Fversion := TVersion.Create;
 end;
 
 destructor TLocationAreaEntity.TEncounterMethodRates.TVersionDetails.Destroy;
 begin
   Fversion.Free;
   inherited;
-end;
-
-procedure TLocationAreaEntity.TEncounterMethodRates.TVersionDetails.SetFversion
-  (const Value: TObjectList<TVersion>);
-begin
-  FreeAndNil(Fversion);
-  Fversion := Value;
 end;
 
 { TLocationAreaEntity }
