@@ -4,18 +4,20 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  MVCFramework.Nullables;
 
 type
   TLocationEntity = class
   type
     TAreas = class
     private
-      Fname: string;
-      Furl: string;
+      Fname: NullableString;
+      Furl: NullableString;
     public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
+      property name: NullableString read Fname write Fname;
+      property url: NullableString read Furl write Furl;
     end;
 
   type
