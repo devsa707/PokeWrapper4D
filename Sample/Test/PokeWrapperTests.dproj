@@ -158,6 +158,7 @@
         <DCCReference Include="Source\LocationsTest\LocationTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Locations\LocationArea.Entity.pas"/>
         <DCCReference Include="Source\LocationsTest\LocationAreaTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Locations\PalParkArea.Entity.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

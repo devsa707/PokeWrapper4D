@@ -70,7 +70,8 @@ uses
   Location.Entity in '..\..\Source\Entities\Locations\Location.Entity.pas',
   LocationTest in 'Source\LocationsTest\LocationTest.pas',
   LocationArea.Entity in '..\..\Source\Entities\Locations\LocationArea.Entity.pas',
-  LocationAreaTest in 'Source\LocationsTest\LocationAreaTest.pas';
+  LocationAreaTest in 'Source\LocationsTest\LocationAreaTest.pas',
+  PalParkArea.Entity in '..\..\Source\Entities\Locations\PalParkArea.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
