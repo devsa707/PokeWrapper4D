@@ -74,7 +74,9 @@ uses
   PalParkArea.Entity in '..\..\Source\Entities\Locations\PalParkArea.Entity.pas',
   PalParkAreaTest in 'Source\LocationsTest\PalParkAreaTest.pas',
   Region.Entity in '..\..\Source\Entities\Locations\Region.Entity.pas',
-  RegionTest in 'Source\LocationsTest\RegionTest.pas';
+  RegionTest in 'Source\LocationsTest\RegionTest.pas',
+  Machine.Entity in '..\..\Source\Entities\Machines\Machine.Entity.pas',
+  MachineTest in 'Source\MachinesTest\MachineTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
