@@ -71,7 +71,10 @@ uses
   LocationTest in 'Source\LocationsTest\LocationTest.pas',
   LocationArea.Entity in '..\..\Source\Entities\Locations\LocationArea.Entity.pas',
   LocationAreaTest in 'Source\LocationsTest\LocationAreaTest.pas',
-  PalParkArea.Entity in '..\..\Source\Entities\Locations\PalParkArea.Entity.pas';
+  PalParkArea.Entity in '..\..\Source\Entities\Locations\PalParkArea.Entity.pas',
+  PalParkAreaTest in 'Source\LocationsTest\PalParkAreaTest.pas',
+  Region.Entity in '..\..\Source\Entities\Locations\Region.Entity.pas',
+  RegionTest in 'Source\LocationsTest\RegionTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
