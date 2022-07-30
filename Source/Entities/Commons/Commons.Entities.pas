@@ -3,15 +3,6 @@ unit Commons.Entities;
 interface
 
 type
-  TLanguage = class
-  private
-    Fname: string;
-    Furl: string;
-  public
-    property name: string read Fname write Fname;
-    property url: string read Furl write Furl;
-  end;
-
   TResource = class
   private
     Fname: string;
@@ -23,12 +14,12 @@ type
 
   TNames = class
   private
-    Flanguage: TLanguage;
+    Flanguage: TResource;
     Fname: string;
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property language: TLanguage read Flanguage write Flanguage;
+    property language: TResource read Flanguage write Flanguage;
     property name: string read Fname write Fname;
   end;
 
@@ -38,7 +29,7 @@ implementation
 
 constructor TNames.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TNames.Destroy;

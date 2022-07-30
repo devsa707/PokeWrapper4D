@@ -16,13 +16,13 @@ type
     type
     private
       Fcolor: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
       Fname: string;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property color: string read Fcolor write Fcolor;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
       property name: string read Fname write Fname;
     end;
   private
@@ -67,7 +67,7 @@ end;
 
 constructor TContestTypeEntity.TNames.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TContestTypeEntity.TNames.Destroy;

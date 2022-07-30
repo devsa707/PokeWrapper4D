@@ -15,12 +15,12 @@ type
     type
     private
       Feffect: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property effect: string read Feffect write Feffect;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
     end;
 
     TItems = class
@@ -54,7 +54,7 @@ implementation
 
 constructor TItemFlingEffectEntity.TEffectEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TItemFlingEffectEntity.TEffectEntries.Destroy;

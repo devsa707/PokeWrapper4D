@@ -56,13 +56,13 @@ type
     TEffectEntries = class
     private
       Feffect: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
       Fshort_effect: string;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property effect: string read Feffect write Feffect;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
       property short_effect: string read Fshort_effect write Fshort_effect;
     end;
 
@@ -83,33 +83,15 @@ type
     TFlavorTextEntries = class
     private
       Fflavor_text: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
       Fversion_group: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property flavor_text: string read Fflavor_text write Fflavor_text;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
       property version_group: TResource read Fversion_group
         write Fversion_group;
-    end;
-
-    TGeneration = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TLearnedByPokemon = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
     end;
 
     TMachines = class
@@ -133,15 +115,15 @@ type
     Feffect_changes: TObjectList<TEffectChanges>;
     Feffect_entries: TObjectList<TEffectEntries>;
     Fflavor_text_entries: TObjectList<TFlavorTextEntries>;
-    Fgeneration: TGeneration;
+    Fgeneration: TResource;
     Fid: integer;
-    Flearned_by_pokemon: TObjectList<TLearnedByPokemon>;
+    Flearned_by_pokemon: TObjectList<TResource>;
     procedure SetFeffect_changes(const Value: TObjectList<TEffectChanges>);
     procedure SetFeffect_entries(const Value: TObjectList<TEffectEntries>);
     procedure SetFflavor_text_entries(const Value
       : TObjectList<TFlavorTextEntries>);
     procedure SetFlearned_by_pokemon(const Value
-      : TObjectList<TLearnedByPokemon>);
+      : TObjectList<TResource>);
   public
     constructor Create; overload;
     destructor Destroy; override;
@@ -159,9 +141,9 @@ type
       write SetFeffect_entries;
     property flavor_text_entries: TObjectList<TFlavorTextEntries>
       read Fflavor_text_entries write SetFflavor_text_entries;
-    property generation: TGeneration read Fgeneration write Fgeneration;
+    property generation: TResource read Fgeneration write Fgeneration;
     property id: integer read Fid write Fid;
-    property learned_by_pokemon: TObjectList<TLearnedByPokemon>
+    property learned_by_pokemon: TObjectList<TResource>
       read Flearned_by_pokemon write SetFlearned_by_pokemon;
   end;
 
@@ -250,8 +232,8 @@ begin
   Feffect_changes := TObjectList<TEffectChanges>.Create;
   Feffect_entries := TObjectList<TEffectEntries>.Create;
   Fflavor_text_entries := TObjectList<TFlavorTextEntries>.Create;
-  Fgeneration := TGeneration.Create;
-  Flearned_by_pokemon := TObjectList<TLearnedByPokemon>.Create;
+  Fgeneration := TResource.Create;
+  Flearned_by_pokemon := TObjectList<TResource>.Create;
 end;
 
 destructor TMoveEntity.Destroy;
@@ -290,7 +272,7 @@ begin
 end;
 
 procedure TMoveEntity.SetFlearned_by_pokemon(const Value
-  : TObjectList<TLearnedByPokemon>);
+  : TObjectList<TResource>);
 begin
   FreeAndNil(Flearned_by_pokemon);
   Flearned_by_pokemon := Value;
@@ -322,7 +304,7 @@ end;
 
 constructor TMoveEntity.TEffectEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TMoveEntity.TEffectEntries.Destroy;
@@ -335,7 +317,7 @@ end;
 
 constructor TMoveEntity.TFlavorTextEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
   Fversion_group := TResource.Create;
 end;
 

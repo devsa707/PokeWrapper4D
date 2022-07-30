@@ -14,24 +14,24 @@ type
     TEffectEntries = class
     private
       Feffect: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property effect: string read Feffect write Feffect;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
     end;
 
   type
     TFlavorTextEntries = class
     private
       Fflavor_text: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property flavor_text: string read Fflavor_text write Fflavor_text;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
     end;
   private
     Fappeal: integer;
@@ -89,7 +89,7 @@ end;
 
 constructor TContestEffectEntity.TEffectEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TContestEffectEntity.TEffectEntries.Destroy;
@@ -102,7 +102,7 @@ end;
 
 constructor TContestEffectEntity.TFlavorTextEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TContestEffectEntity.TFlavorTextEntries.Destroy;

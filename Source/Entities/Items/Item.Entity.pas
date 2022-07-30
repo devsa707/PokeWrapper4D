@@ -16,25 +16,25 @@ type
     TEffectEntries = class
     private
       Feffect: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
       Fshort_effect: string;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property effect: string read Feffect write Feffect;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
       property short_effect: string read Fshort_effect write Fshort_effect;
     end;
 
     TFlavorTextEntries = class
     private
-      Flanguage: TLanguage;
+      Flanguage: TResource;
       Ftext: string;
       Fversion_group: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
       property text: string read Ftext write Ftext;
       property version_group: TResource read Fversion_group
         write Fversion_group;
@@ -245,7 +245,7 @@ end;
 
 constructor TItemEntity.TEffectEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TItemEntity.TEffectEntries.Destroy;
@@ -258,7 +258,7 @@ end;
 
 constructor TItemEntity.TFlavorTextEntries.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
   Fversion_group := TResource.Create;
 end;
 

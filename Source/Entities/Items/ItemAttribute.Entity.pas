@@ -16,12 +16,12 @@ type
     TDescriptions = class
     private
       Fdescription: string;
-      Flanguage: TLanguage;
+      Flanguage: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property description: string read Fdescription write Fdescription;
-      property language: TLanguage read Flanguage write Flanguage;
+      property language: TResource read Flanguage write Flanguage;
     end;
 
     TItems = class
@@ -58,7 +58,7 @@ implementation
 
 constructor TItemAttributeEntity.TDescriptions.Create;
 begin
-  Flanguage := TLanguage.Create;
+  Flanguage := TResource.Create;
 end;
 
 destructor TItemAttributeEntity.TDescriptions.Destroy;
