@@ -42,7 +42,7 @@ var
   LMachineEntity: TMachineEntity;
 begin
   Write('Testing TMachine.machine .');
-  for var I: integer := 1 to FList - 1 do
+  for var I: integer := 1 to 20 do
   begin
     LMachineEntity := nil;
     try

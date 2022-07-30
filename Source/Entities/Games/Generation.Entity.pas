@@ -3,117 +3,44 @@ unit Generation.Entity;
 interface
 
 uses
-  MVCFramework.Nullables,
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
 
   TGenerationEntity = class
-  type
-    TAbilities = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TMainRegion = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TMoves = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
-    TPokemonSpecies = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TTypes = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TVersionGroups = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
   private
-    Fabilities: TObjectList<TAbilities>;
+    Fabilities: TObjectList<TResource>;
     Fid: integer;
-    Fmain_region: TMainRegion;
-    Fmoves: TObjectList<TMoves>;
+    Fmain_region: TResource;
+    Fmoves: TObjectList<TResource>;
     Fname: string;
     Fnames: TObjectList<TNames>;
-    Fpokemon_species: TObjectList<TPokemonSpecies>;
-    Ftypes: TObjectList<TTypes>;
-    Fversion_groups: TObjectList<TVersionGroups>;
-    procedure SetFabilities(const Value: TObjectList<TAbilities>);
-    procedure SetFmoves(const Value: TObjectList<TMoves>);
+    Fpokemon_species: TObjectList<TResource>;
+    Ftypes: TObjectList<TResource>;
+    Fversion_groups: TObjectList<TResource>;
+    procedure SetFabilities(const Value: TObjectList<TResource>);
+    procedure SetFmoves(const Value: TObjectList<TResource>);
     procedure SetFnames(const Value: TObjectList<TNames>);
-    procedure SetFpokemon_species(const Value: TObjectList<TPokemonSpecies>);
-    procedure SetFtypes(const Value: TObjectList<TTypes>);
-    procedure SetFversion_groups(const Value: TObjectList<TVersionGroups>);
+    procedure SetFpokemon_species(const Value: TObjectList<TResource>);
+    procedure SetFtypes(const Value: TObjectList<TResource>);
+    procedure SetFversion_groups(const Value: TObjectList<TResource>);
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property abilities: TObjectList<TAbilities> read Fabilities
+    property abilities: TObjectList<TResource> read Fabilities
       write SetFabilities;
     property id: integer read Fid write Fid;
-    property main_region: TMainRegion read Fmain_region write Fmain_region;
-    property moves: TObjectList<TMoves> read Fmoves write SetFmoves;
+    property main_region: TResource read Fmain_region write Fmain_region;
+    property moves: TObjectList<TResource> read Fmoves write SetFmoves;
     property name: string read Fname write Fname;
     property names: TObjectList<TNames> read Fnames write SetFnames;
-    property pokemon_species: TObjectList<TPokemonSpecies> read Fpokemon_species
+    property pokemon_species: TObjectList<TResource> read Fpokemon_species
       write SetFpokemon_species;
-    property types: TObjectList<TTypes> read Ftypes write SetFtypes;
-    property version_groups: TObjectList<TVersionGroups> read Fversion_groups
+    property types: TObjectList<TResource> read Ftypes write SetFtypes;
+    property version_groups: TObjectList<TResource> read Fversion_groups
       write SetFversion_groups;
   end;
 
@@ -123,13 +50,13 @@ implementation
 
 constructor TGenerationEntity.Create;
 begin
-  Fabilities := TObjectList<TAbilities>.Create;
-  Fmain_region := TMainRegion.Create;
-  Fmoves := TObjectList<TMoves>.Create;
+  Fabilities := TObjectList<TResource>.Create;
+  Fmain_region := TResource.Create;
+  Fmoves := TObjectList<TResource>.Create;
   Fnames := TObjectList<TNames>.Create;
-  Fpokemon_species := TObjectList<TPokemonSpecies>.Create;
-  Ftypes := TObjectList<TTypes>.Create;
-  Fversion_groups := TObjectList<TVersionGroups>.Create;
+  Fpokemon_species := TObjectList<TResource>.Create;
+  Ftypes := TObjectList<TResource>.Create;
+  Fversion_groups := TObjectList<TResource>.Create;
 end;
 
 destructor TGenerationEntity.Destroy;
@@ -144,13 +71,13 @@ begin
   inherited;
 end;
 
-procedure TGenerationEntity.SetFabilities(const Value: TObjectList<TAbilities>);
+procedure TGenerationEntity.SetFabilities(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fabilities);
   Fabilities := Value;
 end;
 
-procedure TGenerationEntity.SetFmoves(const Value: TObjectList<TMoves>);
+procedure TGenerationEntity.SetFmoves(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fmoves);
   Fmoves := Value;
@@ -163,36 +90,24 @@ begin
 end;
 
 procedure TGenerationEntity.SetFpokemon_species(const Value
-  : TObjectList<TPokemonSpecies>);
+  : TObjectList<TResource>);
 begin
   FreeAndNil(Fpokemon_species);
   Fpokemon_species := Value;
 end;
 
-procedure TGenerationEntity.SetFtypes(const Value: TObjectList<TTypes>);
+procedure TGenerationEntity.SetFtypes(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Ftypes);
   Ftypes := Value;
 end;
 
 procedure TGenerationEntity.SetFversion_groups(const Value
-  : TObjectList<TVersionGroups>);
+  : TObjectList<TResource>);
 begin
   FreeAndNil(Fversion_groups);
   Fversion_groups := Value;
 end;
 
-{ TEvolutionEntity.TNames }
-
-constructor TGenerationEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TGenerationEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
 
 end.

@@ -6,58 +6,33 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   // MVC Framework
-  MVCFramework.Nullables;
+  MVCFramework.Nullables,
+  //
+  Commons.Entities;
 
 type
   TLocationAreaEntity = class
   type
-    TLanguage = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TVersion = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TEncounterMethodRates = class
     type
-      TEncounterMethod = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-
       TVersionDetails = class
       private
         Frate: integer;
-        Fversion: TVersion;
+        Fversion: TResource;
       public
         constructor Create; overload;
         destructor Destroy; override;
         property rate: integer read Frate write Frate;
-        property version: TVersion read Fversion write Fversion;
+        property version: TResource read Fversion write Fversion;
       end;
     private
-      Fencounter_method: TEncounterMethod;
+      Fencounter_method: TResource;
       Fversion_details: TObjectList<TVersionDetails>;
       procedure SetFversion_details(const Value: TObjectList<TVersionDetails>);
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property encounter_method: TEncounterMethod read Fencounter_method
+      property encounter_method: TResource read Fencounter_method
         write Fencounter_method;
       property version_details: TObjectList<TVersionDetails>
         read Fversion_details write SetFversion_details;
@@ -70,17 +45,6 @@ type
     public
       property name: string read Fname write Fname;
       property url: string read Furl write Furl;
-    end;
-
-    TNames = class
-    private
-      Flanguage: TLanguage;
-      Fname: NullableString;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: NullableString read Fname write Fname;
     end;
 
     TPokemonEncounters = class
@@ -136,7 +100,7 @@ type
       private
         Fencounter_details: TObjectList<TEncounterDetails>;
         Fmax_chance: integer;
-        Fversion: TVersion;
+        Fversion: TResource;
         procedure SetFencounter_details(const Value
           : TObjectList<TEncounterDetails>);
       public
@@ -145,7 +109,7 @@ type
         property encounter_details: TObjectList<TEncounterDetails>
           read Fencounter_details write SetFencounter_details;
         property max_chance: integer read Fmax_chance write Fmax_chance;
-        property version: TVersion read Fversion write Fversion;
+        property version: TResource read Fversion write Fversion;
       end;
     private
       Fpokemon: TPokemon;
@@ -187,7 +151,7 @@ implementation
 
 constructor TLocationAreaEntity.TEncounterMethodRates.Create;
 begin
-  Fencounter_method := TEncounterMethod.Create;
+  Fencounter_method := TResource.Create;
   Fversion_details := TObjectList<TVersionDetails>.Create;
 end;
 
@@ -209,7 +173,7 @@ end;
 
 constructor TLocationAreaEntity.TEncounterMethodRates.TVersionDetails.Create;
 begin
-  Fversion := TVersion.Create;
+  Fversion := TResource.Create;
 end;
 
 destructor TLocationAreaEntity.TEncounterMethodRates.TVersionDetails.Destroy;
@@ -248,18 +212,6 @@ begin
   Fnames := Value;
 end;
 
-{ TLocationAreaEntity.TNames }
-
-constructor TLocationAreaEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TLocationAreaEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
 
 { TLocationAreaEntity.TPokemonEncounters }
 
@@ -288,7 +240,7 @@ end;
 constructor TLocationAreaEntity.TPokemonEncounters.TVersionDetails.Create;
 begin
   Fencounter_details := TObjectList<TEncounterDetails>.Create;
-  Fversion := TVersion.Create;
+  Fversion := TResource.Create;
 end;
 
 destructor TLocationAreaEntity.TPokemonEncounters.TVersionDetails.Destroy;

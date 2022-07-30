@@ -6,20 +6,13 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   // MVC Framework
-  MVCFramework.Nullables;
+  MVCFramework.Nullables,
+  //
+  Commons.Entities;
 
 type
   TItemAttributeEntity = class
   type
-    TLanguage = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TDescriptions = class
     private
       Fdescription: string;
@@ -38,17 +31,6 @@ type
     public
       property name: nullablestring read Fname write Fname;
       property url: nullablestring read Furl write Furl;
-    end;
-
-    TNames = class
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
     end;
   private
     Fdescriptions: TObjectList<TDescriptions>;
@@ -119,19 +101,6 @@ procedure TItemAttributeEntity.SetFnames(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fnames);
   Fnames := Value;
-end;
-
-{ TItemAttributeEntity.TNames }
-
-constructor TItemAttributeEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TItemAttributeEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
 end;
 
 end.

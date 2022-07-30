@@ -6,47 +6,13 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   // MVCFramework
-  MVCFramework.Nullables;
+  MVCFramework.Nullables,
+  //
+  Commons.Entities;
 
 type
   TItemEntity = class
   type
-    TLanguage = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TVersionGroup = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TAttributes = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TCategory = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TEffectEntries = class
     private
       Feffect: string;
@@ -64,13 +30,13 @@ type
     private
       Flanguage: TLanguage;
       Ftext: string;
-      Fversion_group: TVersionGroup;
+      Fversion_group: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property language: TLanguage read Flanguage write Flanguage;
       property text: string read Ftext write Ftext;
-      property version_group: TVersionGroup read Fversion_group
+      property version_group: TResource read Fversion_group
         write Fversion_group;
     end;
 
@@ -146,17 +112,6 @@ type
         read FversionDetails write SetFversionDetails;
     end;
 
-    TNames = class
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
     TSprites = class
     private
       Fdefault: string;
@@ -167,17 +122,17 @@ type
     TMachines = class
     private
       Fmachine: NullableString;
-      Fversion_group: TVersionGroup;
+      Fversion_group: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property machine: NullableString read Fmachine write Fmachine;
-      property version_group: TVersionGroup read Fversion_group
+      property version_group: TResource read Fversion_group
         write Fversion_group;
     end;
   private
-    Fattributes: TObjectList<TAttributes>;
-    Fcategory: TCategory;
+    Fattributes: TObjectList<TResource>;
+    Fcategory: TResource;
     Fcost: integer;
     Feffect_entries: TObjectList<TEffectEntries>;
     Ffling_effect: TFlingEffect;
@@ -189,7 +144,7 @@ type
     Fname: string;
     Fnames: TObjectList<TNames>;
     Fsprites: TSprites;
-    procedure SetFattibutes(const Value: TObjectList<TAttributes>);
+    procedure SetFattibutes(const Value: TObjectList<TResource>);
     procedure SetFeffect_entries(const Value: TObjectList<TEffectEntries>);
     procedure SetFgame_indices(const Value: TObjectList<TGameIndices>);
     procedure SetFheld_by_pokemon(const Value: TObjectList<THeldByPokemon>);
@@ -198,9 +153,9 @@ type
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property attributes: TObjectList<TAttributes> read Fattributes
+    property attributes: TObjectList<TResource> read Fattributes
       write SetFattibutes;
-    property category: TCategory read Fcategory write Fcategory;
+    property category: TResource read Fcategory write Fcategory;
     property cost: integer read Fcost write Fcost;
     property effect_entries: TObjectList<TEffectEntries> read Feffect_entries
       write SetFeffect_entries;
@@ -223,8 +178,8 @@ implementation
 
 constructor TItemEntity.Create;
 begin
-  Fattributes := TObjectList<TAttributes>.Create;
-  Fcategory := TCategory.Create;
+  Fattributes := TObjectList<TResource>.Create;
+  Fcategory := TResource.Create;
   Feffect_entries := TObjectList<TEffectEntries>.Create;
   Ffling_effect := TFlingEffect.Create;
   Fgame_indices := TObjectList<TGameIndices>.Create;
@@ -248,7 +203,7 @@ begin
   inherited;
 end;
 
-procedure TItemEntity.SetFattibutes(const Value: TObjectList<TAttributes>);
+procedure TItemEntity.SetFattibutes(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fattributes);
   Fattributes := Value;
@@ -304,7 +259,7 @@ end;
 constructor TItemEntity.TFlavorTextEntries.Create;
 begin
   Flanguage := TLanguage.Create;
-  Fversion_group := TVersionGroup.Create;
+  Fversion_group := TResource.Create;
 end;
 
 destructor TItemEntity.TFlavorTextEntries.Destroy;
@@ -349,24 +304,11 @@ begin
   FversionDetails := Value;
 end;
 
-{ TItemEntity.TNames }
-
-constructor TItemEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TItemEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
-
 { TItemEntity.TMachines }
 
 constructor TItemEntity.TMachines.Create;
 begin
-  Fversion_group := TVersionGroup.Create;
+  Fversion_group := TResource.Create;
 end;
 
 destructor TItemEntity.TMachines.Destroy;

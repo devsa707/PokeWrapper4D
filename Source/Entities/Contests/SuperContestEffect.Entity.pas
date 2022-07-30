@@ -4,21 +4,14 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TSuperContestEffectEntity = class
   type
     TFlavorTextEntries = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
       Fflavor_text: string;
       Flanguage: TLanguage;
@@ -28,21 +21,12 @@ type
       property flavor_text: string read Fflavor_text write Fflavor_text;
       property language: TLanguage read Flanguage write Flanguage;
     end;
-
-    TMoves = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
   private
     Fappeal: integer;
     Fflavor_text_entries: TObjectList<TFlavorTextEntries>;
     Fid: integer;
-    Fmoves: TObjectList<TMoves>;
-    procedure SetFmoves(const Value: TObjectList<TMoves>);
+    Fmoves: TObjectList<TResource>;
+    procedure SetFmoves(const Value: TObjectList<TResource>);
     procedure SetFflavor_text_entries(const Value
       : TObjectList<TFlavorTextEntries>);
   public
@@ -52,7 +36,7 @@ type
     property flavor_text_entries: TObjectList<TFlavorTextEntries>
       read Fflavor_text_entries write SetFflavor_text_entries;
     property id: integer read Fid write Fid;
-    property moves: TObjectList<TMoves> read Fmoves write SetFmoves;
+    property moves: TObjectList<TResource> read Fmoves write SetFmoves;
   end;
 
 implementation
@@ -62,7 +46,7 @@ implementation
 constructor TSuperContestEffectEntity.Create;
 begin
   Fflavor_text_entries := TObjectList<TFlavorTextEntries>.Create;
-  Fmoves := TObjectList<TMoves>.Create;
+  Fmoves := TObjectList<TResource>.Create;
 end;
 
 destructor TSuperContestEffectEntity.Destroy;
@@ -79,7 +63,7 @@ begin
   Fflavor_text_entries := Value;
 end;
 
-procedure TSuperContestEffectEntity.SetFmoves(const Value: TObjectList<TMoves>);
+procedure TSuperContestEffectEntity.SetFmoves(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fmoves);
   Fmoves := Value;

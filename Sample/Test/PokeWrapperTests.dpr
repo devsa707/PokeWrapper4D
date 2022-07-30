@@ -25,7 +25,6 @@ uses
   {$ENDIF }
   DUnitX.TestFramework,
   Berry.Entity in '..\..\Source\Entities\Berries\Berry.Entity.pas',
-  PokeList.Entity in '..\..\Source\List\PokeList.Entity.pas',
   BerryFirmness.Entity in '..\..\Source\Entities\Berries\BerryFirmness.Entity.pas',
   BerryFlavor.Entity in '..\..\Source\Entities\Berries\BerryFlavor.Entity.pas',
   ContestType.Entity in '..\..\Source\Entities\Contests\ContestType.Entity.pas',
@@ -76,7 +75,10 @@ uses
   Region.Entity in '..\..\Source\Entities\Locations\Region.Entity.pas',
   RegionTest in 'Source\LocationsTest\RegionTest.pas',
   Machine.Entity in '..\..\Source\Entities\Machines\Machine.Entity.pas',
-  MachineTest in 'Source\MachinesTest\MachineTest.pas';
+  MachineTest in 'Source\MachinesTest\MachineTest.pas',
+  Move.Entity in '..\..\Source\Entities\Moves\Move.Entity.pas',
+  PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
+  Commons.Entities in '..\..\Source\Entities\Commons\Commons.Entities.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

@@ -6,89 +6,43 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   //
-  MVCFramework.Nullables;
+  MVCFramework.Nullables,
+  //
+  Commons.Entities;
 
 type
   TLocationEntity = class
   type
-    TAreas = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-  type
     TGameIndices = class
-    type
-      TGeneration = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
       Fgame_index: integer;
-      Fgeneration: TGeneration;
+      Fgeneration: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property game_index: integer read Fgame_index write Fgame_index;
-      property generation: TGeneration read Fgeneration write Fgeneration;
-    end;
-
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
-    TRegion = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
+      property generation: TResource read Fgeneration write Fgeneration;
     end;
   private
-    Fareas: Tobjectlist<TAreas>;
+    Fareas: Tobjectlist<TResource>;
     Fgame_indices: Tobjectlist<TGameIndices>;
     Fid: integer;
     Fname: string;
     Fnames: Tobjectlist<TNames>;
-    Fregion: TRegion;
-    procedure SetFareas(const Value: Tobjectlist<TAreas>);
+    Fregion: TResource;
+    procedure SetFareas(const Value: Tobjectlist<TResource>);
     procedure SetFgame_indices(const Value: Tobjectlist<TGameIndices>);
     procedure SetFnames(const Value: Tobjectlist<TNames>);
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property areas: Tobjectlist<TAreas> read Fareas write SetFareas;
+    property areas: Tobjectlist<TResource> read Fareas write SetFareas;
     property game_indices: Tobjectlist<TGameIndices> read Fgame_indices
       write SetFgame_indices;
     property id: integer read Fid write Fid;
     property name: string read Fname write Fname;
     property names: Tobjectlist<TNames> read Fnames write SetFnames;
-    property region: TRegion read Fregion write Fregion;
+    property region: TResource read Fregion write Fregion;
   end;
 
 implementation
@@ -97,10 +51,10 @@ implementation
 
 constructor TLocationEntity.Create;
 begin
-  Fareas := Tobjectlist<TAreas>.Create;
+  Fareas := Tobjectlist<TResource>.Create;
   Fgame_indices := Tobjectlist<TGameIndices>.Create;
   Fnames := Tobjectlist<TNames>.Create;
-  Fregion := TRegion.Create;
+  Fregion := TResource.Create;
 end;
 
 destructor TLocationEntity.Destroy;
@@ -112,7 +66,7 @@ begin
   inherited;
 end;
 
-procedure TLocationEntity.SetFareas(const Value: Tobjectlist<TAreas>);
+procedure TLocationEntity.SetFareas(const Value: Tobjectlist<TResource>);
 begin
   FreeAndNil(Fareas);
   Fareas := Value;
@@ -134,7 +88,7 @@ end;
 
 constructor TLocationEntity.TGameIndices.Create;
 begin
-  Fgeneration := TGeneration.Create;
+  Fgeneration := TResource.Create;
 end;
 
 destructor TLocationEntity.TGameIndices.Destroy;
@@ -143,17 +97,5 @@ begin
   inherited;
 end;
 
-{ TLocationEntity.TNames }
-
-constructor TLocationEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TLocationEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
 
 end.

@@ -4,84 +4,39 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TVersionGroupEntity = class
-  type
-    TGeneration = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-  type
-    TMoveLearnMethods = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TPokedexes = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TRegions = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TVersions = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
   private
-    Fgeneration: TGeneration;
+    Fgeneration: TResource;
     Fid: integer;
-    Fmove_learn_methods: TObjectList<TMoveLearnMethods>;
+    Fmove_learn_methods: TObjectList<TResource>;
     Fname: string;
     Forder: integer;
-    Fpokedexes: TObjectList<TPokedexes>;
-    Fregions: TObjectList<TRegions>;
-    Fversions: TObjectList<TVersions>;
+    Fpokedexes: TObjectList<TResource>;
+    Fregions: TObjectList<TResource>;
+    Fversions: TObjectList<TResource>;
     procedure SetFmove_learn_methods(const Value
-      : TObjectList<TMoveLearnMethods>);
-    procedure SetFpokedexes(const Value: TObjectList<TPokedexes>);
-    procedure SetFregions(const Value: TObjectList<TRegions>);
-    procedure SetFversions(const Value: TObjectList<TVersions>);
+      : TObjectList<TResource>);
+    procedure SetFpokedexes(const Value: TObjectList<TResource>);
+    procedure SetFregions(const Value: TObjectList<TResource>);
+    procedure SetFversions(const Value: TObjectList<TResource>);
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property generation: TGeneration read Fgeneration write Fgeneration;
+    property generation: TResource read Fgeneration write Fgeneration;
     property id: integer read Fid write Fid;
-    property move_learn_methods: TObjectList<TMoveLearnMethods>
+    property move_learn_methods: TObjectList<TResource>
       read Fmove_learn_methods write SetFmove_learn_methods;
     property name: string read Fname write Fname;
     property order: integer read Forder write Forder;
-    property pokedexes: TObjectList<TPokedexes> read Fpokedexes
+    property pokedexes: TObjectList<TResource> read Fpokedexes
       write SetFpokedexes;
-    property regions: TObjectList<TRegions> read Fregions write SetFregions;
-    property versions: TObjectList<TVersions> read Fversions write SetFversions;
+    property regions: TObjectList<TResource> read Fregions write SetFregions;
+    property versions: TObjectList<TResource> read Fversions write SetFversions;
   end;
 
 implementation
@@ -90,11 +45,11 @@ implementation
 
 constructor TVersionGroupEntity.Create;
 begin
-  Fgeneration := TGeneration.Create;
-  Fmove_learn_methods := TObjectList<TMoveLearnMethods>.Create;
-  Fpokedexes := TObjectList<TPokedexes>.Create;
-  Fregions := TObjectList<TRegions>.Create;
-  Fversions := TObjectList<TVersions>.Create;
+  Fgeneration := TResource.Create;
+  Fmove_learn_methods := TObjectList<TResource>.Create;
+  Fpokedexes := TObjectList<TResource>.Create;
+  Fregions := TObjectList<TResource>.Create;
+  Fversions := TObjectList<TResource>.Create;
 end;
 
 destructor TVersionGroupEntity.Destroy;
@@ -108,26 +63,26 @@ begin
 end;
 
 procedure TVersionGroupEntity.SetFmove_learn_methods
-  (const Value: TObjectList<TMoveLearnMethods>);
+  (const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fmove_learn_methods);
   Fmove_learn_methods := Value;
 end;
 
 procedure TVersionGroupEntity.SetFpokedexes(const Value
-  : TObjectList<TPokedexes>);
+  : TObjectList<TResource>);
 begin
   FreeAndNil(Fpokedexes);
   Fpokedexes := Value;
 end;
 
-procedure TVersionGroupEntity.SetFregions(const Value: TObjectList<TRegions>);
+procedure TVersionGroupEntity.SetFregions(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fregions);
   Fregions := Value;
 end;
 
-procedure TVersionGroupEntity.SetFversions(const Value: TObjectList<TVersions>);
+procedure TVersionGroupEntity.SetFversions(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fversions);
   Fversions := Value;

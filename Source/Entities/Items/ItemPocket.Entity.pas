@@ -4,7 +4,9 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TItemPocketEntity = class
@@ -16,26 +18,6 @@ type
     public
       property name: string read Fname write Fname;
       property url: string read Furl write Furl;
-    end;
-
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
     end;
   private
     Fcategories: TObjectList<TCategories>;
@@ -84,17 +66,5 @@ begin
   Fnames := Value;
 end;
 
-{ TItemPocketEntity.TNames }
-
-constructor TItemPocketEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TItemPocketEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
 
 end.

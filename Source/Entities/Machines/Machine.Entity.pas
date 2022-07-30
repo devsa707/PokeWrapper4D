@@ -2,48 +2,23 @@ unit Machine.Entity;
 
 interface
 
+uses
+  Commons.Entities;
+
 type
   TMachineEntity = class
-  type
-    TItem = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TMove = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TVersionGroup = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
   private
     Fid: integer;
-    Fitem: TItem;
-    Fmove: TMove;
-    Fversion_group: TVersionGroup;
+    Fitem: TResource;
+    Fmove: TResource;
+    Fversion_group: TResource;
   public
     constructor Create; overload;
     destructor Destroy; override;
     property id: integer read Fid write Fid;
-    property item: TItem read Fitem write Fitem;
-    property move: TMove read Fmove write Fmove;
-    property version_group: TVersionGroup read Fversion_group
-      write Fversion_group;
+    property item: TResource read Fitem write Fitem;
+    property move: TResource read Fmove write Fmove;
+    property version_group: TResource read Fversion_group write Fversion_group;
   end;
 
 implementation
@@ -52,9 +27,9 @@ implementation
 
 constructor TMachineEntity.Create;
 begin
-  Fitem := TItem.Create;
-  Fmove := TMove.Create;
-  Fversion_group := TVersionGroup.Create;
+  Fitem := TResource.Create;
+  Fmove := TResource.Create;
+  Fversion_group := TResource.Create;
 end;
 
 destructor TMachineEntity.Destroy;

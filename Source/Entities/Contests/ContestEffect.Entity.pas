@@ -4,20 +4,13 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TContestEffectEntity = class
   type
-    TLanguage = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TEffectEntries = class
     private
       Feffect: string;

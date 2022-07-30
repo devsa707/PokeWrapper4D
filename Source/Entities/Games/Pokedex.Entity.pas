@@ -5,21 +5,12 @@ interface
 uses
   System.SysUtils,
   System.Generics.Collections,
-  // MVC Framerowk
-  MVCFramework.Nullables;
+  //
+  Commons.Entities;
 
 type
   TPokedexEntity = class
   type
-    TLanguage = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TDescriptions = class
     private
       Fdescription: string;
@@ -30,55 +21,16 @@ type
       property description: string read Fdescription write Fdescription;
       property language: TLanguage read Flanguage write Flanguage;
     end;
-
-    TNames = class
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
     TPokemonEntries = class
-    type
-      TPokemonSpecies = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
       Fentry_number: integer;
-      Fpokemon_species: TPokemonSpecies;
+      Fpokemon_species: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property entry_number: integer read Fentry_number write Fentry_number;
-      property pokemon_species: TPokemonSpecies read Fpokemon_species
+      property pokemon_species: TResource read Fpokemon_species
         write Fpokemon_species;
-    end;
-
-    TRegion = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
-    TVersionGroups = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
     end;
   private
     Fdescriptions: TObjectList<TDescriptions>;
@@ -87,12 +39,12 @@ type
     Fname: string;
     Fnames: TObjectList<TNames>;
     Fpokemon_entries: TObjectList<TPokemonEntries>;
-    Fregion: TRegion;
-    Fversion_groups: TObjectList<TVersionGroups>;
+    Fregion: TResource;
+    Fversion_groups: TObjectList<TResource>;
     procedure SetFdescriptions(const Value: TObjectList<TDescriptions>);
     procedure SetFnames(const Value: TObjectList<TNames>);
     procedure SetFpokemon_entries(const Value: TObjectList<TPokemonEntries>);
-    procedure SetFversion_groups(const Value: TObjectList<TVersionGroups>);
+    procedure SetFversion_groups(const Value: TObjectList<TResource>);
   public
     constructor Create; overload;
     destructor Destroy; override;
@@ -104,8 +56,8 @@ type
     property names: TObjectList<TNames> read Fnames write SetFnames;
     property pokemon_entries: TObjectList<TPokemonEntries> read Fpokemon_entries
       write SetFpokemon_entries;
-    property region: TRegion read Fregion write Fregion;
-    property version_groups: TObjectList<TVersionGroups> read Fversion_groups
+    property region: TResource read Fregion write Fregion;
+    property version_groups: TObjectList<TResource> read Fversion_groups
       write SetFversion_groups;
   end;
 
@@ -131,8 +83,8 @@ begin
   Fdescriptions := TObjectList<TDescriptions>.Create;
   Fnames := TObjectList<TNames>.Create;
   Fpokemon_entries := TObjectList<TPokemonEntries>.Create;
-  Fregion := TRegion.Create;
-  Fversion_groups := TObjectList<TVersionGroups>.Create;
+  Fregion := TResource.Create;
+  Fversion_groups := TObjectList<TResource>.Create;
 end;
 
 destructor TPokedexEntity.Destroy;
@@ -166,30 +118,17 @@ begin
 end;
 
 procedure TPokedexEntity.SetFversion_groups(const Value
-  : TObjectList<TVersionGroups>);
+  : TObjectList<TResource>);
 begin
   FreeAndNil(Fversion_groups);
   Fversion_groups := Value;
-end;
-
-{ TPokedexEntity.TNames }
-
-constructor TPokedexEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TPokedexEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
 end;
 
 { TPokedexEntity.TPokemonEntries }
 
 constructor TPokedexEntity.TPokemonEntries.Create;
 begin
-  Fpokemon_species := TPokemonSpecies.Create;
+  Fpokemon_species := TResource.Create;
 end;
 
 destructor TPokedexEntity.TPokemonEntries.Destroy;

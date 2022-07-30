@@ -4,49 +4,23 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TPalParkAreaEntity = class
   type
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
     TPokemonEncounters = class
     type
-      TPokemonSpecies = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
       Fbase_score: integer;
-      Fpokemon_species: TPokemonSpecies;
+      Fpokemon_species: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property base_score: integer read Fbase_score write Fbase_score;
-      property pokemon_species: TPokemonSpecies read Fpokemon_species
+      property pokemon_species: TResource read Fpokemon_species
         write Fpokemon_species;
     end;
   private
@@ -97,24 +71,11 @@ begin
   Fpokemon_encounters := Value;
 end;
 
-{ TPalParkAreaEntity.TNames }
-
-constructor TPalParkAreaEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TPalParkAreaEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
-
 { TPalParkAreaEntity.TPokemonEncounters }
 
 constructor TPalParkAreaEntity.TPokemonEncounters.Create;
 begin
-  Fpokemon_species := TPokemonSpecies.Create;
+  Fpokemon_species := TResource.Create;
 end;
 
 destructor TPalParkAreaEntity.TPokemonEncounters.Destroy;

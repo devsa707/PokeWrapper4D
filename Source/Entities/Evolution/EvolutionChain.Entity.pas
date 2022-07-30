@@ -5,134 +5,45 @@ interface
 uses
   System.SysUtils,
   System.Generics.Collections,
-  // MVC Framework
-  MVCFramework.Nullables;
+  // MVCFramework
+     MVCFramework.Nullables,
+     //
+  Commons.Entities;
 
 type
   TEvolutionChainEntity = class
   type
-    TBabyTriggerItem = class
-    private
-      Fname: NullableString;
-      Furl: NullableString;
-    public
-      property name: NullableString read Fname write Fname;
-      property url: NullableString read Furl write Furl;
-    end;
-
     TEvolutionDetails = class
-    type
-      TItem = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TTrigger = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      THeldItem = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TKnownMove = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TKnownMoveType = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TLocation = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TPartySpecies = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TPartyType = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-      TTradeSpecies = class
-      private
-        Fname: NullableString;
-        Furl: NullableString;
-      public
-        property name: NullableString read Fname write Fname;
-        property url: NullableString read Furl write Furl;
-      end;
-
-    private
-      Fitem: TItem;
-      Ftrigger: TTrigger;
+       private
+      Fitem: TResource;
+      Ftrigger: TResource;
       Fgender: NullableInt32;
-      Fheld_item: THeldItem;
-      Fknown_move: TKnownMove;
-      Fknown_move_type: TKnownMoveType;
-      Flocation: TLocation;
+      Fheld_item: TResource;
+      Fknown_move: TResource;
+      Fknown_move_type: TResource;
+      Flocation: TResource;
       Fmin_level: NullableInt32;
       Fmin_happiness: NullableInt32;
       Fmin_beauty: NullableInt32;
       Fmin_affection: NullableInt32;
       Fneeds_overworld_rain: NullableBoolean;
-      Fparty_species: TPartySpecies;
-      Fparty_type: TPartyType;
+      Fparty_species: TResource;
+      Fparty_type: TResource;
       Frelative_physical_stats: NullableInt32;
       Ftime_of_day: NullableString;
-      Ftrade_species: TTradeSpecies;
+      Ftrade_species: TResource;
       Fturn_upside_down: NullableBoolean;
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property item: TItem read Fitem write Fitem;
-      property trigger: TTrigger read Ftrigger write Ftrigger;
+      property item: TResource read Fitem write Fitem;
+      property trigger: TResource read Ftrigger write Ftrigger;
       property gender: NullableInt32 read Fgender write Fgender;
-      property held_item: THeldItem read Fheld_item write Fheld_item;
-      property known_move: TKnownMove read Fknown_move write Fknown_move;
-      property known_move_type: TKnownMoveType read Fknown_move_type
+      property held_item: TResource read Fheld_item write Fheld_item;
+      property known_move: TResource read Fknown_move write Fknown_move;
+      property known_move_type: TResource read Fknown_move_type
         write Fknown_move_type;
-      property location: TLocation read Flocation write Flocation;
+      property location: TResource read Flocation write Flocation;
       property min_level: NullableInt32 read Fmin_level write Fmin_level;
       property min_happiness: NullableInt32 read Fmin_happiness
         write Fmin_happiness;
@@ -141,13 +52,13 @@ type
         write Fmin_affection;
       property needs_overworld_rain: NullableBoolean read Fneeds_overworld_rain
         write Fneeds_overworld_rain;
-      property party_species: TPartySpecies read Fparty_species
+      property party_species: TResource read Fparty_species
         write Fparty_species;
-      property party_type: TPartyType read Fparty_type write Fparty_type;
+      property party_type: TResource read Fparty_type write Fparty_type;
       property relative_physical_stats: NullableInt32
         read Frelative_physical_stats write Frelative_physical_stats;
       property time_of_day: NullableString read Ftime_of_day write Ftime_of_day;
-      property trade_species: TTradeSpecies read Ftrade_species
+      property trade_species: TResource read Ftrade_species
         write Ftrade_species;
       property turn_upside_down: NullableBoolean read Fturn_upside_down
         write Fturn_upside_down;
@@ -200,13 +111,13 @@ type
       property id: integer read Fid write Fid;
     end;
   private
-    Fbaby_trigger_item: TBabyTriggerItem;
+    Fbaby_trigger_item: TResource;
     Fchain: TChain;
     Fid: integer;
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property baby_trigger_item: TBabyTriggerItem read Fbaby_trigger_item
+    property baby_trigger_item: TResource read Fbaby_trigger_item
       write Fbaby_trigger_item;
     property chain: TChain read Fchain write Fchain;
     property id: integer read Fid write Fid;
@@ -218,7 +129,7 @@ implementation
 
 constructor TEvolutionChainEntity.Create;
 begin
-  Fbaby_trigger_item := TBabyTriggerItem.Create;
+  Fbaby_trigger_item := TResource.Create;
   Fchain := TChain.Create;
 end;
 
@@ -264,15 +175,15 @@ end;
 
 constructor TEvolutionChainEntity.TEvolutionDetails.Create;
 begin
-  Fitem := TItem.Create;
-  Ftrigger := TTrigger.Create;
-  Fheld_item := THeldItem.Create;
-  Fknown_move := TKnownMove.Create;
-  Fknown_move_type := TKnownMoveType.Create;
-  Flocation := TLocation.Create;
-  Fparty_species := TPartySpecies.Create;
-  Fparty_type := TPartyType.Create;
-  Ftrade_species := TTradeSpecies.Create;
+  Fitem := TResource.Create;
+  Ftrigger := TResource.Create;
+  Fheld_item := TResource.Create;
+  Fknown_move := TResource.Create;
+  Fknown_move_type := TResource.Create;
+  Flocation := TResource.Create;
+  Fparty_species := TResource.Create;
+  Fparty_type := TResource.Create;
+  Ftrade_species := TResource.Create;
 end;
 
 destructor TEvolutionChainEntity.TEvolutionDetails.Destroy;

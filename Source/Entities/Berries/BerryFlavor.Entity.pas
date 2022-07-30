@@ -4,62 +4,27 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TBerryFlavorEntity = class
   type
     TBerries = class
     type
-      TBerry = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
-      Fberry: TBerry;
+      Fberry: TResource;
       Fpotency: integer;
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property berry: TBerry read Fberry write Fberry;
+      property berry: TResource read Fberry write Fberry;
       property potency: integer read Fpotency write Fpotency;
-    end;
-
-    TContestType = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
     end;
   private
     Fberries: TObjectList<TBerries>;
-    Fcontest_type: TContestType;
+    Fcontest_type: TResource;
     Fid: integer;
     Fname: string;
     Fnames: TObjectList<TNames>;
@@ -69,7 +34,7 @@ type
     constructor Create; overload;
     destructor Destroy; override;
     property berries: TObjectList<TBerries> read Fberries write SetFberries;
-    property contest_type: TContestType read Fcontest_type write Fcontest_type;
+    property contest_type: TResource read Fcontest_type write Fcontest_type;
     property id: integer read Fid write Fid;
     property name: string read Fname write Fname;
     property names: TObjectList<TNames> read Fnames write SetFnames;
@@ -81,7 +46,7 @@ implementation
 
 constructor TBerryFlavorEntity.TBerries.Create;
 begin
-  Fberry := TBerry.Create;
+  Fberry := TResource.Create;
 end;
 
 destructor TBerryFlavorEntity.TBerries.Destroy;
@@ -95,7 +60,7 @@ end;
 constructor TBerryFlavorEntity.Create;
 begin
   Fberries := TObjectList<TBerries>.Create;
-  Fcontest_type := TContestType.Create;
+  Fcontest_type := TResource.Create;
   Fnames := TObjectList<TNames>.Create;
 end;
 
@@ -117,19 +82,6 @@ procedure TBerryFlavorEntity.SetFnames(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fnames);
   Fnames := Value;
-end;
-
-{ TBerryFlavorEntity.TNames }
-
-constructor TBerryFlavorEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TBerryFlavorEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
 end;
 
 end.

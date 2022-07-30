@@ -4,31 +4,16 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
 
   TContestTypeEntity = class
   type
-    TBerryFlavor = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
-
     TNames = class
     type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
     private
       Fcolor: string;
       Flanguage: TLanguage;
@@ -41,7 +26,7 @@ type
       property name: string read Fname write Fname;
     end;
   private
-    Fberry_flavor: TBerryFlavor;
+    Fberry_flavor: TResource;
     Fid: integer;
     Fname: string;
     Fnames: TObjectList<TNames>;
@@ -49,7 +34,7 @@ type
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property berry_flavor: TBerryFlavor read Fberry_flavor write Fberry_flavor;
+    property berry_flavor: TResource read Fberry_flavor write Fberry_flavor;
     property id: integer read Fid write Fid;
     property name: string read Fname write Fname;
     property names: TObjectList<TNames> read Fnames write SetFnames;
@@ -61,7 +46,7 @@ implementation
 
 constructor TContestTypeEntity.Create;
 begin
-  Fberry_flavor := TBerryFlavor.Create;
+  Fberry_flavor := TResource.Create;
   Fnames := TObjectList<TNames>.Create;
 end;
 

@@ -4,44 +4,18 @@ interface
 
 uses
   System.SysUtils,
-  System.Generics.Collections;
+  System.Generics.Collections,
+  //
+  Commons.Entities;
 
 type
   TVersionEntity = class
   type
-    TNames = class
-    type
-      TLanguage = class
-      private
-        Fname: string;
-        Furl: string;
-      public
-        property name: string read Fname write Fname;
-        property url: string read Furl write Furl;
-      end;
-    private
-      Flanguage: TLanguage;
-      Fname: string;
-    public
-      constructor Create; overload;
-      destructor Destroy; override;
-      property language: TLanguage read Flanguage write Flanguage;
-      property name: string read Fname write Fname;
-    end;
-
-    TVersionGroup = class
-    private
-      Fname: string;
-      Furl: string;
-    public
-      property name: string read Fname write Fname;
-      property url: string read Furl write Furl;
-    end;
   private
     Fid: integer;
     Fname: string;
     Fnames: TObjectList<TNames>;
-    Fversion_group: TVersionGroup;
+    Fversion_group: TResource;
     procedure SetFnames(const Value: TObjectList<TNames>);
   public
     constructor Create; overload;
@@ -49,7 +23,7 @@ type
     property id: integer read Fid write Fid;
     property name: string read Fname write Fname;
     property names: TObjectList<TNames> read Fnames write SetFnames;
-    property version_group: TVersionGroup read Fversion_group
+    property version_group: TResource read Fversion_group
       write Fversion_group;
   end;
 
@@ -60,7 +34,7 @@ implementation
 constructor TVersionEntity.Create;
 begin
   Fnames := TObjectList<TNames>.Create;
-  Fversion_group := TVersionGroup.Create;
+  Fversion_group := TResource.Create;
 end;
 
 destructor TVersionEntity.Destroy;
@@ -76,17 +50,5 @@ begin
   Fnames := Value;
 end;
 
-{ TVersionEntity.TNames }
-
-constructor TVersionEntity.TNames.Create;
-begin
-  Flanguage := TLanguage.Create;
-end;
-
-destructor TVersionEntity.TNames.Destroy;
-begin
-  Flanguage.Free;
-  inherited;
-end;
 
 end.
