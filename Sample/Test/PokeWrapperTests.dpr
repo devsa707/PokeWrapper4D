@@ -79,7 +79,11 @@ uses
   Move.Entity in '..\..\Source\Entities\Moves\Move.Entity.pas',
   PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
   Commons.Entities in '..\..\Source\Entities\Commons\Commons.Entities.pas',
-  MoveTest in 'Source\MovesTest\MoveTest.pas';
+  MoveTest in 'Source\MovesTest\MoveTest.pas',
+  MoveAilment.Entity in '..\..\Source\Entities\Moves\MoveAilment.Entity.pas',
+  MoveAilmentTest in 'Source\MovesTest\MoveAilmentTest.pas',
+  MoveBattleStyle.Entity in '..\..\Source\Entities\Moves\MoveBattleStyle.Entity.pas',
+  MoveBatleStyleTest in 'Source\MovesTest\MoveBatleStyleTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
