@@ -38,7 +38,7 @@ type
   TMove = (move, //
     move_ailment, //
     move_battle_style, //
-    move_categorie, //
+    move_category, //
     move_damage_class, //
     move_learn_method, //
     move_targets);

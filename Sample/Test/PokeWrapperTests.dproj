@@ -171,6 +171,7 @@
         <DCCReference Include="Source\MovesTest\MoveAilmentTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Moves\MoveBattleStyle.Entity.pas"/>
         <DCCReference Include="Source\MovesTest\MoveBatleStyleTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Moves\MoveCategory.Entity.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

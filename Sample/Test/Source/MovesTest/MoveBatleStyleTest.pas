@@ -18,6 +18,7 @@ type
 
   [TestFixture]
   TMoveBatleStyleTest = class
+  private
     FPokeWrapper: IPokeWrapper;
     FList: integer;
   public

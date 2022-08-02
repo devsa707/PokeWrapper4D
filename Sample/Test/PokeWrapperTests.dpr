@@ -83,7 +83,8 @@ uses
   MoveAilment.Entity in '..\..\Source\Entities\Moves\MoveAilment.Entity.pas',
   MoveAilmentTest in 'Source\MovesTest\MoveAilmentTest.pas',
   MoveBattleStyle.Entity in '..\..\Source\Entities\Moves\MoveBattleStyle.Entity.pas',
-  MoveBatleStyleTest in 'Source\MovesTest\MoveBatleStyleTest.pas';
+  MoveBatleStyleTest in 'Source\MovesTest\MoveBatleStyleTest.pas',
+  MoveCategory.Entity in '..\..\Source\Entities\Moves\MoveCategory.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
