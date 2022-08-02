@@ -32,11 +32,13 @@ implementation
 constructor TMoveAilmentEntity.Create;
 begin
   Fmoves := TObjectList<TResource>.Create;
+  Fnames := TObjectList<TNames>.Create;
 end;
 
 destructor TMoveAilmentEntity.Destroy;
 begin
   Fmoves.Free;
+  Fnames.Free;
   inherited;
 end;
 

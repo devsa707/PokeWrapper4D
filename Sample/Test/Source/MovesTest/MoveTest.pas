@@ -18,6 +18,7 @@ type
 
   [TestFixture]
   TMoveTest = class
+  private
     FPokeWrapper: IPokeWrapper;
     FList: integer;
   public
