@@ -43,7 +43,7 @@ var
   LEncounterMethodEntity: TEncounterMethodEntity;
 begin
   Write('Testing TEncounter.encounter_method .');
-  for var I: integer := 1 to FList - 1 do
+  for var I: integer := 1 to 10 do
   begin
     LEncounterMethodEntity := nil;
     try

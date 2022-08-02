@@ -43,7 +43,7 @@ var
   LBerryEntity: TBerryEntity;
 begin
   Write('Testing TBerry.berry .');
-  for var I: integer := 1 to FList - 1 do
+  for var I: integer := 1 to 10 do
   begin
     LBerryEntity := nil;
     try

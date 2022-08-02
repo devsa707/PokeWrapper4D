@@ -78,7 +78,8 @@ uses
   MachineTest in 'Source\MachinesTest\MachineTest.pas',
   Move.Entity in '..\..\Source\Entities\Moves\Move.Entity.pas',
   PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
-  Commons.Entities in '..\..\Source\Entities\Commons\Commons.Entities.pas';
+  Commons.Entities in '..\..\Source\Entities\Commons\Commons.Entities.pas',
+  MoveTest in 'Source\MovesTest\MoveTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
