@@ -84,7 +84,10 @@ uses
   MoveAilmentTest in 'Source\MovesTest\MoveAilmentTest.pas',
   MoveBattleStyle.Entity in '..\..\Source\Entities\Moves\MoveBattleStyle.Entity.pas',
   MoveBatleStyleTest in 'Source\MovesTest\MoveBatleStyleTest.pas',
-  MoveCategory.Entity in '..\..\Source\Entities\Moves\MoveCategory.Entity.pas';
+  MoveCategory.Entity in '..\..\Source\Entities\Moves\MoveCategory.Entity.pas',
+  MoveCategoryTest in 'Source\MovesTest\MoveCategoryTest.pas',
+  MoveDamageClass.Entity in '..\..\Source\Entities\Moves\MoveDamageClass.Entity.pas',
+  MoveDamageClassTest in 'Source\MovesTest\MoveDamageClassTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

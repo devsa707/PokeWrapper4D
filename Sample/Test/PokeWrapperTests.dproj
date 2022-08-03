@@ -172,6 +172,9 @@
         <DCCReference Include="..\..\Source\Entities\Moves\MoveBattleStyle.Entity.pas"/>
         <DCCReference Include="Source\MovesTest\MoveBatleStyleTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Moves\MoveCategory.Entity.pas"/>
+        <DCCReference Include="Source\MovesTest\MoveCategoryTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Moves\MoveDamageClass.Entity.pas"/>
+        <DCCReference Include="Source\MovesTest\MoveDamageClassTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1022,8 +1025,8 @@
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
