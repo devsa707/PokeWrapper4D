@@ -12,12 +12,12 @@ type
   type
     TDescriptions = class
     private
-      Fname: string;
+      Fdescription: string;
       Flanguage: TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property name: string read Fname write Fname;
+      property description: string read Fdescription write Fdescription;
       property language: TResource read Flanguage write Flanguage;
     end;
   private
