@@ -175,6 +175,8 @@
         <DCCReference Include="Source\MovesTest\MoveCategoryTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Moves\MoveDamageClass.Entity.pas"/>
         <DCCReference Include="Source\MovesTest\MoveDamageClassTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Moves\MoveLearnMethod.Entity.pas"/>
+        <DCCReference Include="Source\MovesTest\MoveLearnMethodTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

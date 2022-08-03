@@ -87,7 +87,9 @@ uses
   MoveCategory.Entity in '..\..\Source\Entities\Moves\MoveCategory.Entity.pas',
   MoveCategoryTest in 'Source\MovesTest\MoveCategoryTest.pas',
   MoveDamageClass.Entity in '..\..\Source\Entities\Moves\MoveDamageClass.Entity.pas',
-  MoveDamageClassTest in 'Source\MovesTest\MoveDamageClassTest.pas';
+  MoveDamageClassTest in 'Source\MovesTest\MoveDamageClassTest.pas',
+  MoveLearnMethod.Entity in '..\..\Source\Entities\Moves\MoveLearnMethod.Entity.pas',
+  MoveLearnMethodTest in 'Source\MovesTest\MoveLearnMethodTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
