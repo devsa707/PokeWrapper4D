@@ -41,7 +41,7 @@ type
     move_category, //
     move_damage_class, //
     move_learn_method, //
-    move_targets);
+    move_target);
 
   TPokemon = (ability, //
     characteristic, //
