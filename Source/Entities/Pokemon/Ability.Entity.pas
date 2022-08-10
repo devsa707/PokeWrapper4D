@@ -193,11 +193,13 @@ end;
 constructor TAbilityEntity.TFlavorTextEntries.Create;
 begin
   Flanguage := TResource.Create;
+  Fversion_group := TResource.Create;
 end;
 
 destructor TAbilityEntity.TFlavorTextEntries.Destroy;
 begin
   Flanguage.Free;
+  Fversion_group.Free;
   inherited;
 end;
 
