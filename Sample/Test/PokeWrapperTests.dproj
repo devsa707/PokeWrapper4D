@@ -179,6 +179,8 @@
         <DCCReference Include="Source\MovesTest\MoveLearnMethodTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Moves\MoveTarget.Entity.pas"/>
         <DCCReference Include="Source\MovesTest\MoveTargetTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Pokemon\Ability.Entity.pas"/>
+        <DCCReference Include="Source\PokemonTest\AbilityTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1028,8 +1030,8 @@
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>

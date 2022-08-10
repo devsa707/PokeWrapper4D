@@ -91,7 +91,9 @@ uses
   MoveLearnMethod.Entity in '..\..\Source\Entities\Moves\MoveLearnMethod.Entity.pas',
   MoveLearnMethodTest in 'Source\MovesTest\MoveLearnMethodTest.pas',
   MoveTarget.Entity in '..\..\Source\Entities\Moves\MoveTarget.Entity.pas',
-  MoveTargetTest in 'Source\MovesTest\MoveTargetTest.pas';
+  MoveTargetTest in 'Source\MovesTest\MoveTargetTest.pas',
+  Ability.Entity in '..\..\Source\Entities\Pokemon\Ability.Entity.pas',
+  AbilityTest in 'Source\PokemonTest\AbilityTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
