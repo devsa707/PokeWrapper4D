@@ -93,7 +93,8 @@ uses
   MoveTarget.Entity in '..\..\Source\Entities\Moves\MoveTarget.Entity.pas',
   MoveTargetTest in 'Source\MovesTest\MoveTargetTest.pas',
   Ability.Entity in '..\..\Source\Entities\Pokemon\Ability.Entity.pas',
-  AbilityTest in 'Source\PokemonTest\AbilityTest.pas';
+  AbilityTest in 'Source\PokemonTest\AbilityTest.pas',
+  Characteristic.Entity in '..\..\Source\Entities\Pokemon\Characteristic.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

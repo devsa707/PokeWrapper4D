@@ -26,6 +26,7 @@ type
     Fhighest_stat: TResource;
     Fpossible_values: TList<integer>;
     procedure SetFdescription(const Value: TObjectList<TDescription>);
+    procedure SetFpossible_values(const Value: TList<integer>);
   public
     constructor Create; overload;
     destructor Destroy; override;
@@ -34,7 +35,7 @@ type
     property gene_modulo: integer read Fgene_modulo write Fgene_modulo;
     property highest_stat: TResource read Fhighest_stat write Fhighest_stat;
     property possible_values: TList<integer> read Fpossible_values
-      write Fpossible_values;
+      write SetFpossible_values;
   end;
 
 implementation
@@ -58,12 +59,14 @@ constructor TCharacteristicEntity.Create;
 begin
   Fdescription := TObjectList<TDescription>.Create;
   Fhighest_stat := TResource.Create;
+  Fpossible_values := TList<integer>.Create;
 end;
 
 destructor TCharacteristicEntity.Destroy;
 begin
   Fdescription.free;
   Fhighest_stat.free;
+  Fpossible_values.free;
   inherited;
 end;
 
@@ -72,6 +75,13 @@ procedure TCharacteristicEntity.SetFdescription(const Value
 begin
   FreeAndNil(Fdescription);
   Fdescription := Value;
+end;
+
+procedure TCharacteristicEntity.SetFpossible_values
+  (const Value: TList<integer>);
+begin
+  FreeAndNil(Fpossible_values);
+  Fpossible_values := Value;
 end;
 
 end.
