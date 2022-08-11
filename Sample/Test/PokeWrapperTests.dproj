@@ -182,6 +182,7 @@
         <DCCReference Include="..\..\Source\Entities\Pokemon\Ability.Entity.pas"/>
         <DCCReference Include="Source\PokemonTest\AbilityTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Pokemon\Characteristic.Entity.pas"/>
+        <DCCReference Include="Source\PokemonTest\CharacteristicTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

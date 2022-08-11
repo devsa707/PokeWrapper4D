@@ -85,7 +85,7 @@ var
 begin
   LCharacteristicEntity := nil;
   try
-    LCharacteristicEntity := TAbilityEntity.Create;
+    LCharacteristicEntity := TCharacteristicEntity.Create;
     FPokeWrapper.GetAsEntity(LCharacteristicEntity,
       integer(TPokemon.Characteristic), 9999999);
   finally
