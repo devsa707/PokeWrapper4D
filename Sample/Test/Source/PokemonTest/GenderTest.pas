@@ -43,7 +43,7 @@ var
   LGenderEntity: TGenderEntity;
 begin
   Write('Testing TPokemon.gender .');
-  for var I: integer := 1 to 10 do
+  for var I: integer := 1 to 3 do
   begin
     LGenderEntity := nil;
     try
