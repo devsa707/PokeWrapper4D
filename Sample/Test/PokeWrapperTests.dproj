@@ -185,6 +185,8 @@
         <DCCReference Include="Source\PokemonTest\CharacteristicTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Pokemon\EggGroup.Entity.pas"/>
         <DCCReference Include="Source\PokemonTest\EggGroupTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Pokemon\Gender.Entity.pas"/>
+        <DCCReference Include="Source\PokemonTest\GenderTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
