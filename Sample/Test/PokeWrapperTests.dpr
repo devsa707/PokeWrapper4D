@@ -99,7 +99,8 @@ uses
   EggGroup.Entity in '..\..\Source\Entities\Pokemon\EggGroup.Entity.pas',
   EggGroupTest in 'Source\PokemonTest\EggGroupTest.pas',
   Gender.Entity in '..\..\Source\Entities\Pokemon\Gender.Entity.pas',
-  GenderTest in 'Source\PokemonTest\GenderTest.pas';
+  GenderTest in 'Source\PokemonTest\GenderTest.pas',
+  GrowthRate.Entity in '..\..\Source\Entities\Pokemon\GrowthRate.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
