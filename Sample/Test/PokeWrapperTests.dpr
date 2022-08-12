@@ -95,7 +95,9 @@ uses
   Ability.Entity in '..\..\Source\Entities\Pokemon\Ability.Entity.pas',
   AbilityTest in 'Source\PokemonTest\AbilityTest.pas',
   Characteristic.Entity in '..\..\Source\Entities\Pokemon\Characteristic.Entity.pas',
-  CharacteristicTest in 'Source\PokemonTest\CharacteristicTest.pas';
+  CharacteristicTest in 'Source\PokemonTest\CharacteristicTest.pas',
+  EggGroup.Entity in '..\..\Source\Entities\Pokemon\EggGroup.Entity.pas',
+  EggGroupTest in 'Source\PokemonTest\EggGroupTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
