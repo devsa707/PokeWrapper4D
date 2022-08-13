@@ -100,7 +100,11 @@ uses
   EggGroupTest in 'Source\PokemonTest\EggGroupTest.pas',
   Gender.Entity in '..\..\Source\Entities\Pokemon\Gender.Entity.pas',
   GenderTest in 'Source\PokemonTest\GenderTest.pas',
-  GrowthRate.Entity in '..\..\Source\Entities\Pokemon\GrowthRate.Entity.pas';
+  GrowthRate.Entity in '..\..\Source\Entities\Pokemon\GrowthRate.Entity.pas',
+  GrowthRateTest in 'Source\PokemonTest\GrowthRateTest.pas',
+  Nature.Entity in '..\..\Source\Entities\Pokemon\Nature.Entity.pas',
+  NatureTest in 'Source\PokemonTest\NatureTest.pas',
+  PokeathlonStat.Entity in '..\..\Source\Entities\Pokemon\PokeathlonStat.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
