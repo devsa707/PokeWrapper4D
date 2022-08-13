@@ -104,7 +104,10 @@ uses
   GrowthRateTest in 'Source\PokemonTest\GrowthRateTest.pas',
   Nature.Entity in '..\..\Source\Entities\Pokemon\Nature.Entity.pas',
   NatureTest in 'Source\PokemonTest\NatureTest.pas',
-  PokeathlonStat.Entity in '..\..\Source\Entities\Pokemon\PokeathlonStat.Entity.pas';
+  PokeathlonStat.Entity in '..\..\Source\Entities\Pokemon\PokeathlonStat.Entity.pas',
+  PokeathlonStatTest in 'Source\PokemonTest\PokeathlonStatTest.pas',
+  Pokemon.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Entity.pas',
+  Pokemon.Generation.Node.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Generation.Node.Entity.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
