@@ -288,6 +288,7 @@ constructor TPokemonEntity.Create;
 begin
   Fabilites := TObjectList<TAbilities>.Create;
   Fforms := TObjectList<TResource>.Create;
+  Fgame_indices := TObjectList<TGameIndices>.Create;
   Fheld_items := TObjectList<THeldItems>.Create;
   Fmoves := TObjectList<TMoves>.Create;
   Fpast_types := TObjectList<TPastTypes>.Create;
@@ -295,12 +296,14 @@ begin
   Fsprites := TSprites.Create;
   Fstats := TObjectList<TStats>.Create;
   Ftypes := TObjectList<TTypes>.Create;
+
 end;
 
 destructor TPokemonEntity.Destroy;
 begin
   Fabilites.Free;
   Fforms.Free;
+  Fgame_indices.Free;
   Fheld_items.Free;
   Fmoves.Free;
   Fpast_types.Free;
@@ -383,11 +386,13 @@ end;
 
 constructor TPokemonEntity.THeldItems.Create;
 begin
+  Fitem := TResource.Create;
   Fversion_details := TVersionDetails.Create;
 end;
 
 destructor TPokemonEntity.THeldItems.Destroy;
 begin
+  Fitem.Free;
   Fversion_details.Free;
   inherited;
 end;
@@ -397,11 +402,13 @@ end;
 constructor TPokemonEntity.TMoves.Create;
 begin
   Fmove := TResource.Create;
+  Fversion_group_details := TObjectList<TVersionGroupDetails>.Create;
 end;
 
 destructor TPokemonEntity.TMoves.Destroy;
 begin
   Fmove.Free;
+  Fversion_group_details.Free;
   inherited;
 end;
 
