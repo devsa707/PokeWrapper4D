@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TAbilityTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Ability));
 end;
 
 procedure TAbilityTest.TestEntity;
@@ -48,17 +49,14 @@ begin
     LAbilityEntity := nil;
     try
       LAbilityEntity := TAbilityEntity.Create;
-      FPokeWrapper.GetAsEntity(LAbilityEntity, integer(TPokemon.Ability), I);
+      FPokeWrapper.GetAsEntity(LAbilityEntity, I);
       // Assertions
       // Node Effect Changes
       if LAbilityEntity.effect_changes.Count > 0 then
       begin
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].effect);
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].language.url);
+        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].effect);
+        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].language.name);
+        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].language.url);
       end;
       // Node Effect Entries
       if LAbilityEntity.effect_entries.Count > 0 then
@@ -71,16 +69,11 @@ begin
       // Node Flavor Text Entries
       if LAbilityEntity.flavor_text_entries.Count > 0 then
       begin
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0]
-          .flavor_text);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0]
-          .language.name);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0]
-          .language.url);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0]
-          .version_group.name);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0]
-          .version_group.url);
+        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].flavor_text);
+        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].language.name);
+        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].language.url);
+        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].version_group.name);
+        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].version_group.url);
       end;
       // Node Generation
       Assert.IsNotEmpty(LAbilityEntity.generation.name);
@@ -118,8 +111,7 @@ begin
   LAbilityEntity := nil;
   try
     LAbilityEntity := TAbilityEntity.Create;
-    FPokeWrapper.GetAsEntity(LAbilityEntity, integer(TPokemon.Ability),
-      9999999);
+    FPokeWrapper.GetAsEntity(LAbilityEntity, 9999999);
   finally
     LAbilityEntity.Free;
   end;
@@ -132,7 +124,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.ability...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Ability));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

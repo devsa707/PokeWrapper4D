@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TItemFlingEffectTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TItem>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.item_fling_effect));
 end;
 
 procedure TItemFlingEffectTest.TestEntity;
@@ -48,23 +49,17 @@ begin
     LItemFlingEffectEntity := nil;
     try
       LItemFlingEffectEntity := TItemFlingEffectEntity.Create;
-      FPokeWrapper.GetAsEntity(LItemFlingEffectEntity,
-        integer(TItem.item_fling_effect), I);
+      FPokeWrapper.GetAsEntity(LItemFlingEffectEntity, I);
       // Assertions
       // node Effect Entries
-      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items
-        [LItemFlingEffectEntity.effect_entries.Count - 1].effect);
-      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items
-        [LItemFlingEffectEntity.effect_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items
-        [LItemFlingEffectEntity.effect_entries.Count - 1].language.url);
+      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items[LItemFlingEffectEntity.effect_entries.Count - 1].effect);
+      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items[LItemFlingEffectEntity.effect_entries.Count - 1].language.name);
+      Assert.IsNotEmpty(LItemFlingEffectEntity.effect_entries.Items[LItemFlingEffectEntity.effect_entries.Count - 1].language.url);
       //
       Assert.IsNotEmpty(LItemFlingEffectEntity.id);
       // node Items
-      Assert.IsNotEmpty(LItemFlingEffectEntity.Items.Items
-        [LItemFlingEffectEntity.Items.Count - 1].name);
-      Assert.IsNotEmpty(LItemFlingEffectEntity.Items.Items
-        [LItemFlingEffectEntity.Items.Count - 1].url);
+      Assert.IsNotEmpty(LItemFlingEffectEntity.Items.Items[LItemFlingEffectEntity.Items.Count - 1].name);
+      Assert.IsNotEmpty(LItemFlingEffectEntity.Items.Items[LItemFlingEffectEntity.Items.Count - 1].url);
       Write('.');
     finally
       LItemFlingEffectEntity.Free;
@@ -81,8 +76,7 @@ begin
   LItemFlingEffectEntity := nil;
   try
     LItemFlingEffectEntity := TItemFlingEffectEntity.Create;
-    FPokeWrapper.GetAsEntity(LItemFlingEffectEntity,
-      integer(TItem.item_fling_effect), 9999999);
+    FPokeWrapper.GetAsEntity(LItemFlingEffectEntity, 9999999);
   finally
     LItemFlingEffectEntity.Free;
   end;
@@ -95,8 +89,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TItem.item_fling_effect...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TItem.item_fling_effect));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

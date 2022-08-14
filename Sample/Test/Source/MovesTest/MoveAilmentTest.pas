@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveAilmentTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_ailment));
 end;
 
 procedure TMoveAilmentTest.TestEntity;
@@ -48,8 +49,7 @@ begin
     LMoveAilmentEntity := nil;
     try
       LMoveAilmentEntity := TMoveAilmentEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveAilmentEntity,
-        integer(TMove.move_ailment), I);
+      FPokeWrapper.GetAsEntity(LMoveAilmentEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveAilmentEntity.id);
       // Node Moves
@@ -82,8 +82,7 @@ begin
   LMoveAilmentEntity := nil;
   try
     LMoveAilmentEntity := TMoveAilmentEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveAilmentEntity,
-      integer(TMove.move_ailment), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveAilmentEntity, 9999999);
   finally
     LMoveAilmentEntity.Free;
   end;
@@ -96,8 +95,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_ailment...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TMove.move_ailment));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

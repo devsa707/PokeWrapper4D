@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Move));
 end;
 
 procedure TMoveTest.TestEntity;
@@ -48,7 +49,7 @@ begin
     LMoveEntity := nil;
     try
       LMoveEntity := TMoveEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveEntity, integer(TMove.Move), I);
+      FPokeWrapper.GetAsEntity(LMoveEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveEntity.accuracy);
       // Node Contest Combos
@@ -76,28 +77,21 @@ begin
       // Node Effect Changes
       if LMoveEntity.effect_changes.Count > 0 then
       begin
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].effect);
+        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].effect);
         // short_effect can be null
         // Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
         // .effect_entries.Items[0].short_effect);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
-          .effect_entries.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
-          .version_group.name);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
-          .version_group.url);
+        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].language.name);
+        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].language.url);
+        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].version_group.name);
+        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].version_group.url);
       end;
       // Node Flavor Text Entries
       if LMoveEntity.flavor_text_entries.Count > 0 then
       begin
         Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].flavor_text);
-        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0]
-          .language.name);
-        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0]
-          .language.url);
+        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].language.name);
+        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].language.url);
       end;
       // Node Generation
       Assert.IsNotEmpty(LMoveEntity.generation.name);
@@ -172,7 +166,7 @@ begin
   LMoveEntity := nil;
   try
     LMoveEntity := TMoveEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveEntity, integer(TMove.Move), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveEntity, 9999999);
   finally
     LMoveEntity.Free;
   end;
@@ -185,7 +179,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TMove.Move));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

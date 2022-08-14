@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TVersionTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TGame>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Version));
 end;
 
 procedure TVersionTest.TestEntity;
@@ -51,17 +52,14 @@ begin
       if I <> 10 then
       begin
         LVersionEntity := TVersionEntity.Create;
-        FPokeWrapper.GetAsEntity(LVersionEntity, integer(TGame.Version), I);
+        FPokeWrapper.GetAsEntity(LVersionEntity, I);
         // Assertions
         Assert.IsNotEmpty(LVersionEntity.id);
         Assert.IsNotEmpty(LVersionEntity.name);
         // node Language
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
-          - 1].language.name);
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
-          - 1].language.url);
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count
-          - 1].name);
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].language.name);
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].language.url);
+        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].name);
         // node version_group
         Assert.IsNotEmpty(LVersionEntity.version_group.name);
         Assert.IsNotEmpty(LVersionEntity.version_group.url);
@@ -82,7 +80,7 @@ begin
   LVersionEntity := nil;
   try
     LVersionEntity := TVersionEntity.Create;
-    FPokeWrapper.GetAsEntity(LVersionEntity, integer(TGame.Version), 9999999);
+    FPokeWrapper.GetAsEntity(LVersionEntity, 9999999);
   finally
     LVersionEntity.Free;
   end;
@@ -95,7 +93,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TGames.version...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TGame.Version));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

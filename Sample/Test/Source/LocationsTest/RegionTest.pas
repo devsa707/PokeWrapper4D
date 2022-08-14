@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TRegionTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TLocation>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Region));
 end;
 
 procedure TRegionTest.TestEntity;
@@ -48,27 +49,20 @@ begin
     LRegionEntity := nil;
     try
       LRegionEntity := TRegionEntity.Create;
-      FPokeWrapper.GetAsEntity(LRegionEntity, integer(TLocation.Region), I);
+      FPokeWrapper.GetAsEntity(LRegionEntity, I);
       // Assertions
       Assert.IsNotEmpty(LRegionEntity.id);
       Assert.IsNotEmpty(LRegionEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1]
-        .language.name);
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1]
-        .language.url);
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count
-        - 1].name);
+      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].name);
       // Node Pokedexes
-      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items
-        [LRegionEntity.pokedexes.Count - 1].name);
-      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items
-        [LRegionEntity.pokedexes.Count - 1].url);
+      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items[LRegionEntity.pokedexes.Count - 1].name);
+      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items[LRegionEntity.pokedexes.Count - 1].url);
       // Node Version Groups
-      Assert.IsNotEmpty(LRegionEntity.version_groups.Items
-        [LRegionEntity.version_groups.Count - 1].name);
-      Assert.IsNotEmpty(LRegionEntity.version_groups.Items
-        [LRegionEntity.version_groups.Count - 1].url);
+      Assert.IsNotEmpty(LRegionEntity.version_groups.Items[LRegionEntity.version_groups.Count - 1].name);
+      Assert.IsNotEmpty(LRegionEntity.version_groups.Items[LRegionEntity.version_groups.Count - 1].url);
 
       Write('.');
     finally
@@ -86,7 +80,7 @@ begin
   LRegionEntity := nil;
   try
     LRegionEntity := TRegionEntity.Create;
-    FPokeWrapper.GetAsEntity(LRegionEntity, integer(TLocation.Region), 9999999);
+    FPokeWrapper.GetAsEntity(LRegionEntity, 9999999);
   finally
     LRegionEntity.Free;
   end;
@@ -99,7 +93,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TLocation.region...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TLocation.Region));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

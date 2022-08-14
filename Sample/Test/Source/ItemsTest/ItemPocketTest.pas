@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TItemPocketTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TItem>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.item_pocket));
 end;
 
 procedure TItemPocketTest.TestEntity;
@@ -48,24 +49,18 @@ begin
     LItemPocketEntity := nil;
     try
       LItemPocketEntity := TItemPocketEntity.Create;
-      FPokeWrapper.GetAsEntity(LItemPocketEntity,
-        integer(TItem.item_pocket), I);
+      FPokeWrapper.GetAsEntity(LItemPocketEntity, I);
       // Assertions
       // node Effect Entries
-      Assert.IsNotEmpty(LItemPocketEntity.categories.Items
-        [LItemPocketEntity.categories.Count - 1].name);
-      Assert.IsNotEmpty(LItemPocketEntity.categories.Items
-        [LItemPocketEntity.categories.Count - 1].url);
+      Assert.IsNotEmpty(LItemPocketEntity.categories.Items[LItemPocketEntity.categories.Count - 1].name);
+      Assert.IsNotEmpty(LItemPocketEntity.categories.Items[LItemPocketEntity.categories.Count - 1].url);
       //
       Assert.IsNotEmpty(LItemPocketEntity.id);
       Assert.IsNotEmpty(LItemPocketEntity.name);
       // node Items
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items
-        [LItemPocketEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items
-        [LItemPocketEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items
-        [LItemPocketEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].name);
       Write('.');
     finally
       LItemPocketEntity.Free;
@@ -82,8 +77,7 @@ begin
   LItemPocketEntity := nil;
   try
     LItemPocketEntity := TItemPocketEntity.Create;
-    FPokeWrapper.GetAsEntity(LItemPocketEntity,
-      integer(TItem.item_pocket), 9999999);
+    FPokeWrapper.GetAsEntity(LItemPocketEntity, 9999999);
   finally
     LItemPocketEntity.Free;
   end;
@@ -96,7 +90,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TItem.item_pocket...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TItem.item_pocket));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

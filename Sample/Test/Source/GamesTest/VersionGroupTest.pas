@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TVersionGroupTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TGame>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.version_group));
 end;
 
 procedure TVersionGroupTest.TestEntity;
@@ -51,8 +52,7 @@ begin
       if I <> 10 then
       begin
         LVersionGroupEntity := TVersionGroupEntity.Create;
-        FPokeWrapper.GetAsEntity(LVersionGroupEntity,
-          integer(TGame.version_group), I);
+        FPokeWrapper.GetAsEntity(LVersionGroupEntity, I);
         // Assertions
         // node Generation
         Assert.IsNotEmpty(LVersionGroupEntity.generation.name);
@@ -60,28 +60,20 @@ begin
         //
         Assert.IsNotEmpty(LVersionGroupEntity.id);
         // node move-learn-methods
-        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items
-          [LVersionGroupEntity.move_learn_methods.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items
-          [LVersionGroupEntity.move_learn_methods.Count - 1].url);
+        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items[LVersionGroupEntity.move_learn_methods.Count - 1].name);
+        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items[LVersionGroupEntity.move_learn_methods.Count - 1].url);
         //
         Assert.IsNotEmpty(LVersionGroupEntity.name);
         Assert.IsNotEmpty(LVersionGroupEntity.order);
         // node pokedexes
-        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items
-          [LVersionGroupEntity.pokedexes.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items
-          [LVersionGroupEntity.pokedexes.Count - 1].url);
+        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items[LVersionGroupEntity.pokedexes.Count - 1].name);
+        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items[LVersionGroupEntity.pokedexes.Count - 1].url);
         // node regions
-        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items
-          [LVersionGroupEntity.regions.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items
-          [LVersionGroupEntity.regions.Count - 1].url);
+        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items[LVersionGroupEntity.regions.Count - 1].name);
+        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items[LVersionGroupEntity.regions.Count - 1].url);
         // node versions
-        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items
-          [LVersionGroupEntity.versions.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items
-          [LVersionGroupEntity.versions.Count - 1].url);
+        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items[LVersionGroupEntity.versions.Count - 1].name);
+        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items[LVersionGroupEntity.versions.Count - 1].url);
         Write('.');
       end;
     finally
@@ -99,8 +91,7 @@ begin
   LVersionGroupEntity := nil;
   try
     LVersionGroupEntity := TVersionGroupEntity.Create;
-    FPokeWrapper.GetAsEntity(LVersionGroupEntity,
-      integer(TGame.version_group), 9999999);
+    FPokeWrapper.GetAsEntity(LVersionGroupEntity, 9999999);
   finally
     LVersionGroupEntity.Free;
   end;
@@ -113,8 +104,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TGames.version_group...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TGame.version_group));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

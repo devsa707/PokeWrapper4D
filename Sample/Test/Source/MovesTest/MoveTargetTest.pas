@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveTargetTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_target));
 end;
 
 procedure TMoveTargetTest.TestEntity;
@@ -48,16 +49,14 @@ begin
     LMoveTargetEntity := nil;
     try
       LMoveTargetEntity := TMoveTargetEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveTargetEntity,
-        integer(TMove.move_target), I);
+      FPokeWrapper.GetAsEntity(LMoveTargetEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveTargetEntity.name);
       // Node Descriptions
       if LMoveTargetEntity.descriptions.Count > 0 then
       begin
         Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0]
-          .language.name);
+        Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].language.name);
         Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].language.url);
       end;
       // Node Moves
@@ -90,8 +89,7 @@ begin
   LMoveTargetEntity := nil;
   try
     LMoveTargetEntity := TMoveTargetEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveTargetEntity,
-      integer(TMove.move_target), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveTargetEntity, 9999999);
   finally
     LMoveTargetEntity.Free;
   end;
@@ -104,7 +102,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_target...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TMove.move_target));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

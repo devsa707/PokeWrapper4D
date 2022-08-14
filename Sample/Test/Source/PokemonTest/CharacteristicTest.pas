@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TCharacteristicTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Characteristic));
 end;
 
 procedure TCharacteristicTest.TestEntity;
@@ -48,18 +49,14 @@ begin
     LCharacteristicEntity := nil;
     try
       LCharacteristicEntity := TCharacteristicEntity.Create;
-      FPokeWrapper.GetAsEntity(LCharacteristicEntity,
-        integer(TPokemon.Characteristic), I);
+      FPokeWrapper.GetAsEntity(LCharacteristicEntity, I);
       // Assertions
       // Node Description
       if LCharacteristicEntity.description.Count > 0 then
       begin
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0]
-          .description);
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0]
-          .language.name);
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0]
-          .language.url);
+        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].description);
+        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].language.name);
+        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].language.url);
       end;
       //
       Assert.IsNotEmpty(LCharacteristicEntity.gene_modulo);
@@ -86,8 +83,7 @@ begin
   LCharacteristicEntity := nil;
   try
     LCharacteristicEntity := TCharacteristicEntity.Create;
-    FPokeWrapper.GetAsEntity(LCharacteristicEntity,
-      integer(TPokemon.Characteristic), 9999999);
+    FPokeWrapper.GetAsEntity(LCharacteristicEntity, integer(TPokemon.Characteristic), 9999999);
   finally
     LCharacteristicEntity.Free;
   end;
@@ -100,8 +96,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.characteristic...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TPokemon.Characteristic));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Characteristic));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -34,7 +35,7 @@ implementation
 
 procedure TMachineTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMachine>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Machine));
 end;
 
 procedure TMachineTest.TestEntity;
@@ -47,7 +48,7 @@ begin
     LMachineEntity := nil;
     try
       LMachineEntity := TMachineEntity.Create;
-      FPokeWrapper.GetAsEntity(LMachineEntity, integer(TMachine.Machine), I);
+      FPokeWrapper.GetAsEntity(LMachineEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMachineEntity.id);
       Assert.IsNotEmpty(LMachineEntity.item.name);
@@ -72,8 +73,7 @@ begin
   LMachineEntity := nil;
   try
     LMachineEntity := TMachineEntity.Create;
-    FPokeWrapper.GetAsEntity(LMachineEntity, integer(TMachine.Machine),
-      9999999);
+    FPokeWrapper.GetAsEntity(LMachineEntity, 9999999);
   finally
     LMachineEntity.Free;
   end;
@@ -86,7 +86,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMachine.machine...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TMachine.Machine));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

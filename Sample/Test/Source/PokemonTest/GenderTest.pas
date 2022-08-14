@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TGenderTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Gender));
 end;
 
 procedure TGenderTest.TestEntity;
@@ -48,17 +49,15 @@ begin
     LGenderEntity := nil;
     try
       LGenderEntity := TGenderEntity.Create;
-      FPokeWrapper.GetAsEntity(LGenderEntity, integer(TPokemon.Gender), I);
+      FPokeWrapper.GetAsEntity(LGenderEntity, I);
       // Assertions
       Assert.IsNotEmpty(LGenderEntity.id);
       Assert.IsNotEmpty(LGenderEntity.name);
       // Node Names
       if LGenderEntity.pokemon_species_details.Count > 0 then
       begin
-        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0]
-          .pokemon_species.name);
-        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0]
-          .pokemon_species.url);
+        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].pokemon_species.name);
+        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].pokemon_species.url);
         Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].rate);
       end;
       // Node Pokemon Species
@@ -83,7 +82,7 @@ begin
   LGenderEntity := nil;
   try
     LGenderEntity := TGenderEntity.Create;
-    FPokeWrapper.GetAsEntity(LGenderEntity, integer(TPokemon.Gender), 9999999);
+    FPokeWrapper.GetAsEntity(LGenderEntity, 9999999);
   finally
     LGenderEntity.Free;
   end;
@@ -96,7 +95,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.gender...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Gender));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

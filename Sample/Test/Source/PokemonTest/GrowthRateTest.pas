@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TGrowthRateTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.growth_rate));
 end;
 
 procedure TGrowthRateTest.TestEntity;
@@ -48,15 +49,13 @@ begin
     LGrowthRateEntity := nil;
     try
       LGrowthRateEntity := TGrowthRateEntity.Create;
-      FPokeWrapper.GetAsEntity(LGrowthRateEntity,
-        integer(TPokemon.growth_rate), I);
+      FPokeWrapper.GetAsEntity(LGrowthRateEntity, I);
       // Assertions
       // Node Descriptions
       if LGrowthRateEntity.descriptions.Count > 0 then
       begin
         Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0]
-          .language.name);
+        Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].language.name);
         Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].language.url);
       end;
       //
@@ -90,8 +89,7 @@ begin
   LGrowthRateEntity := nil;
   try
     LGrowthRateEntity := TGrowthRateEntity.Create;
-    FPokeWrapper.GetAsEntity(LGrowthRateEntity,
-      integer(TPokemon.growth_rate), 9999999);
+    FPokeWrapper.GetAsEntity(LGrowthRateEntity, 9999999);
   finally
     LGrowthRateEntity.Free;
   end;
@@ -104,8 +102,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.growth_rate...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TPokemon.growth_rate));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

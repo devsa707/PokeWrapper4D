@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TPokemonTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Pokemon));
 end;
 
 procedure TPokemonTest.TestEntity;
@@ -48,7 +49,7 @@ begin
     LPokemonEntity := nil;
     try
       LPokemonEntity := TPokemonEntity.Create;
-      FPokeWrapper.GetAsEntity(LPokemonEntity, integer(TPokemon.Pokemon), I);
+      FPokeWrapper.GetAsEntity(LPokemonEntity, I);
       // Assertions
       // Node Abilities
       if LPokemonEntity.abilities.Count > 0 then
@@ -145,7 +146,7 @@ begin
   LPokemonEntity := nil;
   try
     LPokemonEntity := TPokemonEntity.Create;
-    FPokeWrapper.GetAsEntity(LPokemonEntity, integer(TPokemon.Pokemon), 9999999);
+    FPokeWrapper.GetAsEntity(LPokemonEntity, 9999999);
   finally
     LPokemonEntity.Free;
   end;
@@ -158,7 +159,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.pokemon...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Pokemon));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

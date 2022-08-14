@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TPokeathlonStatTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.pokeathlon_stat));
 end;
 
 procedure TPokeathlonStatTest.TestEntity;
@@ -48,29 +49,22 @@ begin
     LPokeathlonStatEntity := nil;
     try
       LPokeathlonStatEntity := TPokeathlonStatEntity.Create;
-      FPokeWrapper.GetAsEntity(LPokeathlonStatEntity,
-        integer(TPokemon.pokeathlon_stat), I);
+      FPokeWrapper.GetAsEntity(LPokeathlonStatEntity, I);
       // Assertions
       Assert.IsNotEmpty(LPokeathlonStatEntity.id);
       // Node Affecting Natures - Decrease
       if LPokeathlonStatEntity.affecting_natures.decrease.Count > 0 then
       begin
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items
-          [0].max_change);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items
-          [0].nature.name);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items
-          [0].nature.url);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].max_change);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].nature.name);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].nature.url);
       end;
       // Node Affecting Natures - Increase
       if LPokeathlonStatEntity.affecting_natures.increase.Count > 0 then
       begin
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items
-          [0].max_change);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items
-          [0].nature.name);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items
-          [0].nature.url);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].max_change);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].nature.name);
+        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].nature.url);
       end;
       //
       Assert.IsNotEmpty(LPokeathlonStatEntity.id);
@@ -98,8 +92,7 @@ begin
   LPokeathlonStatEntity := nil;
   try
     LPokeathlonStatEntity := TPokeathlonStatEntity.Create;
-    FPokeWrapper.GetAsEntity(LPokeathlonStatEntity,
-      integer(TPokemon.pokeathlon_stat), 9999999);
+    FPokeWrapper.GetAsEntity(LPokeathlonStatEntity, 9999999);
   finally
     LPokeathlonStatEntity.Free;
   end;
@@ -112,8 +105,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.pokeathlon_stat...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TPokemon.pokeathlon_stat));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

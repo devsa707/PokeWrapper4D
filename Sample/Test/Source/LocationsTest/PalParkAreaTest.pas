@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TPalParkAreaTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TLocation>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.pal_park_area));
 end;
 
 procedure TPalParkAreaTest.TestEntity;
@@ -48,25 +49,18 @@ begin
     LPalParkAreaEntity := nil;
     try
       LPalParkAreaEntity := TPalParkAreaEntity.Create;
-      FPokeWrapper.GetAsEntity(LPalParkAreaEntity,
-        integer(TLocation.pal_park_area), I);
+      FPokeWrapper.GetAsEntity(LPalParkAreaEntity, I);
       // Assertions
       Assert.IsNotEmpty(LPalParkAreaEntity.id);
       Assert.IsNotEmpty(LPalParkAreaEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items
-        [LPalParkAreaEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items
-        [LPalParkAreaEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items
-        [LPalParkAreaEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].name);
       // Node Pokemon Encounters
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items
-        [LPalParkAreaEntity.pokemon_encounters.Count - 1].base_score);
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items
-        [LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.name);
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items
-        [LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.url);
+      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].base_score);
+      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.name);
+      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.url);
       Write('.');
     finally
       LPalParkAreaEntity.Free;
@@ -83,8 +77,7 @@ begin
   LPalParkAreaEntity := nil;
   try
     LPalParkAreaEntity := TPalParkAreaEntity.Create;
-    FPokeWrapper.GetAsEntity(LPalParkAreaEntity,
-      integer(TLocation.pal_park_area), 9999999);
+    FPokeWrapper.GetAsEntity(LPalParkAreaEntity, 9999999);
   finally
     LPalParkAreaEntity.Free;
   end;
@@ -97,8 +90,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TLocation.pal_park_area...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TLocation.pal_park_area));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TLocationAreaTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TLocation>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.location_area));
 end;
 
 procedure TLocationAreaTest.TestEntity;
@@ -48,32 +49,24 @@ begin
     LLocationAreaEntity := nil;
     try
       LLocationAreaEntity := TLocationAreaEntity.Create;
-      FPokeWrapper.GetAsEntity(LLocationAreaEntity,
-        integer(TLocation.location_area), I);
+      FPokeWrapper.GetAsEntity(LLocationAreaEntity, I);
       // Assertions
       // node Nullable Encounter Method Rates
       if LLocationAreaEntity.encounter_method_rates.Count > 0 then
       begin
-        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items
-          [LLocationAreaEntity.encounter_method_rates.Count - 1]
+        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
           .encounter_method.name);
-        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items
-          [LLocationAreaEntity.encounter_method_rates.Count - 1]
+        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
           .encounter_method.url);
 
         // node Version Details of Encounter Method Rate
-        if LLocationAreaEntity.encounter_method_rates.Items
-          [LLocationAreaEntity.encounter_method_rates.Count - 1]
-          .version_details.Count > 0 then
+        if LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1].version_details.Count > 0 then
         begin
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items
-            [LLocationAreaEntity.encounter_method_rates.Count - 1]
+          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
             .version_details.Items[1].rate);
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items
-            [LLocationAreaEntity.encounter_method_rates.Count - 1]
+          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
             .version_details.Items[1].version.name);
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items
-            [LLocationAreaEntity.encounter_method_rates.Count - 1]
+          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
             .version_details.Items[1].version.url);
         end;
       end;
@@ -85,10 +78,8 @@ begin
       //
       Assert.IsNotEmpty(LLocationAreaEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LLocationAreaEntity.names.Items
-        [LLocationAreaEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LLocationAreaEntity.names.Items
-        [LLocationAreaEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LLocationAreaEntity.names.Items[LLocationAreaEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LLocationAreaEntity.names.Items[LLocationAreaEntity.names.Count - 1].language.url);
       // Name can return null value
       // Assert.IsNotEmpty(LLocationAreaEntity.names.Items
       // [LLocationAreaEntity.names.Count - 1].name);
@@ -108,8 +99,7 @@ begin
   LLocationAreaEntity := nil;
   try
     LLocationAreaEntity := TLocationAreaEntity.Create;
-    FPokeWrapper.GetAsEntity(LLocationAreaEntity,
-      integer(TLocation.location_area), 9999999);
+    FPokeWrapper.GetAsEntity(LLocationAreaEntity, 9999999);
   finally
     LLocationAreaEntity.Free;
   end;
@@ -122,8 +112,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TLocation.location_area...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TLocation.location_area));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

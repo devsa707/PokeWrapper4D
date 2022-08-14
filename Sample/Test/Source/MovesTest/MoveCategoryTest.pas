@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveCategoryTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_category));
 end;
 
 procedure TMoveCategoryTest.TestEntity;
@@ -48,19 +49,15 @@ begin
     LMoveCategoryEntity := nil;
     try
       LMoveCategoryEntity := TMoveCategoryEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveCategoryEntity,
-        integer(TMove.move_category), I);
+      FPokeWrapper.GetAsEntity(LMoveCategoryEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveCategoryEntity.id);
       // Node Descriptions
       if LMoveCategoryEntity.descriptions.Count > 0 then
       begin
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0]
-          .description);
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0]
-          .language.name);
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0]
-          .language.url);
+        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].description);
+        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].language.name);
+        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].language.url);
       end;
       // Node Moves
       if LMoveCategoryEntity.moves.Count > 0 then
@@ -85,8 +82,7 @@ begin
   LMoveCategoryEntity := nil;
   try
     LMoveCategoryEntity := TMoveCategoryEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveCategoryEntity,
-      integer(TMove.move_category), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveCategoryEntity, 9999999);
   finally
     LMoveCategoryEntity.Free;
   end;
@@ -99,8 +95,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_category...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TMove.move_category));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

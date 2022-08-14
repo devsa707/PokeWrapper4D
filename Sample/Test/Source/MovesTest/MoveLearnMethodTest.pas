@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveLearnMethodTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_learn_method));
 end;
 
 procedure TMoveLearnMethodTest.TestEntity;
@@ -48,20 +49,16 @@ begin
     LMoveLearnMethodEntity := nil;
     try
       LMoveLearnMethodEntity := TMoveLearnMethodEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveLearnMethodEntity,
-        integer(TMove.move_learn_method), I);
+      FPokeWrapper.GetAsEntity(LMoveLearnMethodEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveLearnMethodEntity.id);
       Assert.IsNotEmpty(LMoveLearnMethodEntity.name);
       // Node Descriptions
       if LMoveLearnMethodEntity.descriptions.Count > 0 then
       begin
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0]
-          .description);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0]
-          .language.name);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0]
-          .language.url);
+        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].description);
+        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].language.name);
+        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].language.url);
       end;
       // Node Names
       if LMoveLearnMethodEntity.names.Count > 0 then
@@ -93,8 +90,7 @@ begin
   LMoveLearnMethodEntity := nil;
   try
     LMoveLearnMethodEntity := TMoveLearnMethodEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveLearnMethodEntity,
-      integer(TMove.move_learn_method), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveLearnMethodEntity, 9999999);
   finally
     LMoveLearnMethodEntity.Free;
   end;
@@ -107,8 +103,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_learn_method...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TMove.move_learn_method));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

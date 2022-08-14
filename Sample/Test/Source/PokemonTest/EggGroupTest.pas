@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TEggGroupTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.egg_group));
 end;
 
 procedure TEggGroupTest.TestEntity;
@@ -48,7 +49,7 @@ begin
     LEggGroupEntity := nil;
     try
       LEggGroupEntity := TEggGroupEntity.Create;
-      FPokeWrapper.GetAsEntity(LEggGroupEntity, integer(TPokemon.egg_group), I);
+      FPokeWrapper.GetAsEntity(LEggGroupEntity, I);
       // Assertions
       Assert.IsNotEmpty(LEggGroupEntity.id);
       Assert.IsNotEmpty(LEggGroupEntity.name);
@@ -81,8 +82,7 @@ begin
   LEggGroupEntity := nil;
   try
     LEggGroupEntity := TEggGroupEntity.Create;
-    FPokeWrapper.GetAsEntity(LEggGroupEntity,
-      integer(TPokemon.egg_group), 9999999);
+    FPokeWrapper.GetAsEntity(LEggGroupEntity, integer(TPokemon.egg_group), 9999999);
   finally
     LEggGroupEntity.Free;
   end;
@@ -95,8 +95,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.egg_group...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TPokemon.egg_group));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.egg_group));
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

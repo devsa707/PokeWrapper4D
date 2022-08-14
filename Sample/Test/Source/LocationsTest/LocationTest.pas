@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TLocationTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TLocation>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Location));
 end;
 
 procedure TLocationTest.TestEntity;
@@ -48,33 +49,25 @@ begin
     LLocationEntity := nil;
     try
       LLocationEntity := TLocationEntity.Create;
-      FPokeWrapper.GetAsEntity(LLocationEntity, integer(TLocation.Location), I);
+      FPokeWrapper.GetAsEntity(LLocationEntity, I);
       // Assertions
       // node Nullable Areas
       if LLocationEntity.areas.Count > 0 then
       begin
-        Assert.IsNotEmpty(LLocationEntity.areas.Items
-          [LLocationEntity.areas.Count - 1].name);
-        Assert.IsNotEmpty(LLocationEntity.areas.Items
-          [LLocationEntity.areas.Count - 1].url);
+        Assert.IsNotEmpty(LLocationEntity.areas.Items[LLocationEntity.areas.Count - 1].name);
+        Assert.IsNotEmpty(LLocationEntity.areas.Items[LLocationEntity.areas.Count - 1].url);
       end;
       // node Game Indices
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items
-        [LLocationEntity.game_indices.Count - 1].game_index);
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items
-        [LLocationEntity.game_indices.Count - 1].generation.name);
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items
-        [LLocationEntity.game_indices.Count - 1].generation.url);
+      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].game_index);
+      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].generation.name);
+      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].generation.url);
       //
       Assert.IsNotEmpty(LLocationEntity.id);
       Assert.IsNotEmpty(LLocationEntity.name);
       // node Languages
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count
-        - 1].language.name);
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count
-        - 1].language.url);
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count
-        - 1].name);
+      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].name);
       Write('.');
     finally
       LLocationEntity.Free;
@@ -91,8 +84,7 @@ begin
   LLocationEntity := nil;
   try
     LLocationEntity := TLocationEntity.Create;
-    FPokeWrapper.GetAsEntity(LLocationEntity,
-      integer(TLocation.Location), 9999999);
+    FPokeWrapper.GetAsEntity(LLocationEntity, 9999999);
   finally
     LLocationEntity.Free;
   end;
@@ -105,8 +97,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TLocation.location...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TLocation.Location));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TNatureTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TPokemon>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Nature));
 end;
 
 procedure TNatureTest.TestEntity;
@@ -48,20 +49,16 @@ begin
     LNatureEntity := nil;
     try
       LNatureEntity := TNatureEntity.Create;
-      FPokeWrapper.GetAsEntity(LNatureEntity, integer(TPokemon.Nature), I);
+      FPokeWrapper.GetAsEntity(LNatureEntity, I);
       // Assertions
       Assert.IsNotEmpty(LNatureEntity.id);
       // Node Move Battle Style Preferences
       if LNatureEntity.move_battle_style_preferences.Count > 0 then
       begin
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0]
-          .high_hp_preference);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0]
-          .low_hp_preference);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0]
-          .move_battle_style.name);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0]
-          .move_battle_style.url);
+        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].high_hp_preference);
+        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].low_hp_preference);
+        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].move_battle_style.name);
+        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].move_battle_style.url);
       end;
       Assert.IsNotEmpty(LNatureEntity.name);
       // Node Names
@@ -74,12 +71,9 @@ begin
       // Node Pokeathlon Stat Changes
       if LNatureEntity.pokeathlon_stat_changes.Count > 0 then
       begin
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0]
-          .max_change);
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0]
-          .pokeathlon_stat.name);
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0]
-          .pokeathlon_stat.url);
+        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].max_change);
+        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].pokeathlon_stat.name);
+        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].pokeathlon_stat.url);
       end;
       // Node Levels
       Write('.');
@@ -111,7 +105,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.nature...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Nature));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

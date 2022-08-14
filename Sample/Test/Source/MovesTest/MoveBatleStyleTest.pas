@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TMoveBatleStyleTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TMove>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_battle_style));
 end;
 
 procedure TMoveBatleStyleTest.TestEntity;
@@ -48,8 +49,7 @@ begin
     LMoveBattleStyleEntity := nil;
     try
       LMoveBattleStyleEntity := TMoveBattleStyleEntity.Create;
-      FPokeWrapper.GetAsEntity(LMoveBattleStyleEntity,
-        integer(TMove.move_battle_style), I);
+      FPokeWrapper.GetAsEntity(LMoveBattleStyleEntity, I);
       // Assertions
       Assert.IsNotEmpty(LMoveBattleStyleEntity.id);
       Assert.IsNotEmpty(LMoveBattleStyleEntity.name);
@@ -76,8 +76,7 @@ begin
   LMoveBattleStyleEntity := nil;
   try
     LMoveBattleStyleEntity := TMoveBattleStyleEntity.Create;
-    FPokeWrapper.GetAsEntity(LMoveBattleStyleEntity,
-      integer(TMove.move_battle_style), 9999999);
+    FPokeWrapper.GetAsEntity(LMoveBattleStyleEntity, 9999999);
   finally
     LMoveBattleStyleEntity.Free;
   end;
@@ -90,8 +89,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_battle_style...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TMove.move_battle_style));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');
