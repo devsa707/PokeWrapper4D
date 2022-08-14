@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TSuperContestEffectTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TContest>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.super_contest_effect));
 end;
 
 procedure TSuperContestEffectTest.TestEntity;
@@ -51,24 +52,15 @@ begin
       // https://pokeapi.co/api/v2/super-contest-effect/3 is missing
       if I <> 3 then
       begin
-        FPokeWrapper.GetAsEntity(LSuperContestEffectEntity,
-          integer(TContest.super_contest_effect), I);
+        FPokeWrapper.GetAsEntity(LSuperContestEffectEntity, I);
         // Assertions
         Assert.IsNotEmpty(LSuperContestEffectEntity.appeal);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items
-          [LSuperContestEffectEntity.flavor_text_entries.Count - 1]
-          .flavor_text);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items
-          [LSuperContestEffectEntity.flavor_text_entries.Count - 1]
-          .language.name);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items
-          [LSuperContestEffectEntity.flavor_text_entries.Count - 1]
-          .language.url);
+        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].flavor_text);
+        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].language.name);
+        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].language.url);
         Assert.IsNotEmpty(LSuperContestEffectEntity.id);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items
-          [LSuperContestEffectEntity.moves.Count - 1].name);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items
-          [LSuperContestEffectEntity.moves.Count - 1].url);
+        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items[LSuperContestEffectEntity.moves.Count - 1].name);
+        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items[LSuperContestEffectEntity.moves.Count - 1].url);
         Write('.');
       end;
     finally
@@ -86,8 +78,7 @@ begin
   LSuperContestEffectEntity := nil;
   try
     LSuperContestEffectEntity := TSuperContestEffectEntity.Create;
-    FPokeWrapper.GetAsEntity(LSuperContestEffectEntity,
-      integer(TContest.super_contest_effect), 9999999);
+    FPokeWrapper.GetAsEntity(LSuperContestEffectEntity, 9999999);
   finally
     LSuperContestEffectEntity.Free;
   end;
@@ -100,8 +91,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.super_contest_effect...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TContest.super_contest_effect));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

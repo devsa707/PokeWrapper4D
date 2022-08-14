@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TContestTypeTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TContest>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.contest_type));
 end;
 
 procedure TContestTypeTest.TestEntity;
@@ -48,21 +49,16 @@ begin
     LContestTypeEntity := nil;
     try
       LContestTypeEntity := TContestTypeEntity.Create;
-      FPokeWrapper.GetAsEntity(LContestTypeEntity,
-        integer(TContest.contest_type), I);
+      FPokeWrapper.GetAsEntity(LContestTypeEntity, I);
       // Assertions
       Assert.IsNotEmpty(LContestTypeEntity.berry_flavor.name);
       Assert.IsNotEmpty(LContestTypeEntity.berry_flavor.url);
       Assert.IsNotEmpty(LContestTypeEntity.id);
       Assert.IsNotEmpty(LContestTypeEntity.name);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items
-        [LContestTypeEntity.names.Count - 1].color);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items
-        [LContestTypeEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items
-        [LContestTypeEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items
-        [LContestTypeEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].color);
+      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].name);
       Write('.');
     finally
       LContestTypeEntity.Free;
@@ -79,8 +75,7 @@ begin
   LContestTypeEntity := nil;
   try
     LContestTypeEntity := TContestTypeEntity.Create;
-    FPokeWrapper.GetAsEntity(LContestTypeEntity,
-      integer(TContest.contest_type), 9999999);
+    FPokeWrapper.GetAsEntity(LContestTypeEntity, 9999999);
   finally
     LContestTypeEntity.Free;
   end;
@@ -93,7 +88,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.contest_type...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TContest.contest_type));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

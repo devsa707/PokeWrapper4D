@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TBerryFlavorTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TBerry>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.berry_flavor));
 end;
 
 procedure TBerryFlavorTest.TestEntity;
@@ -48,27 +49,20 @@ begin
     LBerryFlavorEntity := nil;
     try
       LBerryFlavorEntity := TBerryFlavorEntity.Create;
-      FPokeWrapper.GetAsEntity(LBerryFlavorEntity,
-        integer(TBerry.berry_flavor), I);
+      FPokeWrapper.GetAsEntity(LBerryFlavorEntity, I);
       // Assertions
       Assert.IsNotEmpty(LBerryFlavorEntity.berries.Count);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items
-        [LBerryFlavorEntity.berries.Count - 1].berry.name);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items
-        [LBerryFlavorEntity.berries.Count - 1].berry.url);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items
-        [LBerryFlavorEntity.berries.Count - 1].potency);
+      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].berry.name);
+      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].berry.url);
+      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].potency);
       Assert.IsNotEmpty(LBerryFlavorEntity.contest_type.name);
       Assert.IsNotEmpty(LBerryFlavorEntity.contest_type.url);
       Assert.IsNotEmpty(LBerryFlavorEntity.id);
       Assert.IsNotEmpty(LBerryFlavorEntity.name);
       Assert.IsNotEmpty(LBerryFlavorEntity.names.Count);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items
-        [LBerryFlavorEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items
-        [LBerryFlavorEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items
-        [LBerryFlavorEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].name);
       Write('.');
     finally
       LBerryFlavorEntity.Free;
@@ -85,8 +79,7 @@ begin
   LBerryFlavorEntity := nil;
   try
     LBerryFlavorEntity := TBerryFlavorEntity.Create;
-    FPokeWrapper.GetAsEntity(LBerryFlavorEntity,
-      integer(TBerry.berry_flavor), 9999999);
+    FPokeWrapper.GetAsEntity(LBerryFlavorEntity, 9999999);
   finally
     LBerryFlavorEntity.Free;
   end;
@@ -99,8 +92,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry_flavor...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TBerry.berry_flavor));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

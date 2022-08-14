@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TBerryTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TBerry>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Berry));
 end;
 
 procedure TBerryTest.TestEntity;
@@ -48,17 +49,14 @@ begin
     LBerryEntity := nil;
     try
       LBerryEntity := TBerryEntity.Create;
-      FPokeWrapper.GetAsEntity(LBerryEntity, integer(TBerry.Berry), I);
+      FPokeWrapper.GetAsEntity(LBerryEntity, I);
       // Assertions
       Assert.IsNotEmpty(LBerryEntity.name);
       Assert.IsNotEmpty(LBerryEntity.firmness.name);
       Assert.IsNotEmpty(LBerryEntity.flavors.Count);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
-        1].flavor.name);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
-        1].flavor.url);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count -
-        1].flavor.potency);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.name);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.url);
+      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.potency);
       Assert.IsNotEmpty(LBerryEntity.item.name);
       Assert.IsNotEmpty(LBerryEntity.natural_gift_power);
       Assert.IsNotEmpty(LBerryEntity.natural_gift_type.name);
@@ -79,7 +77,7 @@ begin
   LBerryEntity := nil;
   try
     LBerryEntity := TBerryEntity.Create;
-    FPokeWrapper.GetAsEntity(LBerryEntity, integer(TBerry.Berry), 9999999);
+    FPokeWrapper.GetAsEntity(LBerryEntity, 9999999);
   finally
     LBerryEntity.Free;
   end;
@@ -92,7 +90,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TBerry.Berry));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

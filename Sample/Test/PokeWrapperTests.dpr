@@ -108,7 +108,8 @@ uses
   PokeathlonStatTest in 'Source\PokemonTest\PokeathlonStatTest.pas',
   Pokemon.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Entity.pas',
   Pokemon.Generation.Node.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Generation.Node.Entity.pas',
-  PokemonTest in 'Source\PokemonTest\PokemonTest.pas';
+  PokemonTest in 'Source\PokemonTest\PokemonTest.pas',
+  PokeFactory in '..\..\Source\Wrapper\PokeFactory.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

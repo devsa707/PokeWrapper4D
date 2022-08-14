@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TEncounterMethodTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TEncounter>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.encounter_method));
 end;
 
 procedure TEncounterMethodTest.TestEntity;
@@ -48,17 +49,13 @@ begin
     LEncounterMethodEntity := nil;
     try
       LEncounterMethodEntity := TEncounterMethodEntity.Create;
-      FPokeWrapper.GetAsEntity(LEncounterMethodEntity,
-        integer(TEncounter.encounter_method), I);
+      FPokeWrapper.GetAsEntity(LEncounterMethodEntity, I);
       // Assertions
       Assert.IsNotEmpty(LEncounterMethodEntity.id);
       Assert.IsNotEmpty(LEncounterMethodEntity.name);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items
-        [LEncounterMethodEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items
-        [LEncounterMethodEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items
-        [LEncounterMethodEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].name);
       Assert.IsNotEmpty(LEncounterMethodEntity.order);
       Write('.');
     finally
@@ -76,8 +73,7 @@ begin
   LEncounterMethodEntity := nil;
   try
     LEncounterMethodEntity := TEncounterMethodEntity.Create;
-    FPokeWrapper.GetAsEntity(LEncounterMethodEntity,
-      integer(TEncounter.encounter_method), 9999999);
+    FPokeWrapper.GetAsEntity(LEncounterMethodEntity, 9999999);
   finally
     LEncounterMethodEntity.Free;
   end;
@@ -90,8 +86,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEncounter.encounter_method...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TEncounter.encounter_method));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

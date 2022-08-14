@@ -29,8 +29,7 @@ implementation
 
 { TPokeInfo }
 
-function TPokeResource.GetResourceName(ATypeInfo: PTypeInfo;
-  AIndex: Integer): string;
+function TPokeResource.GetResourceName(ATypeInfo: PTypeInfo; AIndex: Integer): string;
 begin
   Name := GetEnumName(ATypeInfo, AIndex);
   Result := FName;
@@ -47,7 +46,10 @@ end;
 
 procedure TPokeResource.SetFName(const Value: string);
 begin
-  FName := ReplaceStr(Value, '_', '-') + '/';
+  if AnsiContainsStr(Value, '__') then
+    FName := ReplaceStr(Value, '__', '/%s/')
+  else
+    FName := ReplaceStr(Value, '_', '-') + '/%s';
 end;
 
 end.

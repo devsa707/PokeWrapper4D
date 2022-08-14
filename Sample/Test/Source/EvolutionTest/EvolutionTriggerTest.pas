@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TEvolutionTriggerTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TEvolution>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.evolution_trigger));
 end;
 
 procedure TEvolutionTriggerTest.TestEntity;
@@ -48,21 +49,15 @@ begin
     LEvolutionTriggerEntity := nil;
     try
       LEvolutionTriggerEntity := TEvolutionTriggerEntity.Create;
-      FPokeWrapper.GetAsEntity(LEvolutionTriggerEntity,
-        integer(TEvolution.evolution_trigger), I);
+      FPokeWrapper.GetAsEntity(LEvolutionTriggerEntity, I);
       // Assertions
       Assert.IsNotEmpty(LEvolutionTriggerEntity.id);
       Assert.IsNotEmpty(LEvolutionTriggerEntity.name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items
-        [LEvolutionTriggerEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items
-        [LEvolutionTriggerEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items
-        [LEvolutionTriggerEntity.names.Count - 1].name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items
-        [LEvolutionTriggerEntity.pokemon_species.Count - 1].name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items
-        [LEvolutionTriggerEntity.pokemon_species.Count - 1].url);
+      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items[LEvolutionTriggerEntity.pokemon_species.Count - 1].name);
+      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items[LEvolutionTriggerEntity.pokemon_species.Count - 1].url);
       Write('.');
     finally
       LEvolutionTriggerEntity.Free;
@@ -79,8 +74,7 @@ begin
   LEvolutionTriggerEntity := nil;
   try
     LEvolutionTriggerEntity := TEvolutionTriggerEntity.Create;
-    FPokeWrapper.GetAsEntity(LEvolutionTriggerEntity,
-      integer(TEvolution.evolution_trigger), 9999999);
+    FPokeWrapper.GetAsEntity(LEvolutionTriggerEntity, 9999999);
   finally
     LEvolutionTriggerEntity.Free;
   end;
@@ -93,8 +87,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEvolution.evolution_trigger...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TEvolution.evolution_trigger));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

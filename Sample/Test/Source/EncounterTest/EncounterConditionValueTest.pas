@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TEncounterConditionValueTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TEncounter>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.encounter_condition_value));
 end;
 
 procedure TEncounterConditionValueTest.TestEntity;
@@ -48,19 +49,15 @@ begin
     LEncounterConditionValueEntity := nil;
     try
       LEncounterConditionValueEntity := TEncounterConditionValueEntity.Create;
-      FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity,
-        integer(TEncounter.encounter_condition_value), I);
+      FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity, I);
       // Assertions
       Assert.IsNotEmpty(LEncounterConditionValueEntity.condition.name);
       Assert.IsNotEmpty(LEncounterConditionValueEntity.condition.url);
       Assert.IsNotEmpty(LEncounterConditionValueEntity.id);
       Assert.IsNotEmpty(LEncounterConditionValueEntity.name);
-      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items
-        [LEncounterConditionValueEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items
-        [LEncounterConditionValueEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items
-        [LEncounterConditionValueEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items[LEncounterConditionValueEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items[LEncounterConditionValueEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LEncounterConditionValueEntity.names.Items[LEncounterConditionValueEntity.names.Count - 1].name);
       Write('.');
     finally
       LEncounterConditionValueEntity.Free;
@@ -77,8 +74,7 @@ begin
   LEncounterConditionValueEntity := nil;
   try
     LEncounterConditionValueEntity := TEncounterConditionValueEntity.Create;
-    FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity,
-      integer(TEncounter.encounter_condition_value), 9999999);
+    FPokeWrapper.GetAsEntity(LEncounterConditionValueEntity, 9999999);
   finally
     LEncounterConditionValueEntity.Free;
   end;
@@ -91,8 +87,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEncounter.encounter_condition_value...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TEncounter.encounter_condition_value));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

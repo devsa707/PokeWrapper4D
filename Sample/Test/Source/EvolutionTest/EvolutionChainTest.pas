@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TEvolutionChainTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TEvolution>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.evolution_chain));
 end;
 
 procedure TEvolutionChainTest.TestEntity;
@@ -48,8 +49,7 @@ begin
     LEvolutionChainEntity := nil;
     try
       LEvolutionChainEntity := TEvolutionChainEntity.Create;
-      FPokeWrapper.GetAsEntity(LEvolutionChainEntity,
-        integer(TEvolution.evolution_chain), I);
+      FPokeWrapper.GetAsEntity(LEvolutionChainEntity, I);
       // Assertions
       Assert.IsNotEmpty(LEvolutionChainEntity.id);
       Write('.');
@@ -68,8 +68,7 @@ begin
   LEvolutionChainEntity := nil;
   try
     LEvolutionChainEntity := TEvolutionChainEntity.Create;
-    FPokeWrapper.GetAsEntity(LEvolutionChainEntity,
-      integer(TEvolution.evolution_chain), 9999999);
+    FPokeWrapper.GetAsEntity(LEvolutionChainEntity, 9999999);
   finally
     LEvolutionChainEntity.Free;
   end;
@@ -82,8 +81,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TEncounter.encounter_method...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TEvolution.evolution_chain));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     if LPokeListEntity.Count < 100 then
       FList := LPokeListEntity.Count

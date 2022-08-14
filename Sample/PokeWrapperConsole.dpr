@@ -13,7 +13,8 @@ uses
   Pokemon.Entity in '..\Source\Entities\Pokemon\Pokemon.Entity.pas',
   Commons.Entities in '..\Source\Entities\Commons\Commons.Entities.pas',
   Pokemon.Generation.Node.Entity in '..\Source\Entities\Pokemon\Pokemon.Generation.Node.Entity.pas',
-  PokeList.Entity in '..\Source\Entities\List\PokeList.Entity.pas';
+  PokeList.Entity in '..\Source\Entities\List\PokeList.Entity.pas',
+  PokeFactory in '..\Source\Wrapper\PokeFactory.pas';
 
 var
   FPokeAPI: IPokeWrapper;
@@ -31,11 +32,11 @@ begin
     Writeln('');
 
     // <T> is the header value for search
-    FPokeAPI := TPokeWrapper<TPokemon>.Create;
+    FPokeAPI := TPokeFactory.New(integer(TPokemon.Pokemon));
+    FPokeAPI.GetAsEntity(LPokemonEntity, 'bulbasaur');
     Writeln('');
     Writeln('');
     // Get a list based on its enumerate
-    FPokeAPI.GetAsEntity(LPokemonEntity, integer(TPokemon.Pokemon), 'bulbasaur');
 
     Writeln(LPokemonEntity.abilities.Items[0].ability.name);
     Writeln(LPokemonEntity.abilities.Items[0].ability.url);

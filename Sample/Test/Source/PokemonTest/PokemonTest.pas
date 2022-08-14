@@ -43,7 +43,7 @@ var
   LPokemonEntity: TPokemonEntity;
 begin
   Write('Testing TPokemon.pokemon .');
-  for var I: integer := 1 to 2 do
+  for var I: integer := 1 to 10 do
   begin
     LPokemonEntity := nil;
     try

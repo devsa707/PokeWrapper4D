@@ -9,6 +9,7 @@ uses
   System.Generics.Collections,
   //
   PokeList.Entity,
+  PokeWrapper.Types,
   PokeWrapper.Resources,
   PokeWrapper.Interfaces,
   // MVCFramework
@@ -20,61 +21,54 @@ uses
 
 type
 
-  TPokeWrapper<T> = class(TInterfacedObject, IPokeWrapper)
+  TPokeWrapper = class(TInterfacedObject, IPokeWrapper)
   private
     FMVCRESTClient: IMVCRESTClient;
     FPokeResource: IPokeResource;
-    FTypeInfo: PTypeInfo;
-    procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse;
-      const AObject: TObject);
+    FResource: string;
+    procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
   public
-    constructor Create; overload;
-    function GetList(AIndex: integer; AOffset: integer = 0;
-      ALimit: integer = 20): string; overload;
-    function Get(AIndex: integer; AValue: integer): string; overload;
-    function Get(AIndex: integer; AValue: string): string; overload;
-    function GetAsListEntity(AIndex: integer; AOffset: integer = 0;
-      ALimit: integer = 20): TPokeListEntity;
+    constructor Create(AIndex: integer); overload;
+    function GetList(AOffset: integer = 0; ALimit: integer = 20): string; overload;
+    function Get(AValue: integer): string; overload;
+    function Get(AValue: string): string; overload;
+    function GetAsListEntity(AOffset: integer = 0; ALimit: integer = 20): TPokeListEntity;
 
-    procedure GetAsEntity(AObject: TObject; AIndex: integer;
-      AValue: integer)overload;
-    procedure GetAsEntity(AObject: TObject; AIndex: integer;
-      AValue: string)overload;
+    procedure GetAsEntity(AObject: TObject; AValue: integer)overload;
+    procedure GetAsEntity(AObject: TObject; AValue: string)overload;
   end;
 
 implementation
 
 { TPokeAPIJson }
 
-constructor TPokeWrapper<T>.Create;
+constructor TPokeWrapper.Create(AIndex: integer);
+var
+  LTypeInfo: PTypeInfo;
 begin
-  FTypeInfo := TypeInfo(T);
-  FMVCRESTClient := TMVCRESTClient.Create;
   FPokeResource := TPokeResource.Create;
+  FMVCRESTClient := TMVCRESTClient.Create;
+  LTypeInfo := TypeInfo(TPokemon);
+  FResource := FPokeResource.GetResourceName(LTypeInfo, AIndex);
   FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 
-function TPokeWrapper<T>.Get(AIndex: integer; AValue: string): string;
+function TPokeWrapper.Get(AValue: string): string;
 var
-  LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, [AValue]));
   if LMVCRESTResponse.Success then
     Result := LMVCRESTResponse.Content
   else
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeWrapper<T>.GetAsEntity(AObject: TObject; AIndex: integer;
-  AValue: string);
+procedure TPokeWrapper.GetAsEntity(AObject: TObject; AValue: string);
 var
-  LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + AValue);
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, [AValue]));
   if LMVCRESTResponse.Success then
   begin
     JSONResponseToObject(LMVCRESTResponse, AObject);
@@ -83,14 +77,11 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-procedure TPokeWrapper<T>.GetAsEntity(AObject: TObject;
-  AIndex, AValue: integer);
+procedure TPokeWrapper.GetAsEntity(AObject: TObject; AValue: integer);
 var
-  LResourceName: string;
   LMVCRESTResponse: IMVCRESTResponse;
 begin
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, [IntToStr(AValue)]));
   if LMVCRESTResponse.Success then
   begin
     JSONResponseToObject(LMVCRESTResponse, AObject);
@@ -99,18 +90,39 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeWrapper<T>.GetAsListEntity(AIndex, AOffset, ALimit: integer)
-  : TPokeListEntity;
+function TPokeWrapper.Get(AValue: integer): string;
 var
-  LResourceName: string;
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, [IntToStr(AValue)]));
+  if LMVCRESTResponse.Success then
+    Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
+end;
+
+function TPokeWrapper.GetList(AOffset, ALimit: integer): string;
+var
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  FMVCRESTClient.AddQueryStringParam('offset', AOffset);
+  FMVCRESTClient.AddQueryStringParam('limit', ALimit);
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, ['']));
+  if LMVCRESTResponse.Success then
+    Result := LMVCRESTResponse.Content
+  else
+    raise Exception.Create('Not Found');
+end;
+
+function TPokeWrapper.GetAsListEntity(AOffset, ALimit: integer): TPokeListEntity;
+var
   LMVCRESTResponse: IMVCRESTResponse;
   LPokeListEntity: TPokeListEntity;
 begin
   LPokeListEntity := TPokeListEntity.Create;
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
   FMVCRESTClient.AddQueryStringParam('offset', AOffset);
   FMVCRESTClient.AddQueryStringParam('limit', ALimit);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
+  LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, ['']));
   if LMVCRESTResponse.Success then
   begin
     JSONResponseToObject(LMVCRESTResponse, LPokeListEntity);
@@ -120,36 +132,7 @@ begin
     raise Exception.Create('Not Found');
 end;
 
-function TPokeWrapper<T>.Get(AIndex: integer; AValue: integer): string;
-var
-  LResourceName: string;
-  LMVCRESTResponse: IMVCRESTResponse;
-begin
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName + IntToStr(AValue));
-  if LMVCRESTResponse.Success then
-    Result := LMVCRESTResponse.Content
-  else
-    raise Exception.Create('Not Found');
-end;
-
-function TPokeWrapper<T>.GetList(AIndex, AOffset, ALimit: integer): string;
-var
-  LResourceName: string;
-  LMVCRESTResponse: IMVCRESTResponse;
-begin
-  LResourceName := FPokeResource.GetResourceName(FTypeInfo, AIndex);
-  FMVCRESTClient.AddQueryStringParam('offset', AOffset);
-  FMVCRESTClient.AddQueryStringParam('limit', ALimit);
-  LMVCRESTResponse := FMVCRESTClient.Get(LResourceName);
-  if LMVCRESTResponse.Success then
-    Result := LMVCRESTResponse.Content
-  else
-    raise Exception.Create('Not Found');
-end;
-
-procedure TPokeWrapper<T>.JSONResponseToObject(AMVCRESTResponse
-  : IMVCRESTResponse; const AObject: TObject);
+procedure TPokeWrapper.JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
 var
   LMVCJSONSerializer: IMVCJSONSerializer;
   LTJsonObject: TJsonObject;

@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TBerryFirmnessTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TBerry>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.berry_firmness));
 end;
 
 procedure TBerryFirmnessTest.TestEntity;
@@ -48,22 +49,16 @@ begin
     LBerryFirmnessEntity := nil;
     try
       LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-      FPokeWrapper.GetAsEntity(LBerryFirmnessEntity,
-        integer(TBerry.berry_firmness), I); // Assertions
+      FPokeWrapper.GetAsEntity(LBerryFirmnessEntity, I); // Assertions
       Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Count);
-      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
-        [LBerryFirmnessEntity.berries.Count - 1].name);
-      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items
-        [LBerryFirmnessEntity.berries.Count - 1].url);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items[LBerryFirmnessEntity.berries.Count - 1].name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.berries.Items[LBerryFirmnessEntity.berries.Count - 1].url);
       Assert.IsNotEmpty(LBerryFirmnessEntity.id);
       Assert.IsNotEmpty(LBerryFirmnessEntity.name);
       Assert.IsNotEmpty(LBerryFirmnessEntity.names.Count);
-      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
-        [LBerryFirmnessEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
-        [LBerryFirmnessEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items
-        [LBerryFirmnessEntity.names.Count - 1].name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items[LBerryFirmnessEntity.names.Count - 1].language.name);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items[LBerryFirmnessEntity.names.Count - 1].language.url);
+      Assert.IsNotEmpty(LBerryFirmnessEntity.names.Items[LBerryFirmnessEntity.names.Count - 1].name);
       Write('.');
     finally
       LBerryFirmnessEntity.Free;
@@ -80,8 +75,7 @@ begin
   LBerryFirmnessEntity := nil;
   try
     LBerryFirmnessEntity := TBerryFirmnessEntity.Create;
-    FPokeWrapper.GetAsEntity(LBerryFirmnessEntity,
-      integer(TBerry.berry_firmness), 9999999);
+    FPokeWrapper.GetAsEntity(LBerryFirmnessEntity, 9999999);
   finally
     LBerryFirmnessEntity.Free;
   end;
@@ -94,8 +88,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TBerry.berry_firmness...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TBerry.berry_firmness));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

@@ -3,47 +3,38 @@ unit PokeWrapper.Types;
 interface
 
 type
-  TBerry = (berry, //
+  TPokemon = (berry, //
     berry_firmness, //
-    berry_flavor);
-
-  TContest = (contest_type, //
+    berry_flavor, //
+    contest_type, //
     contest_effect, //
-    super_contest_effect);
-
-  TEncounter = (encounter_method, //
+    super_contest_effect, //
+    encounter_method, //
     encounter_condition, //
-    encounter_condition_value);
-
-  TEvolution = (evolution_chain, //
-    evolution_trigger);
-
-  TGame = (generation, //
+    encounter_condition_value, //
+    evolution_chain, //
+    evolution_trigger, //
+    generation, //
     pokedex, //
     version, //
-    version_group);
-
-  TItem = (item, //
+    version_group, //
+    item, //
     item_attribute, //
     item_fling_effect, //
-    item_pocket);
-
-  TLocation = (location, //
+    item_pocket, //
+    location, //
     location_area, //
     pal_park_area, //
-    region);
-
-  TMachine = (machine);
-
-  TMove = (move, //
+    region, //
+    machine, //
+    move, //
     move_ailment, //
     move_battle_style, //
     move_category, //
     move_damage_class, //
     move_learn_method, //
-    move_target);
-
-  TPokemon = (ability, //
+    move_target, //
+    ability, //
     characteristic, //
     egg_group, //
     gender, //
@@ -51,7 +42,7 @@ type
     nature, //
     pokeathlon_stat, //
     pokemon, //
-    pokemon_location_area, //
+    pokemon__encounters, //
     pokemon_color, //
     pokemon_form, //
     pokemon_habitat, //

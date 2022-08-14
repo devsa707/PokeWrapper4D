@@ -7,6 +7,7 @@ uses
   //
   DUnitX.TestFramework,
   // PokeAPI
+  PokeFactory,
   PokeWrapper,
   PokeWrapper.Interfaces,
   PokeWrapper.Types,
@@ -35,7 +36,7 @@ implementation
 
 procedure TContestEffectTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TContest>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.contest_effect));
 end;
 
 procedure TContestEffectTest.TestEntity;
@@ -48,22 +49,15 @@ begin
     LContestEffectEntity := nil;
     try
       LContestEffectEntity := TContestEffectEntity.Create;
-      FPokeWrapper.GetAsEntity(LContestEffectEntity,
-        integer(TContest.contest_effect), I);
+      FPokeWrapper.GetAsEntity(LContestEffectEntity, I);
       // Assertions
       Assert.IsNotEmpty(LContestEffectEntity.appeal);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items
-        [LContestEffectEntity.effect_entries.Count - 1].effect);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items
-        [LContestEffectEntity.effect_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items
-        [LContestEffectEntity.effect_entries.Count - 1].language.url);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items
-        [LContestEffectEntity.flavor_text_entries.Count - 1].flavor_text);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items
-        [LContestEffectEntity.flavor_text_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items
-        [LContestEffectEntity.flavor_text_entries.Count - 1].language.url);
+      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].effect);
+      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].language.name);
+      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].language.url);
+      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].flavor_text);
+      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].language.name);
+      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].language.url);
       Assert.IsNotEmpty(LContestEffectEntity.id);
       Assert.IsNotEmpty(LContestEffectEntity.jam);
       Write('.');
@@ -82,8 +76,7 @@ begin
   LContestEffectEntity := nil;
   try
     LContestEffectEntity := TContestEffectEntity.Create;
-    FPokeWrapper.GetAsEntity(LContestEffectEntity,
-      integer(TContest.contest_effect), 9999999);
+    FPokeWrapper.GetAsEntity(LContestEffectEntity, 9999999);
   finally
     LContestEffectEntity.Free;
   end;
@@ -96,8 +89,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TContest.contest_effect...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity
-      (integer(TContest.contest_effect));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');
