@@ -92,7 +92,7 @@ begin
   LNatureEntity := nil;
   try
     LNatureEntity := TNatureEntity.Create;
-    FPokeWrapper.GetAsEntity(LNatureEntity, integer(TPokemon.Nature), 9999999);
+    FPokeWrapper.GetAsEntity(LNatureEntity, 9999999);
   finally
     LNatureEntity.Free;
   end;

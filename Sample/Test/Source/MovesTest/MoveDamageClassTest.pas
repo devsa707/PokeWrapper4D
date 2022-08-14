@@ -102,7 +102,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TMove.move_damage_class...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity;d
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

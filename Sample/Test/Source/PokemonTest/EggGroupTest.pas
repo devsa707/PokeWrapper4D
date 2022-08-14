@@ -82,7 +82,7 @@ begin
   LEggGroupEntity := nil;
   try
     LEggGroupEntity := TEggGroupEntity.Create;
-    FPokeWrapper.GetAsEntity(LEggGroupEntity, integer(TPokemon.egg_group), 9999999);
+    FPokeWrapper.GetAsEntity(LEggGroupEntity, 9999999);
   finally
     LEggGroupEntity.Free;
   end;

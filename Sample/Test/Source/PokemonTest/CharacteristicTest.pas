@@ -83,7 +83,7 @@ begin
   LCharacteristicEntity := nil;
   try
     LCharacteristicEntity := TCharacteristicEntity.Create;
-    FPokeWrapper.GetAsEntity(LCharacteristicEntity, integer(TPokemon.Characteristic), 9999999);
+    FPokeWrapper.GetAsEntity(LCharacteristicEntity, 9999999);
   finally
     LCharacteristicEntity.Free;
   end;
@@ -96,7 +96,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TPokemon.characteristic...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TPokemon.Characteristic));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

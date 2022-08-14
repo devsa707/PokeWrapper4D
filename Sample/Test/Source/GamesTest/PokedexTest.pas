@@ -36,7 +36,7 @@ implementation
 
 procedure TPokedexTest.Setup;
 begin
-  FPokeWrapper := TPokeWrapper<TGame>.Create;
+  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Pokedex));
 end;
 
 procedure TPokedexTest.TestEntity;
@@ -96,7 +96,7 @@ begin
   LPokedexEntity := nil;
   try
     LPokedexEntity := TPokedexEntity.Create;
-    FPokeWrapper.GetAsEntity(LPokedexEntity, integer(TGame.Pokedex), 9999999);
+    FPokeWrapper.GetAsEntity(LPokedexEntity, 9999999);
   finally
     LPokedexEntity.Free;
   end;
@@ -109,7 +109,7 @@ begin
   LPokeListEntity := nil;
   try
     Write('Testing List of TGames.pokedex...  ');
-    LPokeListEntity := FPokeWrapper.GetAsListEntity(integer(TGame.Pokedex));
+    LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
     Write('Finished.');

@@ -49,7 +49,7 @@ begin
     LPokemonEntity := nil;
     try
       LPokemonEntity := TPokemonEntity.Create;
-      FPokeWrapper.GetAsEntity(LPokemonEntity, I);
+      TPokeFactory.New(Integer(TPokemon.Pokemon)).GetAsEntity(LPokemonEntity, I);
       // Assertions
       // Node Abilities
       if LPokemonEntity.abilities.Count > 0 then
