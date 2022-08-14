@@ -21,6 +21,7 @@ type
       constructor Create; overload;
       destructor Destroy; override;
       property slot: integer read Fslot write Fslot;
+      [MVCNameAsAttribute('type')]
       property type_: TResource read Ftype write Ftype;
     end;
 
@@ -140,47 +141,48 @@ type
           property front_default: string read Ffront_default write Ffront_default;
         end;
 
-        TVersions = class
-        private
-          [MVCNameAsAttribute('generation-i')]
-          Fgeneration_i: TGenerationI;
-          [MVCNameAsAttribute('generation-ii')]
-          Fgeneration_ii: TGenerationII;
-          [MVCNameAsAttribute('generation-iii')]
-          Fgeneration_iii: TGenerationIII;
-          [MVCNameAsAttribute('generation-iv')]
-          Fgeneration_iv: TGenerationIV;
-          [MVCNameAsAttribute('generation-v')]
-          Fgeneration_v: TGenerationV;
-          [MVCNameAsAttribute('generation-vi')]
-          Fgeneration_vi: TGenerationVI;
-          [MVCNameAsAttribute('generation-vii')]
-          Fgeneration_vii: TGenerationVII;
-          [MVCNameAsAttribute('generation-viii')]
-          Fgeneration_viii: TGenerationVIII;
-        public
-          constructor Create; overload;
-          destructor Destroy; override;
-          property generation_i: TGenerationI read Fgeneration_i write Fgeneration_i;
-          property generation_ii: TGenerationII read Fgeneration_ii write Fgeneration_ii;
-          property generation_iii: TGenerationIII read Fgeneration_iii write Fgeneration_iii;
-          property generation_iv: TGenerationIV read Fgeneration_iv write Fgeneration_iv;
-          property generation_v: TGenerationV read Fgeneration_v write Fgeneration_v;
-          property generation_vi: TGenerationVI read Fgeneration_vi write Fgeneration_vi;
-          property generation_vii: TGenerationVII read Fgeneration_vii write Fgeneration_vii;
-          property generation_viii: TGenerationVIII read Fgeneration_viii write Fgeneration_viii;
-        end;
       private
         Fdream_world: TDreamWorld;
         Fhome: THome;
-        [MVCNameAsAttribute('official-artwork')]
         Fofficial_artwork: TOfficialArtwork;
       public
         constructor Create; overload;
         destructor Destroy; override;
         property dream_world: TDreamWorld read Fdream_world write Fdream_world;
         property home: THome read Fhome write Fhome;
+        [MVCNameAsAttribute('official-artwork')]
         property official_artwork: TOfficialArtwork read Fofficial_artwork write Fofficial_artwork;
+      end;
+
+      TVersions = class
+      private
+        Fgeneration_i: TGenerationI;
+        Fgeneration_ii: TGenerationII;
+        Fgeneration_iii: TGenerationIII;
+        Fgeneration_iv: TGenerationIV;
+        Fgeneration_v: TGenerationV;
+        Fgeneration_vi: TGenerationVI;
+        Fgeneration_vii: TGenerationVII;
+        Fgeneration_viii: TGenerationVIII;
+      public
+        constructor Create; overload;
+        destructor Destroy; override;
+        [MVCNameAsAttribute('generation-i')]
+        property generation_i: TGenerationI read Fgeneration_i write Fgeneration_i;
+        [MVCNameAsAttribute('generation-ii')]
+        property generation_ii: TGenerationII read Fgeneration_ii write Fgeneration_ii;
+        [MVCNameAsAttribute('generation-iii')]
+        property generation_iii: TGenerationIII read Fgeneration_iii write Fgeneration_iii;
+        [MVCNameAsAttribute('generation-iv')]
+        property generation_iv: TGenerationIV read Fgeneration_iv write Fgeneration_iv;
+        [MVCNameAsAttribute('generation-v')]
+        property generation_v: TGenerationV read Fgeneration_v write Fgeneration_v;
+        [MVCNameAsAttribute('generation-vi')]
+        property generation_vi: TGenerationVI read Fgeneration_vi write Fgeneration_vi;
+        [MVCNameAsAttribute('generation-vii')]
+        property generation_vii: TGenerationVII read Fgeneration_vii write Fgeneration_vii;
+        [MVCNameAsAttribute('generation-viii')]
+        property generation_viii: TGenerationVIII read Fgeneration_viii write Fgeneration_viii;
       end;
     private
       Fback_default: string;
@@ -192,6 +194,7 @@ type
       Ffront_shiny: string;
       Ffront_shiny_female: string;
       Fother: TOther;
+      Fversions: TVersions;
     public
       constructor Create; overload;
       destructor Destroy; override;
@@ -204,6 +207,7 @@ type
       property front_shiny: string read Ffront_shiny write Ffront_shiny;
       property front_shiny_female: string read Ffront_shiny_female write Ffront_shiny_female;
       property other: TOther read Fother write Fother;
+      property versions: TVersions read Fversions write Fversions;
     end;
 
     TStats = class
@@ -247,7 +251,7 @@ type
   public
     constructor Create; overload;
     destructor Destroy; override;
-    property abilites: TObjectList<TAbilities> read Fabilites write SetFabilites;
+    property abilities: TObjectList<TAbilities> read Fabilites write SetFabilites;
     property base_experience: integer read Fbase_experience write Fbase_experience;
     property forms: TObjectList<TResource> read Fforms write Fforms;
     property game_indices: TObjectList<TGameIndices> read Fgame_indices write SetFgame_indices;
@@ -489,17 +493,19 @@ end;
 constructor TPokemonEntity.TSprites.Create;
 begin
   Fother := TOther.Create;
+  Fversions := TVersions.Create;
 end;
 
 destructor TPokemonEntity.TSprites.Destroy;
 begin
   Fother.Free;
+  Fversions.Free;
   inherited;
 end;
 
 { TPokemonEntity.TSprites.TOther.TVersions }
 
-constructor TPokemonEntity.TSprites.TOther.TVersions.Create;
+constructor TPokemonEntity.TSprites.TVersions.Create;
 begin
   Fgeneration_i := TGenerationI.Create;
   Fgeneration_ii := TGenerationII.Create;
@@ -511,7 +517,7 @@ begin
   Fgeneration_viii := TGenerationVIII.Create;
 end;
 
-destructor TPokemonEntity.TSprites.TOther.TVersions.Destroy;
+destructor TPokemonEntity.TSprites.TVersions.Destroy;
 begin
   Fgeneration_i.Free;
   Fgeneration_ii.Free;

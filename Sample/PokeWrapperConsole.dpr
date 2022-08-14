@@ -9,16 +9,20 @@ uses
   PokeWrapper in '..\Source\Wrapper\PokeWrapper.pas',
   PokeWrapper.Resources in '..\Source\Wrapper\PokeWrapper.Resources.pas',
   PokeWrapper.Types in '..\Source\Wrapper\PokeWrapper.Types.pas',
-  PokeList.Entity in '..\Source\List\PokeList.Entity.pas',
-  Berry.Entity in '..\Source\Entities\Berries\Berry.Entity.pas';
+  Berry.Entity in '..\Source\Entities\Berries\Berry.Entity.pas',
+  Pokemon.Entity in '..\Source\Entities\Pokemon\Pokemon.Entity.pas',
+  Commons.Entities in '..\Source\Entities\Commons\Commons.Entities.pas',
+  Pokemon.Generation.Node.Entity in '..\Source\Entities\Pokemon\Pokemon.Generation.Node.Entity.pas',
+  PokeList.Entity in '..\Source\Entities\List\PokeList.Entity.pas';
 
 var
   FPokeAPI: IPokeWrapper;
-  FPokeListEntity: TPokeListEntity;
+  LPokemonEntity: TPokemonEntity;
 
 begin
-  FPokeListEntity := nil;
+  LPokemonEntity := nil;
   try
+    LPokemonEntity := TPokemonEntity.Create;
     ReportMemoryLeaksOnShutdown := True;
     Writeln('***********************************');
     Writeln('*****     PokeWrapper         *****');
@@ -28,26 +32,27 @@ begin
 
     // <T> is the header value for search
     FPokeAPI := TPokeWrapper<TPokemon>.Create;
-    Writeln(FPokeAPI.Get(integer(pokemon), 1));
     Writeln('');
     Writeln('');
-
     // Get a list based on its enumerate
-    FPokeListEntity := FPokeAPI.GetAsListEntity(integer(pokemon));
+    FPokeAPI.GetAsEntity(LPokemonEntity, integer(TPokemon.Pokemon), 'bulbasaur');
 
-    // prints the entity if not nil
-    if FPokeListEntity <> nil then
-    begin
-      Writeln('Count: ' + FPokeListEntity.count.ToString);
-      Writeln('Next: ' + FPokeListEntity.next);
-      Writeln('Previous: ' + FPokeListEntity.previous);
-      for var I := 0 to FPokeListEntity.results.count - 1 do
-      begin
-        Writeln('Name: ' + FPokeListEntity.results.Items[I].name);
-        Writeln('URL: ' + FPokeListEntity.results.Items[I].url);
-      end;
-    end;
-
+    Writeln(LPokemonEntity.abilities.Items[0].ability.name);
+    Writeln(LPokemonEntity.abilities.Items[0].ability.url);
+    Writeln(BoolToStr(LPokemonEntity.abilities.Items[0].is_hidden));
+    Writeln(LPokemonEntity.abilities.Items[0].slot.ToString);
+    Writeln(LPokemonEntity.base_experience.ToString);
+    Writeln(LPokemonEntity.forms.Items[0].name);
+    Writeln(LPokemonEntity.forms.Items[0].url);
+    Writeln(LPokemonEntity.game_indices.Items[0].game_index.ToString);
+    Writeln(LPokemonEntity.game_indices.Items[0].version.name);
+    Writeln(LPokemonEntity.game_indices.Items[0].version.url);
+    Writeln(LPokemonEntity.moves.Items[0].move.name);
+    Writeln(LPokemonEntity.moves.Items[0].move.url);
+    Writeln(LPokemonEntity.moves.Items[0].version_group_details.Items[0].move_learn_method.name);
+    Writeln(LPokemonEntity.moves.Items[0].version_group_details.Items[0].move_learn_method.url);
+    Writeln(LPokemonEntity.moves.Items[0].version_group_details.Items[0].version_group.name);
+    Writeln(LPokemonEntity.moves.Items[0].version_group_details.Items[0].version_group.url);
     Writeln('');
     Writeln('');
     Writeln('***********************************');
@@ -55,7 +60,7 @@ begin
     Writeln('***********************************');
     ReadLn;
   finally
-    FPokeListEntity.Free;
+    LPokemonEntity.Free;
   end;
 
 end.

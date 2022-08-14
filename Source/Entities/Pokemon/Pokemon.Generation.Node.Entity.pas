@@ -43,12 +43,12 @@ type
       property front_transparent: string read Ffront_transparent write Ffront_transparent;
     end;
   private
-    [MVCNameAsAttribute('red-blue')]
     Fred_blue: TRedBlue;
     Fyellow: TYellow;
   public
     constructor Create; overload;
     destructor Destroy; override;
+    [MVCNameAsAttribute('red-blue')]
     property red_blue: TRedBlue read Fred_blue write Fred_blue;
     property yellow: TYellow read Fyellow write Fyellow;
   end;
@@ -155,15 +155,15 @@ type
     end;
   private
     Femerald: TEmerald;
-    [MVCNameAsAttribute('firered-leafgreen')]
     Ffirered_leafgreen: TFireredLeafgreen;
-    [MVCNameAsAttribute('ruby-sapphire')]
     Fruby_sapphire: TRubySapphire;
   public
     constructor Create; overload;
     destructor Destroy; override;
     property emerald: TEmerald read Femerald write Femerald;
+    [MVCNameAsAttribute('firered-leafgreen')]
     property firered_leafgreen: TFireredLeafgreen read Ffirered_leafgreen write Ffirered_leafgreen;
+    [MVCNameAsAttribute('ruby-sapphire')]
     property ruby_sapphire: TRubySapphire read Fruby_sapphire write Fruby_sapphire;
   end;
 
@@ -232,15 +232,15 @@ type
       property front_shiny_female: string read Ffront_shiny_female write Ffront_shiny_female;
     end;
   private
-    [MVCNameAsAttribute('diamond-pearl')]
     Fdiamond_pearl: TDiamondPearl;
-    [MVCNameAsAttribute('heartgold-soulsilver')]
     Fheartgold_soulsilver: THeartgoldSoulsilver;
     Fplatinum: TPlatinum;
   public
     constructor Create; overload;
     destructor Destroy; override;
+    [MVCNameAsAttribute('diamond-pearl')]
     property diamond_pearl: TDiamondPearl read Fdiamond_pearl write Fdiamond_pearl;
+    [MVCNameAsAttribute('heartgold-soulsilver')]
     property heartgold_soulsilver: THeartgoldSoulsilver read Fheartgold_soulsilver write Fheartgold_soulsilver;
     property platinum: TPlatinum read Fplatinum write Fplatinum;
   end;
@@ -293,11 +293,11 @@ type
       property front_shiny_female: string read Ffront_shiny_female write Ffront_shiny_female;
     end;
   private
-    [MVCNameAsAttribute('black-white')]
     Fblack_white: TBlackWhite;
   public
     constructor Create; overload;
     destructor Destroy; override;
+    [MVCNameAsAttribute('black-white')]
     property black_white: TBlackWhite read Fblack_white write Fblack_white;
   end;
 
@@ -329,14 +329,16 @@ type
       property front_shiny_female: string read Ffront_shiny_female write Ffront_shiny_female;
     end;
   private
-    [MVCNameAsAttribute('omegaruby-alphasapphire')]
+
     Fomegaruby_alphasapphire: TOmegarubyAlphasapphire;
-    [MVCNameAsAttribute('x-y')]
+
     Fx_y: TXY;
   public
     constructor Create; overload;
     destructor Destroy; override;
+    [MVCNameAsAttribute('omegaruby-alphasapphire')]
     property omegaruby_alphasapphire: TOmegarubyAlphasapphire read Fomegaruby_alphasapphire write Fomegaruby_alphasapphire;
+    [MVCNameAsAttribute('x-y')]
     property x_y: TXY read Fx_y write Fx_y;
   end;
 
@@ -366,12 +368,12 @@ type
 
   private
     Ficons: TIcons;
-    [MVCNameAsAttribute('ultra-sun-ultra-moon')]
     Fultra_sun_ultra_moon: TUltraSunUltraMoon;
   public
     constructor Create; overload;
     destructor Destroy; override;
     property icons: TIcons read Ficons write Ficons;
+    [MVCNameAsAttribute('ultra-sun-ultra-moon')]
     property ultra_sun_ultra_moon: TUltraSunUltraMoon read Fultra_sun_ultra_moon write Fultra_sun_ultra_moon;
   end;
 

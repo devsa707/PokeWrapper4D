@@ -7,6 +7,7 @@ uses
   System.Generics.Collections,
   //
   MVCFramework.Nullables,
+  MVCFramework.Serializer.Commons,
   //
   Commons.Entities;
 
@@ -22,10 +23,8 @@ type
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property use_after: TObjectList<TResource> read Fuse_after
-        write SetFuse_after;
-      property use_before: TObjectList<TResource> read Fuse_before
-        write SetFuse_before;
+      property use_after: TObjectList<TResource> read Fuse_after write SetFuse_after;
+      property use_before: TObjectList<TResource> read Fuse_before write SetFuse_before;
     end;
 
     TSuper = class
@@ -37,10 +36,8 @@ type
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property use_after: TObjectList<TResource> read Fuse_after
-        write SetFuse_after;
-      property use_before: TObjectList<TResource> read Fuse_before
-        write SetFuse_before;
+      property use_after: TObjectList<TResource> read Fuse_after write SetFuse_after;
+      property use_before: TObjectList<TResource> read Fuse_before write SetFuse_before;
     end;
 
     TContestCombos = class
@@ -75,10 +72,8 @@ type
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property effect_entries: TObjectList<TEffectEntries> read Feffect_entries
-        write SetFeffect_entries;
-      property version_group: TResource read Fversion_group
-        write Fversion_group;
+      property effect_entries: TObjectList<TEffectEntries> read Feffect_entries write SetFeffect_entries;
+      property version_group: TResource read Fversion_group write Fversion_group;
     end;
 
     TFlavorTextEntries = class
@@ -91,8 +86,7 @@ type
       destructor Destroy; override;
       property flavor_text: string read Fflavor_text write Fflavor_text;
       property language: TResource read Flanguage write Flanguage;
-      property version_group: TResource read Fversion_group
-        write Fversion_group;
+      property version_group: TResource read Fversion_group write Fversion_group;
     end;
 
     TMachine = class
@@ -110,8 +104,7 @@ type
       constructor Create; overload;
       destructor Destroy; override;
       property machine: TMachine read Fmachine write Fmachine;
-      property version_group: TResource read Fversion_group
-        write Fversion_group;
+      property version_group: TResource read Fversion_group write Fversion_group;
     end;
 
     TMeta = class
@@ -132,8 +125,7 @@ type
       constructor Create; overload;
       destructor Destroy; override;
       property ailment: TResource read Failment write Failment;
-      property ailment_chance: integer read Failment_chance
-        write Failment_chance;
+      property ailment_chance: integer read Failment_chance write Failment_chance;
       property category: TResource read Fcategory write Fcategory;
       property crit_rate: integer read Fcrit_rate write Fcrit_rate;
       property drain: integer read Fdrain write Fdrain;
@@ -216,8 +208,7 @@ type
     Ftarget: TResource;
     procedure SetFeffect_changes(const Value: TObjectList<TEffectChanges>);
     procedure SetFeffect_entries(const Value: TObjectList<TEffectEntries>);
-    procedure SetFflavor_text_entries(const Value
-      : TObjectList<TFlavorTextEntries>);
+    procedure SetFflavor_text_entries(const Value: TObjectList<TFlavorTextEntries>);
     procedure SetFlearned_by_pokemon(const Value: TObjectList<TResource>);
     procedure SetFmachines(const Value: TObjectList<TMachines>);
     procedure SetFnames(const Value: TObjectList<TNames>);
@@ -227,36 +218,28 @@ type
     constructor Create; overload;
     destructor Destroy; override;
     property accuracy: integer read Faccuracy write Faccuracy;
-    property contest_combos: TContestCombos read Fcontest_combos
-      write Fcontest_combos;
-    property contest_effect: TResource read Fcontest_effect
-      write Fcontest_effect;
+    property contest_combos: TContestCombos read Fcontest_combos write Fcontest_combos;
+    property contest_effect: TResource read Fcontest_effect write Fcontest_effect;
     property contest_type: TResource read Fcontest_type write Fcontest_type;
     property damage_class: TResource read Fdamage_class write Fdamage_class;
     property effect_chance: integer read Feffect_chance write Feffect_chance;
-    property effect_changes: TObjectList<TEffectChanges> read Feffect_changes
-      write SetFeffect_changes;
-    property effect_entries: TObjectList<TEffectEntries> read Feffect_entries
-      write SetFeffect_entries;
-    property flavor_text_entries: TObjectList<TFlavorTextEntries>
-      read Fflavor_text_entries write SetFflavor_text_entries;
+    property effect_changes: TObjectList<TEffectChanges> read Feffect_changes write SetFeffect_changes;
+    property effect_entries: TObjectList<TEffectEntries> read Feffect_entries write SetFeffect_entries;
+    property flavor_text_entries: TObjectList<TFlavorTextEntries> read Fflavor_text_entries write SetFflavor_text_entries;
     property generation: TResource read Fgeneration write Fgeneration;
     property id: integer read Fid write Fid;
-    property learned_by_pokemon: TObjectList<TResource> read Flearned_by_pokemon
-      write SetFlearned_by_pokemon;
+    property learned_by_pokemon: TObjectList<TResource> read Flearned_by_pokemon write SetFlearned_by_pokemon;
     property machines: TObjectList<TMachines> read Fmachines write SetFmachines;
     property meta: TMeta read Fmeta write Fmeta;
     property names: TObjectList<TNames> read Fnames write SetFnames;
-    property past_values: TObjectList<TPastValues> read Fpast_values
-      write SetFpast_values;
+    property past_values: TObjectList<TPastValues> read Fpast_values write SetFpast_values;
     property power: integer read Fpower write Fpower;
     property pp: integer read Fpp write Fpp;
     property priority: integer read Fpriority write Fpriority;
-    property stat_changes: TObjectList<TStatChanges> read Fstat_changes
-      write SetFstat_changes;
-    property super_contest_effect: TSuperContestEffect
-      read Fsuper_contest_effect write Fsuper_contest_effect;
+    property stat_changes: TObjectList<TStatChanges> read Fstat_changes write SetFstat_changes;
+    property super_contest_effect: TSuperContestEffect read Fsuper_contest_effect write Fsuper_contest_effect;
     property target: TResource read Ftarget write Ftarget;
+    [MVCNameAsAttribute('type')]
     property type_: TResource read Ftype write Ftype;
   end;
 
@@ -277,15 +260,13 @@ begin
   inherited;
 end;
 
-procedure TMoveEntity.TNormal.SetFuse_after(const Value
-  : TObjectList<TResource>);
+procedure TMoveEntity.TNormal.SetFuse_after(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fuse_after);
   Fuse_after := Value;
 end;
 
-procedure TMoveEntity.TNormal.SetFuse_before(const Value
-  : TObjectList<TResource>);
+procedure TMoveEntity.TNormal.SetFuse_before(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fuse_before);
   Fuse_before := Value;
@@ -312,8 +293,7 @@ begin
   Fuse_after := Value;
 end;
 
-procedure TMoveEntity.TSuper.SetFuse_before(const Value
-  : TObjectList<TResource>);
+procedure TMoveEntity.TSuper.SetFuse_before(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fuse_before);
   Fuse_before := Value;
@@ -379,29 +359,25 @@ begin
   inherited;
 end;
 
-procedure TMoveEntity.SetFeffect_changes(const Value
-  : TObjectList<TEffectChanges>);
+procedure TMoveEntity.SetFeffect_changes(const Value: TObjectList<TEffectChanges>);
 begin
   FreeAndNil(Feffect_changes);
   Feffect_changes := Value;
 end;
 
-procedure TMoveEntity.SetFeffect_entries(const Value
-  : TObjectList<TEffectEntries>);
+procedure TMoveEntity.SetFeffect_entries(const Value: TObjectList<TEffectEntries>);
 begin
   FreeAndNil(Feffect_entries);
   Feffect_entries := Value;
 end;
 
-procedure TMoveEntity.SetFflavor_text_entries(const Value
-  : TObjectList<TFlavorTextEntries>);
+procedure TMoveEntity.SetFflavor_text_entries(const Value: TObjectList<TFlavorTextEntries>);
 begin
   FreeAndNil(Fflavor_text_entries);
   Fflavor_text_entries := Value;
 end;
 
-procedure TMoveEntity.SetFlearned_by_pokemon(const Value
-  : TObjectList<TResource>);
+procedure TMoveEntity.SetFlearned_by_pokemon(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Flearned_by_pokemon);
   Flearned_by_pokemon := Value;
@@ -446,8 +422,7 @@ begin
   inherited;
 end;
 
-procedure TMoveEntity.TEffectChanges.SetFeffect_entries
-  (const Value: TObjectList<TEffectEntries>);
+procedure TMoveEntity.TEffectChanges.SetFeffect_entries(const Value: TObjectList<TEffectEntries>);
 begin
   FreeAndNil(Feffect_entries);
   Feffect_entries := Value;
