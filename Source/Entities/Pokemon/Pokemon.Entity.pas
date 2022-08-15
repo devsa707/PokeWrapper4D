@@ -28,9 +28,9 @@ type
 
     TAbilities = class
     private
-      Fability: TResource;
+      Fability  : TResource;
       Fis_hidden: boolean;
-      Fslot: integer;
+      Fslot     : integer;
     public
       constructor Create; overload;
       destructor Destroy; override;
@@ -42,7 +42,7 @@ type
     TGameIndices = class
     private
       Fgame_index: integer;
-      Fversion: TResource;
+      Fversion   : TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
@@ -55,7 +55,7 @@ type
       TVersionDetails = class
       private
         Fversion: TResource;
-        Frarity: integer;
+        Frarity : integer;
       public
         constructor Create; overload;
         destructor Destroy; override;
@@ -63,22 +63,23 @@ type
         property rarity: integer read Frarity write Frarity;
       end;
     private
-      Fitem: TResource;
-      Fversion_details: TVersionDetails;
+      Fitem           : TResource;
+      Fversion_details: TObjectList<TVersionDetails>;
+      procedure SetFversion_details(const Value: TObjectList<TVersionDetails>);
     public
       constructor Create; overload;
       destructor Destroy; override;
       property item: TResource read Fitem write Fitem;
-      property version_details: TVersionDetails read Fversion_details write Fversion_details;
+      property version_details: TObjectList<TVersionDetails> read Fversion_details write SetFversion_details;
     end;
 
     TMoves = class
     type
       TVersionGroupDetails = class
       private
-        Flevel_learned_at: integer;
+        Flevel_learned_at : integer;
         Fmove_learn_method: TResource;
-        Fversion_group: TResource;
+        Fversion_group    : TResource;
       public
         constructor Create; overload;
         destructor Destroy; override;
@@ -87,7 +88,7 @@ type
         property version_group: TResource read Fversion_group write Fversion_group;
       end;
     private
-      Fmove: TResource;
+      Fmove                 : TResource;
       Fversion_group_details: TObjectList<TVersionGroupDetails>;
       procedure SetFversion_group_details(const Value: TObjectList<TVersionGroupDetails>);
     public
@@ -100,7 +101,7 @@ type
     TPastTypes = class
     private
       Fgeneration: TResource;
-      Ftypes: TObjectList<TTypes>;
+      Ftypes     : TObjectList<TTypes>;
       procedure SetFtypes(const Value: TObjectList<TTypes>);
     public
       constructor Create; overload;
@@ -116,22 +117,22 @@ type
         TDreamWorld = class
         private
           Ffront_default: string;
-          Ffront_female: string;
+          Ffront_female : string;
         public
           property front_default: string read Ffront_default write Ffront_default;
-          property front_female: string read Ffront_female write Ffront_female;
+          property front_female : string read Ffront_female write Ffront_female;
         end;
 
         THome = class
         private
-          Ffront_default: string;
-          Ffront_female: string;
-          Ffront_shiny: string;
+          Ffront_default     : string;
+          Ffront_female      : string;
+          Ffront_shiny       : string;
           Ffront_shiny_female: string;
         public
-          property front_default: string read Ffront_default write Ffront_default;
-          property front_female: string read Ffront_female write Ffront_female;
-          property front_shiny: string read Ffront_shiny write Ffront_shiny;
+          property front_default     : string read Ffront_default write Ffront_default;
+          property front_female      : string read Ffront_female write Ffront_female;
+          property front_shiny       : string read Ffront_shiny write Ffront_shiny;
           property front_shiny_female: string read Ffront_shiny_female write Ffront_shiny_female;
         end;
 
@@ -143,8 +144,8 @@ type
         end;
 
       private
-        Fdream_world: TDreamWorld;
-        Fhome: THome;
+        Fdream_world     : TDreamWorld;
+        Fhome            : THome;
         Fofficial_artwork: TOfficialArtwork;
       public
         constructor Create; overload;
@@ -157,13 +158,13 @@ type
 
       TVersions = class
       private
-        Fgeneration_i: TGenerationI;
-        Fgeneration_ii: TGenerationII;
-        Fgeneration_iii: TGenerationIII;
-        Fgeneration_iv: TGenerationIV;
-        Fgeneration_v: TGenerationV;
-        Fgeneration_vi: TGenerationVI;
-        Fgeneration_vii: TGenerationVII;
+        Fgeneration_i   : TGenerationI;
+        Fgeneration_ii  : TGenerationII;
+        Fgeneration_iii : TGenerationIII;
+        Fgeneration_iv  : TGenerationIV;
+        Fgeneration_v   : TGenerationV;
+        Fgeneration_vi  : TGenerationVI;
+        Fgeneration_vii : TGenerationVII;
         Fgeneration_viii: TGenerationVIII;
       public
         constructor Create; overload;
@@ -186,16 +187,16 @@ type
         property generation_viii: TGenerationVIII read Fgeneration_viii write Fgeneration_viii;
       end;
     private
-      Fback_default: string;
-      Fback_female: string;
-      Fback_shiny: string;
-      Fback_shiny_female: string;
-      Ffront_default: string;
-      Ffront_female: string;
-      Ffront_shiny: string;
+      Fback_default      : string;
+      Fback_female       : string;
+      Fback_shiny        : string;
+      Fback_shiny_female : string;
+      Ffront_default     : string;
+      Ffront_female      : string;
+      Ffront_shiny       : string;
       Ffront_shiny_female: string;
-      Fother: TOther;
-      Fversions: TVersions;
+      Fother             : TOther;
+      Fversions          : TVersions;
     public
       constructor Create; overload;
       destructor Destroy; override;
@@ -214,8 +215,8 @@ type
     TStats = class
     private
       Fbase_stat: integer;
-      Feffort: integer;
-      Fstat: TResource;
+      Feffort   : integer;
+      Fstat     : TResource;
     public
       constructor Create; overload;
       destructor Destroy; override;
@@ -224,24 +225,24 @@ type
       property stat: TResource read Fstat write Fstat;
     end;
   private
-    Fabilites: TObjectList<TAbilities>;
-    Fbase_experience: integer;
-    Fforms: TObjectList<TResource>;
-    Fgame_indices: TObjectList<TGameIndices>;
-    Fheight: integer;
-    Fheld_items: TObjectList<THeldItems>;
-    Fid: integer;
-    Fis_default: boolean;
+    Fabilites                : TObjectList<TAbilities>;
+    Fbase_experience         : integer;
+    Fforms                   : TObjectList<TResource>;
+    Fgame_indices            : TObjectList<TGameIndices>;
+    Fheight                  : integer;
+    Fheld_items              : TObjectList<THeldItems>;
+    Fid                      : integer;
+    Fis_default              : boolean;
     Flocation_area_encounters: string;
-    Fmoves: TObjectList<TMoves>;
-    Fname: string;
-    Forder: integer;
-    Fpast_types: TObjectList<TPastTypes>;
-    Fspecies: TResource;
-    Fsprites: TSprites;
-    Fstats: TObjectList<TStats>;
-    Ftypes: TObjectList<TTypes>;
-    Fweight: integer;
+    Fmoves                   : TObjectList<TMoves>;
+    Fname                    : string;
+    Forder                   : integer;
+    Fpast_types              : TObjectList<TPastTypes>;
+    Fspecies                 : TResource;
+    Fsprites                 : TSprites;
+    Fstats                   : TObjectList<TStats>;
+    Ftypes                   : TObjectList<TTypes>;
+    Fweight                  : integer;
     procedure SetFabilites(const Value: TObjectList<TAbilities>);
     procedure SetFgame_indices(const Value: TObjectList<TGameIndices>);
     procedure SetFheld_items(const Value: TObjectList<THeldItems>);
@@ -291,16 +292,16 @@ end;
 
 constructor TPokemonEntity.Create;
 begin
-  Fabilites := TObjectList<TAbilities>.Create;
-  Fforms := TObjectList<TResource>.Create;
+  Fabilites     := TObjectList<TAbilities>.Create;
+  Fforms        := TObjectList<TResource>.Create;
   Fgame_indices := TObjectList<TGameIndices>.Create;
-  Fheld_items := TObjectList<THeldItems>.Create;
-  Fmoves := TObjectList<TMoves>.Create;
-  Fpast_types := TObjectList<TPastTypes>.Create;
-  Fspecies := TResource.Create;
-  Fsprites := TSprites.Create;
-  Fstats := TObjectList<TStats>.Create;
-  Ftypes := TObjectList<TTypes>.Create;
+  Fheld_items   := TObjectList<THeldItems>.Create;
+  Fmoves        := TObjectList<TMoves>.Create;
+  Fpast_types   := TObjectList<TPastTypes>.Create;
+  Fspecies      := TResource.Create;
+  Fsprites      := TSprites.Create;
+  Fstats        := TObjectList<TStats>.Create;
+  Ftypes        := TObjectList<TTypes>.Create;
 
 end;
 
@@ -391,8 +392,8 @@ end;
 
 constructor TPokemonEntity.THeldItems.Create;
 begin
-  Fitem := TResource.Create;
-  Fversion_details := TVersionDetails.Create;
+  Fitem            := TResource.Create;
+  Fversion_details := TObjectList<TVersionDetails>.Create;
 end;
 
 destructor TPokemonEntity.THeldItems.Destroy;
@@ -402,11 +403,17 @@ begin
   inherited;
 end;
 
+procedure TPokemonEntity.THeldItems.SetFversion_details(const Value: TObjectList<TVersionDetails>);
+begin
+  FreeAndNil(Fversion_details);
+  Fversion_details := Value;
+end;
+
 { TPokemonEntity.TMoves }
 
 constructor TPokemonEntity.TMoves.Create;
 begin
-  Fmove := TResource.Create;
+  Fmove                  := TResource.Create;
   Fversion_group_details := TObjectList<TVersionGroupDetails>.Create;
 end;
 
@@ -428,7 +435,7 @@ end;
 constructor TPokemonEntity.TMoves.TVersionGroupDetails.Create;
 begin
   Fmove_learn_method := TResource.Create;
-  Fversion_group := TResource.Create;
+  Fversion_group     := TResource.Create;
 end;
 
 destructor TPokemonEntity.TMoves.TVersionGroupDetails.Destroy;
@@ -443,7 +450,7 @@ end;
 constructor TPokemonEntity.TPastTypes.Create;
 begin
   Fgeneration := TResource.Create;
-  Ftypes := TObjectList<TTypes>.Create;
+  Ftypes      := TObjectList<TTypes>.Create;
 end;
 
 destructor TPokemonEntity.TPastTypes.Destroy;
@@ -476,8 +483,8 @@ end;
 
 constructor TPokemonEntity.TSprites.TOther.Create;
 begin
-  Fdream_world := TDreamWorld.Create;
-  Fhome := THome.Create;
+  Fdream_world      := TDreamWorld.Create;
+  Fhome             := THome.Create;
   Fofficial_artwork := TOfficialArtwork.Create;
 end;
 
@@ -493,7 +500,7 @@ end;
 
 constructor TPokemonEntity.TSprites.Create;
 begin
-  Fother := TOther.Create;
+  Fother    := TOther.Create;
   Fversions := TVersions.Create;
 end;
 
@@ -508,13 +515,13 @@ end;
 
 constructor TPokemonEntity.TSprites.TVersions.Create;
 begin
-  Fgeneration_i := TGenerationI.Create;
-  Fgeneration_ii := TGenerationII.Create;
-  Fgeneration_iii := TGenerationIII.Create;
-  Fgeneration_iv := TGenerationIV.Create;
-  Fgeneration_v := TGenerationV.Create;
-  Fgeneration_vi := TGenerationVI.Create;
-  Fgeneration_vii := TGenerationVII.Create;
+  Fgeneration_i    := TGenerationI.Create;
+  Fgeneration_ii   := TGenerationII.Create;
+  Fgeneration_iii  := TGenerationIII.Create;
+  Fgeneration_iv   := TGenerationIV.Create;
+  Fgeneration_v    := TGenerationV.Create;
+  Fgeneration_vi   := TGenerationVI.Create;
+  Fgeneration_vii  := TGenerationVII.Create;
   Fgeneration_viii := TGenerationVIII.Create;
 end;
 
