@@ -113,7 +113,9 @@ uses
   PokemonColor.Entity in '..\..\Source\Entities\Pokemon\PokemonColor.Entity.pas',
   PokemonColorTest in 'Source\PokemonTest\PokemonColorTest.pas',
   PokemonForm.Entity in '..\..\Source\Entities\Pokemon\PokemonForm.Entity.pas',
-  PokemonFormsTest in 'Source\PokemonTest\PokemonFormsTest.pas';
+  PokemonFormsTest in 'Source\PokemonTest\PokemonFormsTest.pas',
+  PokemonHabitat.Entity in '..\..\Source\Entities\Pokemon\PokemonHabitat.Entity.pas',
+  PokemonHabitatTest in 'Source\PokemonTest\PokemonHabitatTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
