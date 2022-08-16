@@ -111,7 +111,9 @@ uses
   PokemonTest in 'Source\PokemonTest\PokemonTest.pas',
   PokeFactory in '..\..\Source\Wrapper\PokeFactory.pas',
   PokemonColor.Entity in '..\..\Source\Entities\Pokemon\PokemonColor.Entity.pas',
-  PokemonColorTest in 'Source\PokemonTest\PokemonColorTest.pas';
+  PokemonColorTest in 'Source\PokemonTest\PokemonColorTest.pas',
+  PokemonForm.Entity in '..\..\Source\Entities\Pokemon\PokemonForm.Entity.pas',
+  PokemonFormsTest in 'Source\PokemonTest\PokemonFormsTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

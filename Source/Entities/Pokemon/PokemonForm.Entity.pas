@@ -1,4 +1,4 @@
-unit PokemonForms.Entity;
+unit PokemonForm.Entity;
 
 interface
 
@@ -10,7 +10,7 @@ uses
   MVCFramework.Serializer.Commons;
 
 type
-  TPokemonFormsEntity = class
+  TPokemonFormEntity = class
   type
     TSprites = class
     private
@@ -84,7 +84,7 @@ implementation
 
 { TPokemonFormsEntity }
 
-constructor TPokemonFormsEntity.Create;
+constructor TPokemonFormEntity.Create;
 begin
   Fform_names := TObjectList<TNames>.Create;
   Fnames := TObjectList<TNames>.Create;
@@ -94,7 +94,7 @@ begin
   Fversion_group := TResource.Create;
 end;
 
-destructor TPokemonFormsEntity.Destroy;
+destructor TPokemonFormEntity.Destroy;
 begin
   Fform_names.Free;
   Fnames.Free;
@@ -105,13 +105,13 @@ begin
   inherited;
 end;
 
-procedure TPokemonFormsEntity.SetFform_names(const Value: TObjectList<TNames>);
+procedure TPokemonFormEntity.SetFform_names(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fform_names);
   Fform_names := Value;
 end;
 
-procedure TPokemonFormsEntity.SetFnames(const Value: TObjectList<TNames>);
+procedure TPokemonFormEntity.SetFnames(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fnames);
   Fnames := Value;
@@ -119,12 +119,12 @@ end;
 
 { TPokemonFormsEntity.TTypes }
 
-constructor TPokemonFormsEntity.TTypes.Create;
+constructor TPokemonFormEntity.TTypes.Create;
 begin
   Ftype := TResource.Create;
 end;
 
-destructor TPokemonFormsEntity.TTypes.Destroy;
+destructor TPokemonFormEntity.TTypes.Destroy;
 begin
   Ftype.Free;
   inherited;

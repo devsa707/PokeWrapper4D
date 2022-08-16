@@ -60,7 +60,7 @@ begin
         Assert.IsNotEmpty(LPokemonColorEntity.names.Items[0].language.name);
         Assert.IsNotEmpty(LPokemonColorEntity.names.Items[0].language.url);
       end;
-      // Node Names
+      // Node Pokemon Species
       if LPokemonColorEntity.pokemon_species.Count > 0 then
       begin
         Assert.IsNotEmpty(LPokemonColorEntity.pokemon_species.Items[0].name);
