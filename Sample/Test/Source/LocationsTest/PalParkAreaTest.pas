@@ -36,7 +36,7 @@ implementation
 
 procedure TPalParkAreaTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.pal_park_area));
+  FPokeWrapper := TPokeFactory.New(TPokemon.pal_park_area);
 end;
 
 procedure TPalParkAreaTest.TestEntity;

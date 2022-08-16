@@ -36,7 +36,7 @@ implementation
 
 procedure TGrowthRateTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.growth_rate));
+  FPokeWrapper := TPokeFactory.New(TPokemon.growth_rate);
 end;
 
 procedure TGrowthRateTest.TestEntity;

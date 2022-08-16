@@ -36,7 +36,7 @@ implementation
 
 procedure TAbilityTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Ability));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Ability);
 end;
 
 procedure TAbilityTest.TestEntity;

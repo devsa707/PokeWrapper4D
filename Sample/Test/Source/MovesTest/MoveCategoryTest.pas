@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveCategoryTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_category));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_category);
 end;
 
 procedure TMoveCategoryTest.TestEntity;

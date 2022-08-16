@@ -36,7 +36,7 @@ implementation
 
 procedure TSuperContestEffectTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.super_contest_effect));
+  FPokeWrapper := TPokeFactory.New(TPokemon.super_contest_effect);
 end;
 
 procedure TSuperContestEffectTest.TestEntity;

@@ -36,7 +36,7 @@ implementation
 
 procedure TLocationTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Location));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Location);
 end;
 
 procedure TLocationTest.TestEntity;

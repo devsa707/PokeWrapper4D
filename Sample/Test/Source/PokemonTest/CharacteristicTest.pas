@@ -36,7 +36,7 @@ implementation
 
 procedure TCharacteristicTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Characteristic));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Characteristic);
 end;
 
 procedure TCharacteristicTest.TestEntity;

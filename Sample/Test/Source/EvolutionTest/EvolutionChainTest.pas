@@ -36,7 +36,7 @@ implementation
 
 procedure TEvolutionChainTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.evolution_chain));
+  FPokeWrapper := TPokeFactory.New(TPokemon.evolution_chain);
 end;
 
 procedure TEvolutionChainTest.TestEntity;

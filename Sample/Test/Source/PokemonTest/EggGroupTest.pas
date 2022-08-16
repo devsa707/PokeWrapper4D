@@ -36,7 +36,7 @@ implementation
 
 procedure TEggGroupTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.egg_group));
+  FPokeWrapper := TPokeFactory.New(TPokemon.egg_group);
 end;
 
 procedure TEggGroupTest.TestEntity;

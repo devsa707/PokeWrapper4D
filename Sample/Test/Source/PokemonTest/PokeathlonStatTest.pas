@@ -36,7 +36,7 @@ implementation
 
 procedure TPokeathlonStatTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.pokeathlon_stat));
+  FPokeWrapper := TPokeFactory.New(TPokemon.pokeathlon_stat);
 end;
 
 procedure TPokeathlonStatTest.TestEntity;

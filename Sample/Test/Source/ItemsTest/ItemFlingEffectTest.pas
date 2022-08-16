@@ -36,7 +36,7 @@ implementation
 
 procedure TItemFlingEffectTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.item_fling_effect));
+  FPokeWrapper := TPokeFactory.New(TPokemon.item_fling_effect);
 end;
 
 procedure TItemFlingEffectTest.TestEntity;

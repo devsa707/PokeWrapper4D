@@ -36,7 +36,7 @@ implementation
 
 procedure TEvolutionTriggerTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.evolution_trigger));
+  FPokeWrapper := TPokeFactory.New(TPokemon.evolution_trigger);
 end;
 
 procedure TEvolutionTriggerTest.TestEntity;

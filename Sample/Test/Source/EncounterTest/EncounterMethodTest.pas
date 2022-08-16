@@ -36,7 +36,7 @@ implementation
 
 procedure TEncounterMethodTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.encounter_method));
+  FPokeWrapper := TPokeFactory.New(TPokemon.encounter_method);
 end;
 
 procedure TEncounterMethodTest.TestEntity;

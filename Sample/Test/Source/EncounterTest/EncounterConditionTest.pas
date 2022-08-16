@@ -36,7 +36,7 @@ implementation
 
 procedure TEncounterConditionTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.encounter_condition));
+  FPokeWrapper := TPokeFactory.New(TPokemon.encounter_condition);
 end;
 
 procedure TEncounterConditionTest.TestEntity;

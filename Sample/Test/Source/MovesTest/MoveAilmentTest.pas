@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveAilmentTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_ailment));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_ailment);
 end;
 
 procedure TMoveAilmentTest.TestEntity;

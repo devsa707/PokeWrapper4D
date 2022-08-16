@@ -28,7 +28,7 @@ type
     FResource: string;
     procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
   public
-    constructor Create(AIndex: integer); overload;
+    constructor Create(APokemon: TPokemon); overload;
     function GetList(AOffset: integer = 0; ALimit: integer = 20): string; overload;
     function Get(AValue: integer): string; overload;
     function Get(AValue: string): string; overload;
@@ -42,14 +42,11 @@ implementation
 
 { TPokeAPIJson }
 
-constructor TPokeWrapper.Create(AIndex: integer);
-var
-  LTypeInfo: PTypeInfo;
+constructor TPokeWrapper.Create(APokemon: TPokemon);
 begin
   FPokeResource := TPokeResource.Create;
   FMVCRESTClient := TMVCRESTClient.Create;
-  LTypeInfo := TypeInfo(TPokemon);
-  FResource := FPokeResource.GetResourceName(LTypeInfo, AIndex);
+  FResource := FPokeResource.GetResourceName(APokemon);
   FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
 end;
 

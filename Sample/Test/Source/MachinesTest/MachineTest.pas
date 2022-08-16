@@ -35,7 +35,7 @@ implementation
 
 procedure TMachineTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Machine));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Machine);
 end;
 
 procedure TMachineTest.TestEntity;

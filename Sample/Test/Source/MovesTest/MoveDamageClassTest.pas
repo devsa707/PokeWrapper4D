@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveDamageClassTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_damage_class));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_damage_class);
 end;
 
 procedure TMoveDamageClassTest.TestEntity;

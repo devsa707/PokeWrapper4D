@@ -36,7 +36,7 @@ implementation
 
 procedure TGenerationTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Generation));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Generation);
 end;
 
 procedure TGenerationTest.TestEntity;

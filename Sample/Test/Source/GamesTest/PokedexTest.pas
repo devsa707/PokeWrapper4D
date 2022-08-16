@@ -36,7 +36,7 @@ implementation
 
 procedure TPokedexTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Pokedex));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Pokedex);
 end;
 
 procedure TPokedexTest.TestEntity;

@@ -36,7 +36,7 @@ implementation
 
 procedure TBerryFirmnessTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.berry_firmness));
+  FPokeWrapper := TPokeFactory.New(TPokemon.berry_firmness);
 end;
 
 procedure TBerryFirmnessTest.TestEntity;

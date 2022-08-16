@@ -36,7 +36,7 @@ implementation
 
 procedure TGenderTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Gender));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Gender);
 end;
 
 procedure TGenderTest.TestEntity;

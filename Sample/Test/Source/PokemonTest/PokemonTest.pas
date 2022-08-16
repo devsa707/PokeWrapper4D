@@ -36,7 +36,7 @@ implementation
 
 procedure TPokemonTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Pokemon));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Pokemon);
 end;
 
 procedure TPokemonTest.TestEntity;
@@ -49,7 +49,7 @@ begin
     LPokemonEntity := nil;
     try
       LPokemonEntity := TPokemonEntity.Create;
-      TPokeFactory.New(Integer(TPokemon.Pokemon)).GetAsEntity(LPokemonEntity, I);
+      TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity, I);
       // Assertions
       // Node Abilities
       if LPokemonEntity.abilities.Count > 0 then
@@ -81,9 +81,9 @@ begin
       begin
         Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].item.name);
         Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].item.url);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.version.name);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.version.url);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.rarity);
+        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].version.name);
+        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].version.url);
+        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].rarity);
       end;
       // Node Held Items
       if LPokemonEntity.moves.Count > 0 then

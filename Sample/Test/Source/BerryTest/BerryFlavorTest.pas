@@ -36,7 +36,7 @@ implementation
 
 procedure TBerryFlavorTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.berry_flavor));
+  FPokeWrapper := TPokeFactory.New(TPokemon.berry_flavor);
 end;
 
 procedure TBerryFlavorTest.TestEntity;

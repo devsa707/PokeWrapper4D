@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveBatleStyleTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_battle_style));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_battle_style);
 end;
 
 procedure TMoveBatleStyleTest.TestEntity;

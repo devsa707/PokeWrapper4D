@@ -36,7 +36,7 @@ implementation
 
 procedure TNatureTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Nature));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Nature);
 end;
 
 procedure TNatureTest.TestEntity;

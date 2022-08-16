@@ -36,7 +36,7 @@ implementation
 
 procedure TVersionTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Version));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Version);
 end;
 
 procedure TVersionTest.TestEntity;

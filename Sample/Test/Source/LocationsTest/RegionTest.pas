@@ -36,7 +36,7 @@ implementation
 
 procedure TRegionTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.Region));
+  FPokeWrapper := TPokeFactory.New(TPokemon.Region);
 end;
 
 procedure TRegionTest.TestEntity;

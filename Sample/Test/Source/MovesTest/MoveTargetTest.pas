@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveTargetTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_target));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_target);
 end;
 
 procedure TMoveTargetTest.TestEntity;

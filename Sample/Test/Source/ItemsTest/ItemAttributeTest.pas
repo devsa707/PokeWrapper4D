@@ -36,7 +36,7 @@ implementation
 
 procedure TItemAttributeTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.item_attribute));
+  FPokeWrapper := TPokeFactory.New(TPokemon.item_attribute);
 end;
 
 procedure TItemAttributeTest.TestEntity;

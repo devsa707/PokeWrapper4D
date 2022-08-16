@@ -36,7 +36,7 @@ implementation
 
 procedure TMoveLearnMethodTest.Setup;
 begin
-  FPokeWrapper := TPokeFactory.New(integer(TPokemon.move_learn_method));
+  FPokeWrapper := TPokeFactory.New(TPokemon.move_learn_method);
 end;
 
 procedure TMoveLearnMethodTest.TestEntity;
