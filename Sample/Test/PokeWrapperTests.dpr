@@ -109,7 +109,9 @@ uses
   Pokemon.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Entity.pas',
   Pokemon.Generation.Node.Entity in '..\..\Source\Entities\Pokemon\Pokemon.Generation.Node.Entity.pas',
   PokemonTest in 'Source\PokemonTest\PokemonTest.pas',
-  PokeFactory in '..\..\Source\Wrapper\PokeFactory.pas';
+  PokeFactory in '..\..\Source\Wrapper\PokeFactory.pas',
+  PokemonColor.Entity in '..\..\Source\Entities\Pokemon\PokemonColor.Entity.pas',
+  PokemonColorTest in 'Source\PokemonTest\PokemonColorTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
