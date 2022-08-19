@@ -42,12 +42,12 @@ type
     nature, //
     pokeathlon_stat, //
     pokemon, //
-    pokemon__encounters, //
+    pokemon_encounters, //
     pokemon_color, //
     pokemon_form, //
     pokemon_habitat, //
     pokemon_shape, //
-    pokemon_specie, //
+    pokemon_species, //
     stat, //
     type_);
 

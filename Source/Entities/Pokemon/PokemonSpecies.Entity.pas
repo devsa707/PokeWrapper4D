@@ -46,6 +46,8 @@ type
       Fgenus: string;
       Flanguage: TResource;
     public
+      constructor Create; overload;
+      destructor Destroy; override;
       property genus: string read Fgenus write Fgenus;
       property language: TResource read Flanguage write Flanguage;
     end;
@@ -159,7 +161,7 @@ implementation
 constructor TPokemonSpeciesEntity.Create;
 begin
   Fcolor := TResource.Create;
-  Fegg_groups := TObjectList<TResource>;
+  Fegg_groups := TObjectList<TResource>.Create;
   Fevolution_chain := TEvolutionChain.Create;
   Fevolves_from_species := TResource.Create;
   Fflavor_text_entries := TObjectList<TFlavorTextEntries>.Create;
@@ -219,7 +221,7 @@ begin
   Fgenera := Value;
 end;
 
-procedure TPokemonSpeciesEntity.SetFnames(const Value: tobjeclist<TNames>);
+procedure TPokemonSpeciesEntity.SetFnames(const Value: TObjectList<TNames>);
 begin
   FreeAndNil(Fnames);
   Fnames := Value;
@@ -307,6 +309,19 @@ end;
 destructor TPokemonSpeciesEntity.TVarieties.Destroy;
 begin
   Fpokemon.Free;
+  inherited;
+end;
+
+{ TPokemonSpeciesEntity.TGenera }
+
+constructor TPokemonSpeciesEntity.TGenera.Create;
+begin
+  Flanguage := TResource.Create;
+end;
+
+destructor TPokemonSpeciesEntity.TGenera.Destroy;
+begin
+  Flanguage.Free;
   inherited;
 end;
 

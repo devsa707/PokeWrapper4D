@@ -108,7 +108,7 @@ begin
       Exit('pokeathlon-stat/%s');
     pokemon:
       Exit('pokemon/%s');
-    pokemon__encounters:
+    pokemon_encounters:
       Exit('pokemon/%s/encounters');
     pokemon_color:
       Exit('pokemon-color/%s');
@@ -118,8 +118,8 @@ begin
       Exit('pokemon-habitat/%s');
     pokemon_shape:
       Exit('pokemon-shape/%s');
-    pokemon_specie:
-      Exit('pokemon-specie/%s');
+    pokemon_species:
+      Exit('pokemon-species/%s');
     stat:
       Exit('stat/%s');
     type_:
