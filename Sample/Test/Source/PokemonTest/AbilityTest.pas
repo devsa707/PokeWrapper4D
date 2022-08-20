@@ -52,28 +52,33 @@ begin
       FPokeWrapper.GetAsEntity(LAbilityEntity, I);
       // Assertions
       // Node Effect Changes
-      if LAbilityEntity.effect_changes.Count > 0 then
+      for var effect_changes in LAbilityEntity.effect_changes do
       begin
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].effect);
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LAbilityEntity.effect_changes.Items[0].effect_entries.Items[0].language.url);
+        for var effect_entries in effect_changes.effect_entries do
+        begin
+          Assert.IsNotEmpty(effect_entries.effect);
+          Assert.IsNotEmpty(effect_entries.language.name);
+          Assert.IsNotEmpty(effect_entries.language.url);
+        end;
+        Assert.IsNotEmpty(effect_changes.version_group.name);
+        Assert.IsNotEmpty(effect_changes.version_group.url);
       end;
       // Node Effect Entries
-      if LAbilityEntity.effect_entries.Count > 0 then
+      for var effect_entries in LAbilityEntity.effect_entries do
       begin
-        Assert.IsNotEmpty(LAbilityEntity.effect_entries.Items[0].effect);
-        Assert.IsNotEmpty(LAbilityEntity.effect_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LAbilityEntity.effect_entries.Items[0].language.url);
-        Assert.IsNotEmpty(LAbilityEntity.effect_entries.Items[0].short_effect);
+        Assert.IsNotEmpty(effect_entries.effect);
+        Assert.IsNotEmpty(effect_entries.language.name);
+        Assert.IsNotEmpty(effect_entries.language.url);
+        Assert.IsNotEmpty(effect_entries.short_effect);
       end;
       // Node Flavor Text Entries
-      if LAbilityEntity.flavor_text_entries.Count > 0 then
+      for var flavor_text_entries in LAbilityEntity.flavor_text_entries do
       begin
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].flavor_text);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].language.url);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].version_group.name);
-        Assert.IsNotEmpty(LAbilityEntity.flavor_text_entries.Items[0].version_group.url);
+        Assert.IsNotEmpty(flavor_text_entries.flavor_text);
+        Assert.IsNotEmpty(flavor_text_entries.language.name);
+        Assert.IsNotEmpty(flavor_text_entries.language.url);
+        Assert.IsNotEmpty(flavor_text_entries.version_group.name);
+        Assert.IsNotEmpty(flavor_text_entries.version_group.url);
       end;
       // Node Generation
       Assert.IsNotEmpty(LAbilityEntity.generation.name);
@@ -82,18 +87,18 @@ begin
       Assert.IsNotEmpty(LAbilityEntity.is_main_series);
       Assert.IsNotEmpty(LAbilityEntity.name);
       // Node Names
-      if LAbilityEntity.names.Count > 0 then
+      for var names in LAbilityEntity.names do
       begin
-        Assert.IsNotEmpty(LAbilityEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LAbilityEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LAbilityEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       //
-      if LAbilityEntity.pokemon.Count > 0 then
+      for var pokemon in LAbilityEntity.pokemon do
       begin
-        Assert.IsNotEmpty(LAbilityEntity.pokemon.Items[0].is_hidden);
-        Assert.IsNotEmpty(LAbilityEntity.pokemon.Items[0].pokemon.name);
-        Assert.IsNotEmpty(LAbilityEntity.pokemon.Items[0].pokemon.url);
+        Assert.IsNotEmpty(pokemon.is_hidden);
+        Assert.IsNotEmpty(pokemon.pokemon.name);
+        Assert.IsNotEmpty(pokemon.pokemon.url);
       end;
       Write('.');
     finally

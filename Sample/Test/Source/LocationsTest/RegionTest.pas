@@ -54,15 +54,24 @@ begin
       Assert.IsNotEmpty(LRegionEntity.id);
       Assert.IsNotEmpty(LRegionEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LRegionEntity.names.Items[LRegionEntity.names.Count - 1].name);
+      for var names in LRegionEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       // Node Pokedexes
-      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items[LRegionEntity.pokedexes.Count - 1].name);
-      Assert.IsNotEmpty(LRegionEntity.pokedexes.Items[LRegionEntity.pokedexes.Count - 1].url);
+      for var pokedexes in LRegionEntity.pokedexes do
+      begin
+        Assert.IsNotEmpty(pokedexes.name);
+        Assert.IsNotEmpty(pokedexes.url);
+      end;
       // Node Version Groups
-      Assert.IsNotEmpty(LRegionEntity.version_groups.Items[LRegionEntity.version_groups.Count - 1].name);
-      Assert.IsNotEmpty(LRegionEntity.version_groups.Items[LRegionEntity.version_groups.Count - 1].url);
+      for var version_groups in LRegionEntity.version_groups do
+      begin
+        Assert.IsNotEmpty(version_groups.name);
+        Assert.IsNotEmpty(version_groups.url);
+      end;
 
       Write('.');
     finally

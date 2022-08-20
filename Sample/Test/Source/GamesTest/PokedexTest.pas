@@ -55,29 +55,38 @@ begin
         FPokeWrapper.GetAsEntity(LPokedexEntity, I);
         // Assertions
         // node descriptions
-        Assert.IsNotEmpty(LPokedexEntity.descriptions.Items[LPokedexEntity.descriptions.Count - 1].description);
-        Assert.IsNotEmpty(LPokedexEntity.descriptions.Items[LPokedexEntity.descriptions.Count - 1].language.name);
-        Assert.IsNotEmpty(LPokedexEntity.descriptions.Items[LPokedexEntity.descriptions.Count - 1].language.url);
+        for var descriptions in LPokedexEntity.descriptions do
+        begin
+          Assert.IsNotEmpty(descriptions.description);
+          Assert.IsNotEmpty(descriptions.language.name);
+          Assert.IsNotEmpty(descriptions.language.url);
+        end;
         //
         Assert.IsNotEmpty(LPokedexEntity.id);
         Assert.IsNotEmpty(LPokedexEntity.is_main_series);
         Assert.IsNotEmpty(LPokedexEntity.name);
         // node language
-        Assert.IsNotEmpty(LPokedexEntity.names.Items[LPokedexEntity.names.Count - 1].language.name);
-        Assert.IsNotEmpty(LPokedexEntity.names.Items[LPokedexEntity.names.Count - 1].language.url);
-        Assert.IsNotEmpty(LPokedexEntity.names.Items[LPokedexEntity.names.Count - 1].name);
+        for var names in LPokedexEntity.names do
+        begin
+          Assert.IsNotEmpty(names.language.name);
+          Assert.IsNotEmpty(names.language.url);
+          Assert.IsNotEmpty(names.name);
+        end;
         // node pokemon_entries
-        Assert.IsNotEmpty(LPokedexEntity.pokemon_entries.Items[LPokedexEntity.pokemon_entries.Count - 1].entry_number);
-        Assert.IsNotEmpty(LPokedexEntity.pokemon_entries.Items[LPokedexEntity.pokemon_entries.Count - 1].pokemon_species.name);
-        Assert.IsNotEmpty(LPokedexEntity.pokemon_entries.Items[LPokedexEntity.pokemon_entries.Count - 1].pokemon_species.url);
+        for var pokemon_entries in LPokedexEntity.pokemon_entries do
+        begin
+          Assert.IsNotEmpty(pokemon_entries.entry_number);
+          Assert.IsNotEmpty(pokemon_entries.pokemon_species.name);
+          Assert.IsNotEmpty(pokemon_entries.pokemon_species.url);
+        end;
         // region can be null
         // Assert.IsNotEmpty(LPokedexEntity.region.name);
         // Assert.IsNotEmpty(LPokedexEntity.region.url);
         // node nullable version_groups
-        if LPokedexEntity.version_groups.Count <> 0 then
+        for var version_groups in LPokedexEntity.version_groups do
         begin
-          Assert.IsNotEmpty(LPokedexEntity.version_groups.Items[LPokedexEntity.version_groups.Count - 1].name);
-          Assert.IsNotEmpty(LPokedexEntity.version_groups.Items[LPokedexEntity.version_groups.Count - 1].url);
+          Assert.IsNotEmpty(version_groups.name);
+          Assert.IsNotEmpty(version_groups.url);
         end;
         Write('.');
       end;

@@ -230,4 +230,30 @@ begin
   Fincrease := Value;
 end;
 
+{ TPokemonStatEntity.TAffectingNatures.TDecrease }
+
+constructor TPokemonStatEntity.TAffectingNatures.TDecrease.Create;
+begin
+
+end;
+
+destructor TPokemonStatEntity.TAffectingNatures.TDecrease.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TPokemonStatEntity.TAffectingNatures.TIncrease }
+
+constructor TPokemonStatEntity.TAffectingNatures.TIncrease.Create;
+begin
+
+end;
+
+destructor TPokemonStatEntity.TAffectingNatures.TIncrease.Destroy;
+begin
+
+  inherited;
+end;
+
 end.

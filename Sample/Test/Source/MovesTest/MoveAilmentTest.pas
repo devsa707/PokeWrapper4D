@@ -53,18 +53,18 @@ begin
       // Assertions
       Assert.IsNotEmpty(LMoveAilmentEntity.id);
       // Node Moves
-      if LMoveAilmentEntity.moves.Count > 0 then
+      for var moves in LMoveAilmentEntity.moves do
       begin
-        Assert.IsNotEmpty(LMoveAilmentEntity.moves.Items[0].name);
-        Assert.IsNotEmpty(LMoveAilmentEntity.moves.Items[0].url);
+        Assert.IsNotEmpty(moves.name);
+        Assert.IsNotEmpty(moves.url);
       end;
       Assert.IsNotEmpty(LMoveAilmentEntity.name);
       // Node Names
-      if LMoveAilmentEntity.names.Count > 0 then
+      for var names in LMoveAilmentEntity.names do
       begin
-        Assert.IsNotEmpty(LMoveAilmentEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveAilmentEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveAilmentEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       Write('.');
     finally

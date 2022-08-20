@@ -6,7 +6,7 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   Commons.Entities,
-  PokeWrapper.Types,
+  PokeWrapper.types,
   Pokemon.Generation.Node.Entity,
   // MVC
   MVCFramework.Serializer.Commons;
@@ -107,7 +107,7 @@ type
       constructor Create; overload;
       destructor Destroy; override;
       property Generation: TResource read Fgeneration write Fgeneration;
-      property Types: TObjectList<TTypes> read Ftypes write SetFtypes;
+      property types: TObjectList<TTypes> read Ftypes write SetFtypes;
     end;
 
     TSprites = class
@@ -269,7 +269,7 @@ type
     property species: TResource read Fspecies write Fspecies;
     property sprites: TSprites read Fsprites write Fsprites;
     property stats: TObjectList<TStats> read Fstats write SetFstats;
-    property Types: TObjectList<TTypes> read Ftypes write SetFtypes;
+    property types: TObjectList<TTypes> read Ftypes write SetFtypes;
     property weight: integer read Fweight write Fweight;
   end;
 

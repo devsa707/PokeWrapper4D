@@ -60,20 +60,32 @@ begin
         //
         Assert.IsNotEmpty(LVersionGroupEntity.id);
         // node move-learn-methods
-        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items[LVersionGroupEntity.move_learn_methods.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.move_learn_methods.Items[LVersionGroupEntity.move_learn_methods.Count - 1].url);
+        for var move_learn_methods in LVersionGroupEntity.move_learn_methods do
+        begin
+          Assert.IsNotEmpty(move_learn_methods.name);
+          Assert.IsNotEmpty(move_learn_methods.url);
+        end;
         //
         Assert.IsNotEmpty(LVersionGroupEntity.name);
         Assert.IsNotEmpty(LVersionGroupEntity.order);
         // node pokedexes
-        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items[LVersionGroupEntity.pokedexes.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.pokedexes.Items[LVersionGroupEntity.pokedexes.Count - 1].url);
+        for var pokedexes in LVersionGroupEntity.pokedexes do
+        begin
+          Assert.IsNotEmpty(pokedexes.name);
+          Assert.IsNotEmpty(pokedexes.url);
+        end;
         // node regions
-        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items[LVersionGroupEntity.regions.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.regions.Items[LVersionGroupEntity.regions.Count - 1].url);
+        for var regions in LVersionGroupEntity.regions do
+        begin
+          Assert.IsNotEmpty(regions.name);
+          Assert.IsNotEmpty(regions.url);
+        end;
         // node versions
-        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items[LVersionGroupEntity.versions.Count - 1].name);
-        Assert.IsNotEmpty(LVersionGroupEntity.versions.Items[LVersionGroupEntity.versions.Count - 1].url);
+        for var versions in LVersionGroupEntity.versions do
+        begin
+          Assert.IsNotEmpty(versions.name);
+          Assert.IsNotEmpty(versions.url);
+        end;
         Write('.');
       end;
     finally

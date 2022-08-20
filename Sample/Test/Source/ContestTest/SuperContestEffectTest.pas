@@ -55,12 +55,18 @@ begin
         FPokeWrapper.GetAsEntity(LSuperContestEffectEntity, I);
         // Assertions
         Assert.IsNotEmpty(LSuperContestEffectEntity.appeal);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].flavor_text);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].language.name);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.flavor_text_entries.Items[LSuperContestEffectEntity.flavor_text_entries.Count - 1].language.url);
+        for var flavor_text_entries in LSuperContestEffectEntity.flavor_text_entries do
+        begin
+          Assert.IsNotEmpty(flavor_text_entries.flavor_text);
+          Assert.IsNotEmpty(flavor_text_entries.language.name);
+          Assert.IsNotEmpty(flavor_text_entries.language.url);
+        end;
         Assert.IsNotEmpty(LSuperContestEffectEntity.id);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items[LSuperContestEffectEntity.moves.Count - 1].name);
-        Assert.IsNotEmpty(LSuperContestEffectEntity.moves.Items[LSuperContestEffectEntity.moves.Count - 1].url);
+        for var moves in LSuperContestEffectEntity.moves do
+        begin
+          Assert.IsNotEmpty(moves.name);
+          Assert.IsNotEmpty(moves.url);
+        end;
         Write('.');
       end;
     finally

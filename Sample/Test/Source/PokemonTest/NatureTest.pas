@@ -53,27 +53,27 @@ begin
       // Assertions
       Assert.IsNotEmpty(LNatureEntity.id);
       // Node Move Battle Style Preferences
-      if LNatureEntity.move_battle_style_preferences.Count > 0 then
+      for var move_battle_style_preferences in LNatureEntity.move_battle_style_preferences do
       begin
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].high_hp_preference);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].low_hp_preference);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].move_battle_style.name);
-        Assert.IsNotEmpty(LNatureEntity.move_battle_style_preferences.Items[0].move_battle_style.url);
+        Assert.IsNotEmpty(move_battle_style_preferences.high_hp_preference);
+        Assert.IsNotEmpty(move_battle_style_preferences.low_hp_preference);
+        Assert.IsNotEmpty(move_battle_style_preferences.move_battle_style.name);
+        Assert.IsNotEmpty(move_battle_style_preferences.move_battle_style.url);
       end;
       Assert.IsNotEmpty(LNatureEntity.name);
       // Node Names
-      if LNatureEntity.names.Count > 0 then
+      for var names in LNatureEntity.names do
       begin
-        Assert.IsNotEmpty(LNatureEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LNatureEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LNatureEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       // Node Pokeathlon Stat Changes
-      if LNatureEntity.pokeathlon_stat_changes.Count > 0 then
+      for var pokeathlon_stat_changes in LNatureEntity.pokeathlon_stat_changes do
       begin
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].max_change);
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].pokeathlon_stat.name);
-        Assert.IsNotEmpty(LNatureEntity.pokeathlon_stat_changes.Items[0].pokeathlon_stat.url);
+        Assert.IsNotEmpty(pokeathlon_stat_changes.max_change);
+        Assert.IsNotEmpty(pokeathlon_stat_changes.pokeathlon_stat.name);
+        Assert.IsNotEmpty(pokeathlon_stat_changes.pokeathlon_stat.url);
       end;
       // Node Levels
       Write('.');

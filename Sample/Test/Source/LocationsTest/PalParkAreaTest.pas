@@ -54,13 +54,19 @@ begin
       Assert.IsNotEmpty(LPalParkAreaEntity.id);
       Assert.IsNotEmpty(LPalParkAreaEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LPalParkAreaEntity.names.Items[LPalParkAreaEntity.names.Count - 1].name);
+      for var names in LPalParkAreaEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       // Node Pokemon Encounters
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].base_score);
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.name);
-      Assert.IsNotEmpty(LPalParkAreaEntity.pokemon_encounters.Items[LPalParkAreaEntity.pokemon_encounters.Count - 1].pokemon_species.url);
+      for var pokemon_encounters in LPalParkAreaEntity.pokemon_encounters do
+      begin
+        Assert.IsNotEmpty(pokemon_encounters.base_score);
+        Assert.IsNotEmpty(pokemon_encounters.pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_encounters.pokemon_species.url);
+      end;
       Write('.');
     finally
       LPalParkAreaEntity.Free;

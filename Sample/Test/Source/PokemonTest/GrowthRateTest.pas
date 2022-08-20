@@ -52,26 +52,26 @@ begin
       FPokeWrapper.GetAsEntity(LGrowthRateEntity, I);
       // Assertions
       // Node Descriptions
-      if LGrowthRateEntity.descriptions.Count > 0 then
+      for var descriptions in LGrowthRateEntity.descriptions do
       begin
-        Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].language.name);
-        Assert.IsNotEmpty(LGrowthRateEntity.descriptions.Items[0].language.url);
+        Assert.IsNotEmpty(descriptions.description);
+        Assert.IsNotEmpty(descriptions.language.name);
+        Assert.IsNotEmpty(descriptions.language.url);
       end;
       //
       Assert.IsNotEmpty(LGrowthRateEntity.formula);
       Assert.IsNotEmpty(LGrowthRateEntity.id);
       // Node Levels
-      if LGrowthRateEntity.levels.Count > 0 then
+      for var levels in LGrowthRateEntity.levels do
       begin
-        Assert.IsNotEmpty(LGrowthRateEntity.levels.Items[0].experience);
-        Assert.IsNotEmpty(LGrowthRateEntity.levels.Items[0].level);
+        Assert.IsNotEmpty(levels.experience);
+        Assert.IsNotEmpty(levels.level);
       end;
       // Node Pokemon Species
-      if LGrowthRateEntity.pokemon_species.Count > 0 then
+      for var pokemon_species in LGrowthRateEntity.pokemon_species do
       begin
-        Assert.IsNotEmpty(LGrowthRateEntity.pokemon_species.Items[0].name);
-        Assert.IsNotEmpty(LGrowthRateEntity.pokemon_species.Items[0].url);
+        Assert.IsNotEmpty(pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_species.url);
       end;
       Write('.');
     finally

@@ -53,11 +53,17 @@ begin
       // Assertions
       Assert.IsNotEmpty(LEncounterConditionEntity.id);
       Assert.IsNotEmpty(LEncounterConditionEntity.name);
-      Assert.IsNotEmpty(LEncounterConditionEntity.names.Items[LEncounterConditionEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEncounterConditionEntity.names.Items[LEncounterConditionEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEncounterConditionEntity.names.Items[LEncounterConditionEntity.names.Count - 1].name);
-      Assert.IsNotEmpty(LEncounterConditionEntity.values.Items[LEncounterConditionEntity.values.Count - 1].name);
-      Assert.IsNotEmpty(LEncounterConditionEntity.values.Items[LEncounterConditionEntity.values.Count - 1].url);
+      for var names in LEncounterConditionEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
+      for var values in LEncounterConditionEntity.values do
+      begin
+        Assert.IsNotEmpty(values.name);
+        Assert.IsNotEmpty(values.url);
+      end;
       Write('.');
     finally
       LEncounterConditionEntity.Free;

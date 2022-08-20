@@ -52,23 +52,29 @@ begin
       FPokeWrapper.GetAsEntity(LItemAttributeEntity, I);
       // Assertions
       // node Descriptions
-      Assert.IsNotEmpty(LItemAttributeEntity.descriptions.Items[LItemAttributeEntity.descriptions.Count - 1].description);
-      Assert.IsNotEmpty(LItemAttributeEntity.descriptions.Items[LItemAttributeEntity.descriptions.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemAttributeEntity.descriptions.Items[LItemAttributeEntity.descriptions.Count - 1].language.url);
+      for var descriptions in LItemAttributeEntity.descriptions do
+      begin
+        Assert.IsNotEmpty(descriptions.description);
+        Assert.IsNotEmpty(descriptions.language.name);
+        Assert.IsNotEmpty(descriptions.language.url);
+      end;
       //
       Assert.IsNotEmpty(LItemAttributeEntity.id);
-      // node Nullable Items
-      if LItemAttributeEntity.Items.Count > 0 then
+      // node Items
+      for var Items in LItemAttributeEntity.Items do
       begin
-        Assert.IsNotEmpty(LItemAttributeEntity.Items.Items[LItemAttributeEntity.Items.Count - 1].name);
-        Assert.IsNotEmpty(LItemAttributeEntity.Items.Items[LItemAttributeEntity.Items.Count - 1].url);
+        Assert.IsNotEmpty(Items.name);
+        Assert.IsNotEmpty(Items.url);
       end;
       //
       Assert.IsNotEmpty(LItemAttributeEntity.name);
       // node Languages
-      Assert.IsNotEmpty(LItemAttributeEntity.names.Items[LItemAttributeEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemAttributeEntity.names.Items[LItemAttributeEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LItemAttributeEntity.names.Items[LItemAttributeEntity.names.Count - 1].name);
+      for var names in LItemAttributeEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Write('.');
     finally
       LItemAttributeEntity.Free;

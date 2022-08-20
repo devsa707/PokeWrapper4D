@@ -53,10 +53,12 @@ begin
       // Assertions
       Assert.IsNotEmpty(LBerryEntity.name);
       Assert.IsNotEmpty(LBerryEntity.firmness.name);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Count);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.name);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.url);
-      Assert.IsNotEmpty(LBerryEntity.flavors.Items[LBerryEntity.flavors.Count - 1].flavor.potency);
+      for var flavors in LBerryEntity.flavors do
+      begin
+        Assert.IsNotEmpty(flavors.flavor.name);
+        Assert.IsNotEmpty(flavors.flavor.url);
+        Assert.IsNotEmpty(flavors.flavor.potency);
+      end;
       Assert.IsNotEmpty(LBerryEntity.item.name);
       Assert.IsNotEmpty(LBerryEntity.natural_gift_power);
       Assert.IsNotEmpty(LBerryEntity.natural_gift_type.name);

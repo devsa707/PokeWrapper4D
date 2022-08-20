@@ -53,10 +53,10 @@ begin
       // Assertions
       Assert.IsNotEmpty(LMoveEntity.accuracy);
       // Node Contest Combos
-      if LMoveEntity.contest_combos.normal.use_after.Count > 0 then
+      for var use_after in LMoveEntity.contest_combos.normal.use_after do
       begin
-        Assert.IsNotEmpty(LMoveEntity.contest_combos.normal.use_after[0].name);
-        Assert.IsNotEmpty(LMoveEntity.contest_combos.normal.use_after[0].url);
+        Assert.IsNotEmpty(use_after.name);
+        Assert.IsNotEmpty(use_after.url);
       end;
       // Node Contest Effect
       // contest can be null
@@ -75,23 +75,25 @@ begin
       // effect_chance can be null
       // Assert.IsNotEmpty(LMoveEntity.effect_chance);
       // Node Effect Changes
-      if LMoveEntity.effect_changes.Count > 0 then
+      for var effect_changes in LMoveEntity.effect_changes do
       begin
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].effect);
         // short_effect can be null
         // Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0]
         // .effect_entries.Items[0].short_effect);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].effect_entries.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].version_group.name);
-        Assert.IsNotEmpty(LMoveEntity.effect_changes.Items[0].version_group.url);
+        for var effect_entries in effect_changes.effect_entries do
+        begin
+          Assert.IsNotEmpty(effect_entries.language.name);
+          Assert.IsNotEmpty(effect_entries.language.url);
+        end;
+        Assert.IsNotEmpty(effect_changes.version_group.name);
+        Assert.IsNotEmpty(effect_changes.version_group.url);
       end;
       // Node Flavor Text Entries
-      if LMoveEntity.flavor_text_entries.Count > 0 then
+      for var flavor_text_entries in LMoveEntity.flavor_text_entries do
       begin
-        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].flavor_text);
-        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveEntity.flavor_text_entries.Items[0].language.url);
+        Assert.IsNotEmpty(flavor_text_entries.flavor_text);
+        Assert.IsNotEmpty(flavor_text_entries.language.name);
+        Assert.IsNotEmpty(flavor_text_entries.language.url);
       end;
       // Node Generation
       Assert.IsNotEmpty(LMoveEntity.generation.name);
@@ -99,17 +101,17 @@ begin
       //
       Assert.IsNotEmpty(LMoveEntity.id);
       // Node Learned by Pokemon
-      if LMoveEntity.learned_by_pokemon.Count > 0 then
+      for var learned_by_pokemon in LMoveEntity.learned_by_pokemon do
       begin
-        Assert.IsNotEmpty(LMoveEntity.learned_by_pokemon.Items[0].name);
-        Assert.IsNotEmpty(LMoveEntity.learned_by_pokemon.Items[0].url);
+        Assert.IsNotEmpty(learned_by_pokemon.name);
+        Assert.IsNotEmpty(learned_by_pokemon.url);
       end;
       // Node Machines
-      if LMoveEntity.machines.Count > 0 then
+      for var machines in LMoveEntity.machines do
       begin
-        Assert.IsNotEmpty(LMoveEntity.machines.Items[0].Machine.url);
-        Assert.IsNotEmpty(LMoveEntity.machines.Items[0].version_group.name);
-        Assert.IsNotEmpty(LMoveEntity.machines.Items[0].version_group.url);
+        Assert.IsNotEmpty(machines.Machine.url);
+        Assert.IsNotEmpty(machines.version_group.name);
+        Assert.IsNotEmpty(machines.version_group.url);
       end;
       // Node Meta
       Assert.IsNotEmpty(LMoveEntity.meta.ailment.name);
@@ -119,27 +121,27 @@ begin
       Assert.IsNotEmpty(LMoveEntity.meta.category.url);
       Assert.IsNotEmpty(LMoveEntity.meta.stat_chance);
       // Node Names
-      if LMoveEntity.names.Count > 0 then
+      for var names in LMoveEntity.names do
       begin
-        Assert.IsNotEmpty(LMoveEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       // Node Past Values
       // node can contain nullable integer values
-      if LMoveEntity.past_values.Count > 0 then
+      for var past_values in LMoveEntity.past_values do
       begin
-        Assert.IsNotEmpty(LMoveEntity.past_values.Items[0].accuracy);
-        Assert.IsNotEmpty(LMoveEntity.past_values.Items[0].effect_chance);
-        Assert.IsNotEmpty(LMoveEntity.past_values.Items[0].power);
-        Assert.IsNotEmpty(LMoveEntity.past_values.Items[0].pp);
+        Assert.IsNotEmpty(past_values.accuracy);
+        Assert.IsNotEmpty(past_values.effect_chance);
+        Assert.IsNotEmpty(past_values.power);
+        Assert.IsNotEmpty(past_values.pp);
       end;
       // Node Stat Changes
-      if LMoveEntity.stat_changes.Count > 0 then
+      for var stat_changes in LMoveEntity.stat_changes do
       begin
-        Assert.IsNotEmpty(LMoveEntity.stat_changes.Items[0].change);
-        Assert.IsNotEmpty(LMoveEntity.stat_changes.Items[0].stat.name);
-        Assert.IsNotEmpty(LMoveEntity.stat_changes.Items[0].stat.url);
+        Assert.IsNotEmpty(stat_changes.change);
+        Assert.IsNotEmpty(stat_changes.stat.name);
+        Assert.IsNotEmpty(stat_changes.stat.url);
       end;
       Assert.IsNotEmpty(LMoveEntity.super_contest_effect.url);
       Assert.IsNotEmpty(LMoveEntity.target.name);

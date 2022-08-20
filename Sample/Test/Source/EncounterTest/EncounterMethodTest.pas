@@ -53,9 +53,12 @@ begin
       // Assertions
       Assert.IsNotEmpty(LEncounterMethodEntity.id);
       Assert.IsNotEmpty(LEncounterMethodEntity.name);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEncounterMethodEntity.names.Items[LEncounterMethodEntity.names.Count - 1].name);
+      for var names in LEncounterMethodEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Assert.IsNotEmpty(LEncounterMethodEntity.order);
       Write('.');
     finally

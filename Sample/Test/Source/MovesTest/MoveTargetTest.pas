@@ -53,25 +53,25 @@ begin
       // Assertions
       Assert.IsNotEmpty(LMoveTargetEntity.name);
       // Node Descriptions
-      if LMoveTargetEntity.descriptions.Count > 0 then
+      for var descriptions in LMoveTargetEntity.descriptions do
       begin
-        Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveTargetEntity.descriptions.Items[0].language.url);
+        Assert.IsNotEmpty(descriptions.description);
+        Assert.IsNotEmpty(descriptions.language.name);
+        Assert.IsNotEmpty(descriptions.language.url);
       end;
       // Node Moves
-      if LMoveTargetEntity.moves.Count > 0 then
+      for var moves in LMoveTargetEntity.moves do
       begin
-        Assert.IsNotEmpty(LMoveTargetEntity.moves.Items[0].name);
-        Assert.IsNotEmpty(LMoveTargetEntity.moves.Items[0].url);
+        Assert.IsNotEmpty(moves.name);
+        Assert.IsNotEmpty(moves.url);
       end;
       Assert.IsNotEmpty(LMoveTargetEntity.name);
       // Node Names
-      if LMoveTargetEntity.names.Count > 0 then
+      for var names in LMoveTargetEntity.names do
       begin
-        Assert.IsNotEmpty(LMoveTargetEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveTargetEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveTargetEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       Write('.');
     finally

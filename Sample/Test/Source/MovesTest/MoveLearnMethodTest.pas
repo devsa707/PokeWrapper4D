@@ -54,24 +54,24 @@ begin
       Assert.IsNotEmpty(LMoveLearnMethodEntity.id);
       Assert.IsNotEmpty(LMoveLearnMethodEntity.name);
       // Node Descriptions
-      if LMoveLearnMethodEntity.descriptions.Count > 0 then
+      for var descriptions in LMoveLearnMethodEntity.descriptions do
       begin
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.descriptions.Items[0].language.url);
+        Assert.IsNotEmpty(descriptions.description);
+        Assert.IsNotEmpty(descriptions.language.name);
+        Assert.IsNotEmpty(descriptions.language.url);
       end;
       // Node Names
-      if LMoveLearnMethodEntity.names.Count > 0 then
+      for var names in LMoveLearnMethodEntity.names do
       begin
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.names.Items[0].name);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.names.Items[0].language.url);
+        Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
       end;
       // Node Names
-      if LMoveLearnMethodEntity.version_groups.Count > 0 then
+      for var version_groups in LMoveLearnMethodEntity.version_groups do
       begin
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.version_groups.Items[0].name);
-        Assert.IsNotEmpty(LMoveLearnMethodEntity.version_groups.Items[0].url);
+        Assert.IsNotEmpty(version_groups.name);
+        Assert.IsNotEmpty(version_groups.url);
       end;
       Assert.IsNotEmpty(LMoveLearnMethodEntity.name);
       Write('.');

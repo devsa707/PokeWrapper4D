@@ -53,17 +53,17 @@ begin
       // Assertions
       Assert.IsNotEmpty(LMoveCategoryEntity.id);
       // Node Descriptions
-      if LMoveCategoryEntity.descriptions.Count > 0 then
+      for var descriptions in LMoveCategoryEntity.descriptions do
       begin
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].description);
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveCategoryEntity.descriptions.Items[0].language.url);
+        Assert.IsNotEmpty(descriptions.description);
+        Assert.IsNotEmpty(descriptions.language.name);
+        Assert.IsNotEmpty(descriptions.language.url);
       end;
       // Node Moves
-      if LMoveCategoryEntity.moves.Count > 0 then
+      for var moves in LMoveCategoryEntity.moves do
       begin
-        Assert.IsNotEmpty(LMoveCategoryEntity.moves.Items[0].name);
-        Assert.IsNotEmpty(LMoveCategoryEntity.moves.Items[0].url);
+        Assert.IsNotEmpty(moves.name);
+        Assert.IsNotEmpty(moves.url);
       end;
       Assert.IsNotEmpty(LMoveCategoryEntity.name);
       Write('.');

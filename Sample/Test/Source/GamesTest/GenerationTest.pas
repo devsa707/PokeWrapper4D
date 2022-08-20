@@ -52,33 +52,39 @@ begin
       FPokeWrapper.GetAsEntity(LGenerationEntity, I);
       // Assertions
       // node abilities moves
-      if LGenerationEntity.abilities.Count <> 0 then
+      for var abilities in LGenerationEntity.abilities do
       begin
-        Assert.IsNotEmpty(LGenerationEntity.abilities.Items[LGenerationEntity.abilities.Count - 1].name);
-        Assert.IsNotEmpty(LGenerationEntity.abilities.Items[LGenerationEntity.abilities.Count - 1].url);
+        Assert.IsNotEmpty(abilities.name);
+        Assert.IsNotEmpty(abilities.url);
       end;
       Assert.IsNotEmpty(LGenerationEntity.id);
       Assert.IsNotEmpty(LGenerationEntity.main_region.name);
       Assert.IsNotEmpty(LGenerationEntity.main_region.url);
       // node nullable moves
-      if LGenerationEntity.moves.Count <> 0 then
+      for var moves in LGenerationEntity.moves do
       begin
-        Assert.IsNotEmpty(LGenerationEntity.moves.Items[LGenerationEntity.moves.Count - 1].name);
-        Assert.IsNotEmpty(LGenerationEntity.moves.Items[LGenerationEntity.moves.Count - 1].url);
+        Assert.IsNotEmpty(moves.name);
+        Assert.IsNotEmpty(moves.url);
       end;
       Assert.IsNotEmpty(LGenerationEntity.name);
       // node language
-      Assert.IsNotEmpty(LGenerationEntity.names.Items[LGenerationEntity.names.Count - 1].name);
-      Assert.IsNotEmpty(LGenerationEntity.names.Items[LGenerationEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LGenerationEntity.names.Items[LGenerationEntity.names.Count - 1].language.url);
-      // node pokemon_species
-      Assert.IsNotEmpty(LGenerationEntity.pokemon_species.Items[LGenerationEntity.pokemon_species.Count - 1].name);
-      Assert.IsNotEmpty(LGenerationEntity.pokemon_species.Items[LGenerationEntity.pokemon_species.Count - 1].url);
-      // node nullable types
-      if LGenerationEntity.Types.Count <> 0 then
+      for var names in LGenerationEntity.names do
       begin
-        Assert.IsNotEmpty(LGenerationEntity.Types.Items[LGenerationEntity.Types.Count - 1].name);
-        Assert.IsNotEmpty(LGenerationEntity.Types.Items[LGenerationEntity.Types.Count - 1].url);
+        Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+      end;
+      // node pokemon_species
+      for var pokemon_species in LGenerationEntity.pokemon_species do
+      begin
+        Assert.IsNotEmpty(pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_species.url);
+      end;
+      // node nullable types
+      for var Types in LGenerationEntity.Types do
+      begin
+        Assert.IsNotEmpty(Types.name);
+        Assert.IsNotEmpty(Types.url);
       end;
       Write('.');
     finally

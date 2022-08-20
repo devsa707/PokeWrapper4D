@@ -43,7 +43,7 @@ procedure TEvolutionChainTest.TestEntity;
 var
   LEvolutionChainEntity: TEvolutionChainEntity;
 begin
-  Write('Testing TEncounter.encounter_method .');
+  Write('Testing evolution_chain .');
   for var I: integer := 1 to FList - 1 do
   begin
     LEvolutionChainEntity := nil;
@@ -80,7 +80,7 @@ var
 begin
   LPokeListEntity := nil;
   try
-    Write('Testing List of TEncounter.encounter_method...  ');
+    Write('Testing List of evolution_chain...  ');
     LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     if LPokeListEntity.Count < 100 then

@@ -52,80 +52,86 @@ begin
       TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity, I);
       // Assertions
       // Node Abilities
-      if LPokemonEntity.abilities.Count > 0 then
+      for var abilities in LPokemonEntity.abilities do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.abilities.Items[0].ability.name);
-        Assert.IsNotEmpty(LPokemonEntity.abilities.Items[0].ability.url);
-        Assert.IsNotEmpty(LPokemonEntity.abilities.Items[0].is_hidden);
-        Assert.IsNotEmpty(LPokemonEntity.abilities.Items[0].slot);
+        Assert.IsNotEmpty(abilities.ability.name);
+        Assert.IsNotEmpty(abilities.ability.url);
+        Assert.IsNotEmpty(abilities.is_hidden);
+        Assert.IsNotEmpty(abilities.slot);
       end;
       //
       Assert.IsNotEmpty(LPokemonEntity.base_experience);
       // Node Forms
-      if LPokemonEntity.forms.Count > 0 then
+      for var forms in LPokemonEntity.forms do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.forms.Items[0].name);
-        Assert.IsNotEmpty(LPokemonEntity.forms.Items[0].url);
+        Assert.IsNotEmpty(forms.name);
+        Assert.IsNotEmpty(forms.url);
       end;
       // Node Game Indices
-      if LPokemonEntity.game_indices.Count > 0 then
+      for var game_indices in LPokemonEntity.game_indices do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.game_indices.Items[0].game_index);
-        Assert.IsNotEmpty(LPokemonEntity.game_indices.Items[0].version.name);
-        Assert.IsNotEmpty(LPokemonEntity.game_indices.Items[0].version.url);
+        Assert.IsNotEmpty(game_indices.game_index);
+        Assert.IsNotEmpty(game_indices.version.name);
+        Assert.IsNotEmpty(game_indices.version.url);
       end;
       //
       Assert.IsNotEmpty(LPokemonEntity.height);
       // Node Held Items
-      if LPokemonEntity.held_items.Count > 0 then
+      for var held_items in LPokemonEntity.held_items do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].item.name);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].item.url);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].version.name);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].version.url);
-        Assert.IsNotEmpty(LPokemonEntity.held_items.Items[0].version_details.Items[0].rarity);
+        Assert.IsNotEmpty(held_items.item.name);
+        Assert.IsNotEmpty(held_items.item.url);
+        for var version_details in held_items.version_details do
+        begin
+          Assert.IsNotEmpty(version_details.version.name);
+          Assert.IsNotEmpty(version_details.version.url);
+          Assert.IsNotEmpty(version_details.rarity);
+        end;
       end;
       // Node Held Items
-      if LPokemonEntity.moves.Count > 0 then
+      for var moves in LPokemonEntity.moves do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].move.name);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].move.url);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].version_group_details.Items[0].level_learned_at);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].version_group_details.Items[0].move_learn_method.name);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].version_group_details.Items[0].move_learn_method.url);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].version_group_details.Items[0].version_group.name);
-        Assert.IsNotEmpty(LPokemonEntity.moves.Items[0].version_group_details.Items[0].version_group.url);
+        Assert.IsNotEmpty(moves.move.name);
+        Assert.IsNotEmpty(moves.move.url);
+        for var version_group_details in moves.version_group_details do
+        begin
+          Assert.IsNotEmpty(version_group_details.level_learned_at);
+          Assert.IsNotEmpty(version_group_details.move_learn_method.name);
+          Assert.IsNotEmpty(version_group_details.move_learn_method.url);
+          Assert.IsNotEmpty(version_group_details.version_group.name);
+          Assert.IsNotEmpty(version_group_details.version_group.url);
+        end;
       end;
       //
       Assert.IsNotEmpty(LPokemonEntity.location_area_encounters);
       Assert.IsNotEmpty(LPokemonEntity.name);
       Assert.IsNotEmpty(LPokemonEntity.order);
       // Node Past Types
-      if LPokemonEntity.past_types.Count > 0 then
+      for var past_types in LPokemonEntity.past_types do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.past_types.Items[0].Generation.name);
-        Assert.IsNotEmpty(LPokemonEntity.past_types.Items[0].Generation.url);
-        Assert.IsNotEmpty(LPokemonEntity.past_types.Items[0].Types.Items[0].slot);
-        Assert.IsNotEmpty(LPokemonEntity.past_types.Items[0].Types.Items[0].type_.name);
-        Assert.IsNotEmpty(LPokemonEntity.past_types.Items[0].Types.Items[0].type_.url);
+        Assert.IsNotEmpty(past_types.Generation.name);
+        Assert.IsNotEmpty(past_types.Generation.url);
+        Assert.IsNotEmpty(past_types.Types.Items[0].slot);
+        Assert.IsNotEmpty(past_types.Types.Items[0].type_.name);
+        Assert.IsNotEmpty(past_types.Types.Items[0].type_.url);
       end;
       // Node Species
       Assert.IsNotEmpty(LPokemonEntity.species.name);
       Assert.IsNotEmpty(LPokemonEntity.species.url);
       // Node Stats
-      if LPokemonEntity.stats.Count > 0 then
+      for var stats in LPokemonEntity.stats do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.stats.Items[0].base_stat);
-        Assert.IsNotEmpty(LPokemonEntity.stats.Items[0].effort);
-        Assert.IsNotEmpty(LPokemonEntity.stats.Items[0].stat.name);
-        Assert.IsNotEmpty(LPokemonEntity.stats.Items[0].stat.url);
+        Assert.IsNotEmpty(stats.base_stat);
+        Assert.IsNotEmpty(stats.effort);
+        Assert.IsNotEmpty(stats.stat.name);
+        Assert.IsNotEmpty(stats.stat.url);
       end;
       // Node Types
-      if LPokemonEntity.Types.Count > 0 then
+      for var Types in LPokemonEntity.Types do
       begin
-        Assert.IsNotEmpty(LPokemonEntity.Types.Items[0].slot);
-        Assert.IsNotEmpty(LPokemonEntity.Types.Items[0].type_.name);
-        Assert.IsNotEmpty(LPokemonEntity.Types.Items[0].type_.url);
+        Assert.IsNotEmpty(Types.slot);
+        Assert.IsNotEmpty(Types.type_.name);
+        Assert.IsNotEmpty(Types.type_.url);
       end;
       // Node Sprites
       Assert.IsNotEmpty(LPokemonEntity.Sprites.other.official_artwork.front_default);

@@ -43,7 +43,7 @@ procedure TPokemonFormsTest.TestEntity;
 var
   LPokemonFormEntity: TPokemonFormEntity;
 begin
-  Write('Testing TPokemon.pokemon_form .');
+  Write('Testing pokemon_form .');
   for var I: integer := 1 to 10 do
   begin
     LPokemonFormEntity := nil;
@@ -54,18 +54,18 @@ begin
       Assert.IsNotEmpty(LPokemonFormEntity.id);
       Assert.IsNotEmpty(LPokemonFormEntity.name);
       // Node Form Names
-      if LPokemonFormEntity.form_names.Count > 0 then
+      for var form_names in LPokemonFormEntity.form_names do
       begin
-        Assert.IsNotEmpty(LPokemonFormEntity.form_names.Items[0].name);
-        Assert.IsNotEmpty(LPokemonFormEntity.form_names.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonFormEntity.form_names.Items[0].language.url);
+        Assert.IsNotEmpty(form_names.name);
+        Assert.IsNotEmpty(form_names.language.name);
+        Assert.IsNotEmpty(form_names.language.url);
       end;
       // Node Names
-      if LPokemonFormEntity.names.Count > 0 then
+      for var names in LPokemonFormEntity.names do
       begin
-        Assert.IsNotEmpty(LPokemonFormEntity.names.Items[0].name);
-        Assert.IsNotEmpty(LPokemonFormEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonFormEntity.names.Items[0].language.url);
+        Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
       end;
       Write('.');
     finally
@@ -95,7 +95,7 @@ var
 begin
   LPokeListEntity := nil;
   try
-    Write('Testing List of TPokemon.pokemon_form...  ');
+    Write('Testing List of pokemon_form...  ');
     LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

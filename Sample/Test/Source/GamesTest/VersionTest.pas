@@ -57,9 +57,12 @@ begin
         Assert.IsNotEmpty(LVersionEntity.id);
         Assert.IsNotEmpty(LVersionEntity.name);
         // node Language
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].language.name);
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].language.url);
-        Assert.IsNotEmpty(LVersionEntity.names.Items[LVersionEntity.names.Count - 1].name);
+        for var names in LVersionEntity.names do
+        begin
+          Assert.IsNotEmpty(names.language.name);
+          Assert.IsNotEmpty(names.language.url);
+          Assert.IsNotEmpty(names.name);
+        end;
         // node version_group
         Assert.IsNotEmpty(LVersionEntity.version_group.name);
         Assert.IsNotEmpty(LVersionEntity.version_group.url);

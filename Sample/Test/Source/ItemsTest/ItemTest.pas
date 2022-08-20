@@ -52,10 +52,10 @@ begin
       FPokeWrapper.GetAsEntity(LItemEntity, I);
       // Assertions
       // node Nullable Attributes
-      if LItemEntity.attributes.Count > 0 then
+      for var attributes in LItemEntity.attributes do
       begin
-        Assert.IsNotEmpty(LItemEntity.attributes.Items[LItemEntity.attributes.Count - 1].name);
-        Assert.IsNotEmpty(LItemEntity.attributes.Items[LItemEntity.attributes.Count - 1].url);
+        Assert.IsNotEmpty(attributes.name);
+        Assert.IsNotEmpty(attributes.url);
       end;
       // node Category
       Assert.IsNotEmpty(LItemEntity.category.name);
@@ -66,29 +66,41 @@ begin
       // Effect can be null https://pokeapi.co/api/v2/item/432
       // Assert.IsNotEmpty(LItemEntity.effect_entries.Items
       // [LItemEntity.effect_entries.Count - 1].effect);
-      Assert.IsNotEmpty(LItemEntity.effect_entries.Items[LItemEntity.effect_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemEntity.effect_entries.Items[LItemEntity.effect_entries.Count - 1].language.url);
+      for var effect_entries in LItemEntity.effect_entries do
+      begin
+        Assert.IsNotEmpty(effect_entries.language.name);
+        Assert.IsNotEmpty(effect_entries.language.url);
+      end;
       // ShortEffect can result null
       // Assert.IsNotEmpty(LItemEntity.effect_entries.Items
       // [LItemEntity.effect_entries.Count - 1].short_effect);
       // node Game Indices
-      Assert.IsNotEmpty(LItemEntity.game_indices.Items[LItemEntity.game_indices.Count - 1].game_index);
-      Assert.IsNotEmpty(LItemEntity.game_indices.Items[LItemEntity.game_indices.Count - 1].generation.name);
-      Assert.IsNotEmpty(LItemEntity.game_indices.Items[LItemEntity.game_indices.Count - 1].generation.url);
-      // node Nullable Held By Pokemon
-      if LItemEntity.held_by_pokemon.Count > 0 then
+      for var game_indices in LItemEntity.game_indices do
       begin
-        Assert.IsNotEmpty(LItemEntity.held_by_pokemon.Items[LItemEntity.held_by_pokemon.Count - 1].pokemon.name);
-        Assert.IsNotEmpty(LItemEntity.held_by_pokemon.Items[LItemEntity.held_by_pokemon.Count - 1].pokemon.url);
-        Assert.IsNotEmpty(LItemEntity.held_by_pokemon.Items[LItemEntity.held_by_pokemon.Count - 1].version_details.Items[1].rarity);
-        Assert.IsNotEmpty(LItemEntity.held_by_pokemon.Items[LItemEntity.held_by_pokemon.Count - 1].version_details.Items[1].version.name);
-        Assert.IsNotEmpty(LItemEntity.held_by_pokemon.Items[LItemEntity.held_by_pokemon.Count - 1].version_details.Items[1].version.url);
+        Assert.IsNotEmpty(game_indices.game_index);
+        Assert.IsNotEmpty(game_indices.generation.name);
+        Assert.IsNotEmpty(game_indices.generation.url);
+      end;
+      // node Nullable Held By Pokemon
+      for var held_by_pokemon in LItemEntity.held_by_pokemon do
+      begin
+        Assert.IsNotEmpty(held_by_pokemon.pokemon.name);
+        Assert.IsNotEmpty(held_by_pokemon.pokemon.url);
+        for var version_details in held_by_pokemon.version_details do
+        begin
+          Assert.IsNotEmpty(version_details.rarity);
+          Assert.IsNotEmpty(version_details.version.name);
+          Assert.IsNotEmpty(version_details.version.url);
+        end;
       end;
       Assert.IsNotEmpty(LItemEntity.id);
       // node Languages
-      Assert.IsNotEmpty(LItemEntity.names.Items[LItemEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemEntity.names.Items[LItemEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LItemEntity.names.Items[LItemEntity.names.Count - 1].name);
+      for var names in LItemEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       // node sprites
       Assert.IsNotEmpty(LItemEntity.sprites.default);
       Write('.');

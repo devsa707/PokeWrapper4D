@@ -54,17 +54,17 @@ begin
       Assert.IsNotEmpty(LGenderEntity.id);
       Assert.IsNotEmpty(LGenderEntity.name);
       // Node Names
-      if LGenderEntity.pokemon_species_details.Count > 0 then
+      for var pokemon_species_details in LGenderEntity.pokemon_species_details do
       begin
-        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].pokemon_species.name);
-        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].pokemon_species.url);
-        Assert.IsNotEmpty(LGenderEntity.pokemon_species_details.Items[0].rate);
+        Assert.IsNotEmpty(pokemon_species_details.pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_species_details.pokemon_species.url);
+        Assert.IsNotEmpty(pokemon_species_details.rate);
       end;
       // Node Pokemon Species
-      if LGenderEntity.required_for_evolution.Count > 0 then
+      for var required_for_evolution in LGenderEntity.required_for_evolution do
       begin
-        Assert.IsNotEmpty(LGenderEntity.required_for_evolution.Items[0].name);
-        Assert.IsNotEmpty(LGenderEntity.required_for_evolution.Items[0].url);
+        Assert.IsNotEmpty(required_for_evolution.name);
+        Assert.IsNotEmpty(required_for_evolution.url);
       end;
       Write('.');
     finally

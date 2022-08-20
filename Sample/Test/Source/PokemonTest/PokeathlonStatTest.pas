@@ -53,28 +53,28 @@ begin
       // Assertions
       Assert.IsNotEmpty(LPokeathlonStatEntity.id);
       // Node Affecting Natures - Decrease
-      if LPokeathlonStatEntity.affecting_natures.decrease.Count > 0 then
+      for var decrease in LPokeathlonStatEntity.affecting_natures.decrease do
       begin
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].max_change);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].nature.name);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.decrease.Items[0].nature.url);
+        Assert.IsNotEmpty(decrease.max_change);
+        Assert.IsNotEmpty(decrease.nature.name);
+        Assert.IsNotEmpty(decrease.nature.url);
       end;
       // Node Affecting Natures - Increase
-      if LPokeathlonStatEntity.affecting_natures.increase.Count > 0 then
+      for var increase in LPokeathlonStatEntity.affecting_natures.increase do
       begin
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].max_change);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].nature.name);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.affecting_natures.increase.Items[0].nature.url);
+        Assert.IsNotEmpty(increase.max_change);
+        Assert.IsNotEmpty(increase.nature.name);
+        Assert.IsNotEmpty(increase.nature.url);
       end;
       //
       Assert.IsNotEmpty(LPokeathlonStatEntity.id);
       Assert.IsNotEmpty(LPokeathlonStatEntity.name);
       // Node Names
-      if LPokeathlonStatEntity.names.Count > 0 then
+      for var names in LPokeathlonStatEntity.names do
       begin
-        Assert.IsNotEmpty(LPokeathlonStatEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LPokeathlonStatEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       Write('.');
     finally

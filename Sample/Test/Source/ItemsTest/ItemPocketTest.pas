@@ -52,15 +52,21 @@ begin
       FPokeWrapper.GetAsEntity(LItemPocketEntity, I);
       // Assertions
       // node Effect Entries
-      Assert.IsNotEmpty(LItemPocketEntity.categories.Items[LItemPocketEntity.categories.Count - 1].name);
-      Assert.IsNotEmpty(LItemPocketEntity.categories.Items[LItemPocketEntity.categories.Count - 1].url);
+      for var categories in LItemPocketEntity.categories do
+      begin
+        Assert.IsNotEmpty(categories.name);
+        Assert.IsNotEmpty(categories.url);
+      end;
       //
       Assert.IsNotEmpty(LItemPocketEntity.id);
       Assert.IsNotEmpty(LItemPocketEntity.name);
       // node Items
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LItemPocketEntity.names.Items[LItemPocketEntity.names.Count - 1].name);
+      for var names in LItemPocketEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Write('.');
     finally
       LItemPocketEntity.Free;

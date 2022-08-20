@@ -52,22 +52,28 @@ begin
       FPokeWrapper.GetAsEntity(LLocationEntity, I);
       // Assertions
       // node Nullable Areas
-      if LLocationEntity.areas.Count > 0 then
+      for var areas in LLocationEntity.areas do
       begin
-        Assert.IsNotEmpty(LLocationEntity.areas.Items[LLocationEntity.areas.Count - 1].name);
-        Assert.IsNotEmpty(LLocationEntity.areas.Items[LLocationEntity.areas.Count - 1].url);
+        Assert.IsNotEmpty(areas.name);
+        Assert.IsNotEmpty(areas.url);
       end;
       // node Game Indices
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].game_index);
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].generation.name);
-      Assert.IsNotEmpty(LLocationEntity.game_indices.Items[LLocationEntity.game_indices.Count - 1].generation.url);
+      for var game_indices in LLocationEntity.game_indices do
+      begin
+        Assert.IsNotEmpty(game_indices.game_index);
+        Assert.IsNotEmpty(game_indices.generation.name);
+        Assert.IsNotEmpty(game_indices.generation.url);
+      end;
       //
       Assert.IsNotEmpty(LLocationEntity.id);
       Assert.IsNotEmpty(LLocationEntity.name);
       // node Languages
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LLocationEntity.names.Items[LLocationEntity.names.Count - 1].name);
+      for var names in LLocationEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Write('.');
     finally
       LLocationEntity.Free;

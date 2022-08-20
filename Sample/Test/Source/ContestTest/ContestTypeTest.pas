@@ -55,10 +55,13 @@ begin
       Assert.IsNotEmpty(LContestTypeEntity.berry_flavor.url);
       Assert.IsNotEmpty(LContestTypeEntity.id);
       Assert.IsNotEmpty(LContestTypeEntity.name);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].color);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LContestTypeEntity.names.Items[LContestTypeEntity.names.Count - 1].name);
+      for var names in LContestTypeEntity.names do
+      begin
+        Assert.IsNotEmpty(names.color);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Write('.');
     finally
       LContestTypeEntity.Free;

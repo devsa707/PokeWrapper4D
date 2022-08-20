@@ -43,7 +43,7 @@ procedure TPokemonSpeciesTest.TestEntity;
 var
   LPokemonSpeciesEntity: TPokemonSpeciesEntity;
 begin
-  Write('Testing TPokemon.pokemon_species .');
+  Write('Testing pokemon_species .');
   for var I: integer := 1 to 10 do
   begin
     LPokemonSpeciesEntity := nil;
@@ -57,35 +57,35 @@ begin
       Assert.IsNotEmpty(LPokemonSpeciesEntity.color.name);
       Assert.IsNotEmpty(LPokemonSpeciesEntity.color.url);
       // Node Egg Groups
-      if LPokemonSpeciesEntity.egg_groups.Count > 0 then
+      for var egg_groups in LPokemonSpeciesEntity.egg_groups do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.egg_groups.Items[0].name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.egg_groups.Items[0].url);
+        Assert.IsNotEmpty(egg_groups.name);
+        Assert.IsNotEmpty(egg_groups.url);
       end;
       // Node Evolution Chain
       Assert.IsNotEmpty(LPokemonSpeciesEntity.evolution_chain.url);
       // Node Flavor Text Entries
-      if LPokemonSpeciesEntity.flavor_text_entries.Count > 0 then
+      for var flavor_text_entries in LPokemonSpeciesEntity.flavor_text_entries do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.flavor_text_entries.Items[0].flavor_text);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.flavor_text_entries.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.flavor_text_entries.Items[0].language.url);
+        Assert.IsNotEmpty(flavor_text_entries.flavor_text);
+        Assert.IsNotEmpty(flavor_text_entries.language.name);
+        Assert.IsNotEmpty(flavor_text_entries.language.url);
       end;
       // Node Form Descriptions
-      if LPokemonSpeciesEntity.form_descriptions.Count > 0 then
+      for var form_descriptions in LPokemonSpeciesEntity.form_descriptions do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.form_descriptions.Items[0].effect);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.form_descriptions.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.form_descriptions.Items[0].language.url);
+        Assert.IsNotEmpty(form_descriptions.effect);
+        Assert.IsNotEmpty(form_descriptions.language.name);
+        Assert.IsNotEmpty(form_descriptions.language.url);
       end;
       Assert.IsNotEmpty(LPokemonSpeciesEntity.forms_switchable);
       Assert.IsNotEmpty(LPokemonSpeciesEntity.gender_rate);
       // Node Genera
-      if LPokemonSpeciesEntity.genera.Count > 0 then
+      for var genera in LPokemonSpeciesEntity.genera do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.genera.Items[0].genus);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.genera.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.genera.Items[0].language.url);
+        Assert.IsNotEmpty(genera.genus);
+        Assert.IsNotEmpty(genera.language.name);
+        Assert.IsNotEmpty(genera.language.url);
       end;
       // Node Pokemon Species
       Assert.IsNotEmpty(LPokemonSpeciesEntity.generation.name);
@@ -105,18 +105,18 @@ begin
       Assert.IsNotEmpty(LPokemonSpeciesEntity.is_mythical);
       Assert.IsNotEmpty(LPokemonSpeciesEntity.name);
       // Node Names
-      if LPokemonSpeciesEntity.names.Count > 0 then
+      for var names in LPokemonSpeciesEntity.names do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.names.Items[0].name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.names.Items[0].language.url);
+        Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
       end;
       // Node Names
-      if LPokemonSpeciesEntity.varieties.Count > 0 then
+      for var varieties in LPokemonSpeciesEntity.varieties do
       begin
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.varieties.Items[0].is_default);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.varieties.Items[0].pokemon.name);
-        Assert.IsNotEmpty(LPokemonSpeciesEntity.varieties.Items[0].pokemon.url);
+        Assert.IsNotEmpty(varieties.is_default);
+        Assert.IsNotEmpty(varieties.pokemon.name);
+        Assert.IsNotEmpty(varieties.pokemon.url);
       end;
       Write('.');
     finally
@@ -146,7 +146,7 @@ var
 begin
   LPokeListEntity := nil;
   try
-    Write('Testing List of TPokemon.pokemon_species...  ');
+    Write('Testing List of pokemon_species...  ');
     LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;

@@ -54,11 +54,11 @@ begin
       Assert.IsNotEmpty(LMoveBattleStyleEntity.id);
       Assert.IsNotEmpty(LMoveBattleStyleEntity.name);
       // Node Names
-      if LMoveBattleStyleEntity.names.Count > 0 then
+      for var names in LMoveBattleStyleEntity.names do
       begin
-        Assert.IsNotEmpty(LMoveBattleStyleEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LMoveBattleStyleEntity.names.Items[0].language.url);
-        Assert.IsNotEmpty(LMoveBattleStyleEntity.names.Items[0].name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
       end;
       Write('.');
     finally

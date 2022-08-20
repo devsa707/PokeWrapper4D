@@ -52,22 +52,18 @@ begin
       FPokeWrapper.GetAsEntity(LLocationAreaEntity, I);
       // Assertions
       // node Nullable Encounter Method Rates
-      if LLocationAreaEntity.encounter_method_rates.Count > 0 then
+      for var encounter_method_rates in LLocationAreaEntity.encounter_method_rates do
       begin
-        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
-          .encounter_method.name);
-        Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
-          .encounter_method.url);
+
+        Assert.IsNotEmpty(encounter_method_rates.encounter_method.name);
+        Assert.IsNotEmpty(encounter_method_rates.encounter_method.url);
 
         // node Version Details of Encounter Method Rate
-        if LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1].version_details.Count > 0 then
+        for var version_details in encounter_method_rates.version_details do
         begin
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
-            .version_details.Items[1].rate);
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
-            .version_details.Items[1].version.name);
-          Assert.IsNotEmpty(LLocationAreaEntity.encounter_method_rates.Items[LLocationAreaEntity.encounter_method_rates.Count - 1]
-            .version_details.Items[1].version.url);
+          Assert.IsNotEmpty(version_details.rate);
+          Assert.IsNotEmpty(version_details.version.name);
+          Assert.IsNotEmpty(version_details.version.url);
         end;
       end;
       Assert.IsNotEmpty(LLocationAreaEntity.game_index);
@@ -78,11 +74,12 @@ begin
       //
       Assert.IsNotEmpty(LLocationAreaEntity.name);
       // Node Languages
-      Assert.IsNotEmpty(LLocationAreaEntity.names.Items[LLocationAreaEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LLocationAreaEntity.names.Items[LLocationAreaEntity.names.Count - 1].language.url);
-      // Name can return null value
-      // Assert.IsNotEmpty(LLocationAreaEntity.names.Items
-      // [LLocationAreaEntity.names.Count - 1].name);
+      for var names in LLocationAreaEntity.names do
+      begin
+        // Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+      end;
       Write('.');
     finally
       LLocationAreaEntity.Free;

@@ -52,20 +52,20 @@ begin
       FPokeWrapper.GetAsEntity(LCharacteristicEntity, I);
       // Assertions
       // Node Description
-      if LCharacteristicEntity.description.Count > 0 then
+      for var description in LCharacteristicEntity.description do
       begin
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].description);
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].language.name);
-        Assert.IsNotEmpty(LCharacteristicEntity.description.Items[0].language.url);
+        Assert.IsNotEmpty(description.description);
+        Assert.IsNotEmpty(description.language.name);
+        Assert.IsNotEmpty(description.language.url);
       end;
       //
       Assert.IsNotEmpty(LCharacteristicEntity.gene_modulo);
       // Node Highest Stat
       Assert.IsNotEmpty(LCharacteristicEntity.highest_stat.name);
       Assert.IsNotEmpty(LCharacteristicEntity.highest_stat.url);
-      if LCharacteristicEntity.possible_values.Count > 0 then
+      for var possible_values in LCharacteristicEntity.possible_values do
       begin
-        Assert.IsNotEmpty(LCharacteristicEntity.possible_values.Items[0]);
+        Assert.IsNotEmpty(possible_values);
       end;
       Write('.');
     finally

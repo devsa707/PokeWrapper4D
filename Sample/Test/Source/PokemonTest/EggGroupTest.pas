@@ -54,14 +54,14 @@ begin
       Assert.IsNotEmpty(LEggGroupEntity.id);
       Assert.IsNotEmpty(LEggGroupEntity.name);
       // Node Names
-      if LEggGroupEntity.names.Count > 0 then
+      for var names in LEggGroupEntity.names do
       begin
         Assert.IsNotEmpty(LEggGroupEntity.names.Items[0].name);
         Assert.IsNotEmpty(LEggGroupEntity.names.Items[0].language.name);
         Assert.IsNotEmpty(LEggGroupEntity.names.Items[0].language.url);
       end;
       // Node Pokemon Species
-      if LEggGroupEntity.pokemon_species.Count > 0 then
+      for var pokemon_species in LEggGroupEntity.pokemon_species do
       begin
         Assert.IsNotEmpty(LEggGroupEntity.pokemon_species.Items[0].name);
         Assert.IsNotEmpty(LEggGroupEntity.pokemon_species.Items[0].url);

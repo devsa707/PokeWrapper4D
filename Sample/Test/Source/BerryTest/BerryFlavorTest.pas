@@ -51,18 +51,22 @@ begin
       LBerryFlavorEntity := TBerryFlavorEntity.Create;
       FPokeWrapper.GetAsEntity(LBerryFlavorEntity, I);
       // Assertions
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Count);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].berry.name);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].berry.url);
-      Assert.IsNotEmpty(LBerryFlavorEntity.berries.Items[LBerryFlavorEntity.berries.Count - 1].potency);
+      for var berries in LBerryFlavorEntity.berries do
+      begin
+        Assert.IsNotEmpty(berries.berry.name);
+        Assert.IsNotEmpty(berries.berry.url);
+        Assert.IsNotEmpty(berries.potency);
+      end;
       Assert.IsNotEmpty(LBerryFlavorEntity.contest_type.name);
       Assert.IsNotEmpty(LBerryFlavorEntity.contest_type.url);
       Assert.IsNotEmpty(LBerryFlavorEntity.id);
       Assert.IsNotEmpty(LBerryFlavorEntity.name);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Count);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LBerryFlavorEntity.names.Items[LBerryFlavorEntity.names.Count - 1].name);
+      for var names in LBerryFlavorEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
       Write('.');
     finally
       LBerryFlavorEntity.Free;

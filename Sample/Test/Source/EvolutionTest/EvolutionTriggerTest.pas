@@ -53,11 +53,17 @@ begin
       // Assertions
       Assert.IsNotEmpty(LEvolutionTriggerEntity.id);
       Assert.IsNotEmpty(LEvolutionTriggerEntity.name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].language.name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].language.url);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.names.Items[LEvolutionTriggerEntity.names.Count - 1].name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items[LEvolutionTriggerEntity.pokemon_species.Count - 1].name);
-      Assert.IsNotEmpty(LEvolutionTriggerEntity.pokemon_species.Items[LEvolutionTriggerEntity.pokemon_species.Count - 1].url);
+      for var names in LEvolutionTriggerEntity.names do
+      begin
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
+        Assert.IsNotEmpty(names.name);
+      end;
+      for var pokemon_species in LEvolutionTriggerEntity.pokemon_species do
+      begin
+        Assert.IsNotEmpty(pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_species.url);
+      end;
       Write('.');
     finally
       LEvolutionTriggerEntity.Free;

@@ -52,12 +52,18 @@ begin
       FPokeWrapper.GetAsEntity(LContestEffectEntity, I);
       // Assertions
       Assert.IsNotEmpty(LContestEffectEntity.appeal);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].effect);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestEffectEntity.effect_entries.Items[LContestEffectEntity.effect_entries.Count - 1].language.url);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].flavor_text);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].language.name);
-      Assert.IsNotEmpty(LContestEffectEntity.flavor_text_entries.Items[LContestEffectEntity.flavor_text_entries.Count - 1].language.url);
+      for var effect_entries in LContestEffectEntity.effect_entries do
+      begin
+        Assert.IsNotEmpty(effect_entries.effect);
+        Assert.IsNotEmpty(effect_entries.language.name);
+        Assert.IsNotEmpty(effect_entries.language.url);
+      end;
+      for var flavor_text_entries in LContestEffectEntity.flavor_text_entries do
+      begin
+        Assert.IsNotEmpty(flavor_text_entries.flavor_text);
+        Assert.IsNotEmpty(flavor_text_entries.language.name);
+        Assert.IsNotEmpty(flavor_text_entries.language.url);
+      end;
       Assert.IsNotEmpty(LContestEffectEntity.id);
       Assert.IsNotEmpty(LContestEffectEntity.jam);
       Write('.');

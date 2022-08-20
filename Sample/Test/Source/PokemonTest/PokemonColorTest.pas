@@ -43,7 +43,7 @@ procedure TPokemonColorTest.TestEntity;
 var
   LPokemonColorEntity: TPokemonColorEntity;
 begin
-  Write('Testing TPokemon.pokemon_color .');
+  Write('Testing pokemon_color .');
   for var I: integer := 1 to FList - 1 do
   begin
     LPokemonColorEntity := nil;
@@ -54,17 +54,17 @@ begin
       Assert.IsNotEmpty(LPokemonColorEntity.id);
       Assert.IsNotEmpty(LPokemonColorEntity.name);
       // Node Names
-      if LPokemonColorEntity.names.Count > 0 then
+      for var names in LPokemonColorEntity.names do
       begin
-        Assert.IsNotEmpty(LPokemonColorEntity.names.Items[0].name);
-        Assert.IsNotEmpty(LPokemonColorEntity.names.Items[0].language.name);
-        Assert.IsNotEmpty(LPokemonColorEntity.names.Items[0].language.url);
+        Assert.IsNotEmpty(names.name);
+        Assert.IsNotEmpty(names.language.name);
+        Assert.IsNotEmpty(names.language.url);
       end;
       // Node Pokemon Species
-      if LPokemonColorEntity.pokemon_species.Count > 0 then
+      for var pokemon_species in LPokemonColorEntity.pokemon_species do
       begin
-        Assert.IsNotEmpty(LPokemonColorEntity.pokemon_species.Items[0].name);
-        Assert.IsNotEmpty(LPokemonColorEntity.pokemon_species.Items[0].url);
+        Assert.IsNotEmpty(pokemon_species.name);
+        Assert.IsNotEmpty(pokemon_species.url);
       end;
       Write('.');
     finally
@@ -94,7 +94,7 @@ var
 begin
   LPokeListEntity := nil;
   try
-    Write('Testing List of TPokemon.pokemon_color...  ');
+    Write('Testing List of pokemon_color...  ');
     LPokeListEntity := FPokeWrapper.GetAsListEntity;
     Assert.IsNotEmpty(LPokeListEntity.Count);
     FList := LPokeListEntity.Count;
