@@ -17,7 +17,6 @@ uses
   PokeFactory in '..\Source\Wrapper\PokeFactory.pas';
 
 var
-  FPokeAPI: IPokeWrapper;
   LPokemonEntity: TPokemonEntity;
 
 begin
@@ -32,8 +31,7 @@ begin
     Writeln('');
 
     // <T> is the header value for search
-    FPokeAPI := TPokeFactory.New(integer(TPokemon.Pokemon));
-    FPokeAPI.GetAsEntity(LPokemonEntity, 'bulbasaur');
+    TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity,'bulbasaur');
     Writeln('');
     Writeln('');
     // Get a list based on its enumerate
@@ -43,7 +41,7 @@ begin
     Writeln(BoolToStr(LPokemonEntity.abilities.Items[0].is_hidden));
     Writeln(LPokemonEntity.abilities.Items[0].slot.ToString);
     Writeln(LPokemonEntity.base_experience.ToString);
-    Writeln(LPokemonEntity.forms.Items[0].name);
+    Writeln(LPokemonEntity.name);
     Writeln(LPokemonEntity.forms.Items[0].url);
     Writeln(LPokemonEntity.game_indices.Items[0].game_index.ToString);
     Writeln(LPokemonEntity.game_indices.Items[0].version.name);
