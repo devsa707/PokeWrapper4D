@@ -200,42 +200,16 @@ begin
   inherited;
 end;
 
-procedure TPokemonStatEntity.TAffectingNatures.SetFdecrease(const Value: TObjectList<TDecrease>);
+procedure TPokemonStatEntity.TAffectingNatures.SetFdecrease(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fdecrease);
   Fdecrease := Value;
 end;
 
-procedure TPokemonStatEntity.TAffectingNatures.SetFincrease(const Value: TObjectList<TIncrease>);
+procedure TPokemonStatEntity.TAffectingNatures.SetFincrease(const Value: TObjectList<TResource>);
 begin
   FreeAndNil(Fincrease);
   Fincrease := Value;
-end;
-
-{ TPokemonStatEntity.TAffectingNatures.TDecrease }
-
-constructor TPokemonStatEntity.TAffectingNatures.TDecrease.Create;
-begin
-  Fmove := TResource.Create;
-end;
-
-destructor TPokemonStatEntity.TAffectingNatures.TDecrease.Destroy;
-begin
-  Fmove.Free;
-  inherited;
-end;
-
-{ TPokemonStatEntity.TAffectingNatures.TIncrease }
-
-constructor TPokemonStatEntity.TAffectingNatures.TIncrease.Create;
-begin
-  Fmove := TResource.Create;
-end;
-
-destructor TPokemonStatEntity.TAffectingNatures.TIncrease.Destroy;
-begin
-  Fmove.Free;
-  inherited;
 end;
 
 end.
