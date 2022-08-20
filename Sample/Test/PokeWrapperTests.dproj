@@ -209,6 +209,8 @@
         <DCCReference Include="Source\PokemonTest\PokemonSpeciesTest.pas"/>
         <DCCReference Include="..\..\Source\Entities\Pokemon\PokemonStat.Entity.pas"/>
         <DCCReference Include="Source\PokemonTest\StatTest.pas"/>
+        <DCCReference Include="..\..\Source\Entities\Pokemon\PokemonType.Entity.pas"/>
+        <DCCReference Include="Source\PokemonTest\TypeTest.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

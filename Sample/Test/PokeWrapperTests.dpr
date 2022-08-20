@@ -121,7 +121,9 @@ uses
   PokemonSpecies.Entity in '..\..\Source\Entities\Pokemon\PokemonSpecies.Entity.pas',
   PokemonSpeciesTest in 'Source\PokemonTest\PokemonSpeciesTest.pas',
   PokemonStat.Entity in '..\..\Source\Entities\Pokemon\PokemonStat.Entity.pas',
-  StatTest in 'Source\PokemonTest\StatTest.pas';
+  StatTest in 'Source\PokemonTest\StatTest.pas',
+  PokemonType.Entity in '..\..\Source\Entities\Pokemon\PokemonType.Entity.pas',
+  TypeTest in 'Source\PokemonTest\TypeTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}

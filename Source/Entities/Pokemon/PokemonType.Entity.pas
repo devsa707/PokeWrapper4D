@@ -60,13 +60,12 @@ type
       end;
     private
       Fgeneration: TResource;
-      Fdamage_relations: TObjectList<TDamageRelations>;
-      procedure SetFdamage_relations(const Value: TObjectList<TDamageRelations>);
+      Fdamage_relations: TPastDamageRelations.TDamageRelations;
     public
       constructor Create; overload;
       destructor Destroy; override;
       property generation: TResource read Fgeneration write Fgeneration;
-      property damage_relations: TObjectList<TDamageRelations> read Fdamage_relations write SetFdamage_relations;
+      property damage_relations: TPastDamageRelations.TDamageRelations read Fdamage_relations write Fdamage_relations;
     end;
 
     TPokemon = class
@@ -265,7 +264,7 @@ end;
 constructor TPokemonTypeEntity.TPastDamageRelations.Create;
 begin
   Fgeneration := TResource.Create;
-  Fdamage_relations := TObjectList<TDamageRelations>.Create;
+  Fdamage_relations := TPastDamageRelations.TDamageRelations.Create;
 end;
 
 destructor TPokemonTypeEntity.TPastDamageRelations.Destroy;
@@ -273,12 +272,6 @@ begin
   Fgeneration.Free;
   Fdamage_relations.Free;
   inherited;
-end;
-
-procedure TPokemonTypeEntity.TPastDamageRelations.SetFdamage_relations(const Value: TObjectList<TDamageRelations>);
-begin
-  FreeAndNil(Fdamage_relations);
-  Fdamage_relations := Value;
 end;
 
 { TPokemonTypeEntity.TPokemon }
