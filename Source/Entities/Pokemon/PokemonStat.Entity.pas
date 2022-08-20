@@ -46,34 +46,16 @@ type
     end;
 
     TAffectingNatures = class
-    type
-      TDecrease = class
-      private
-        Fmove: TResource;
-      public
-        constructor Create; overload;
-        destructor Destroy; override;
-        property move: TResource read Fmove write Fmove;
-      end;
-
-      TIncrease = class
-      private
-        Fmove: TResource;
-      public
-        constructor Create; overload;
-        destructor Destroy; override;
-        property move: TResource read Fmove write Fmove;
-      end;
     private
-      Fdecrease: TObjectList<TDecrease>;
-      Fincrease: TObjectList<TIncrease>;
-      procedure SetFdecrease(const Value: TObjectList<TDecrease>);
-      procedure SetFincrease(const Value: TObjectList<TIncrease>);
+      Fdecrease: TObjectList<TResource>;
+      Fincrease: TObjectList<TResource>;
+      procedure SetFdecrease(const Value: TObjectList<TResource>);
+      procedure SetFincrease(const Value: TObjectList<TResource>);
     public
       constructor Create; overload;
       destructor Destroy; override;
-      property decrease: TObjectList<TDecrease> read Fdecrease write SetFdecrease;
-      property increase: TObjectList<TIncrease> read Fincrease write SetFincrease;
+      property decrease: TObjectList<TResource> read Fdecrease write SetFdecrease;
+      property increase: TObjectList<TResource> read Fincrease write SetFincrease;
     end;
 
     TCharacteristics = class
@@ -88,7 +70,7 @@ type
     Fcharacteristics: TObjectList<TCharacteristics>;
     Fgame_index: integer;
     Fid: integer;
-    Fis_battle_only: integer;
+    Fis_battle_only: boolean;
     Fmove_damage_class: TResource;
     Fname: string;
     Fnames: TObjectList<TNames>;
@@ -103,7 +85,7 @@ type
     property characteristics: TObjectList<TCharacteristics> read Fcharacteristics write SetFcharacteristics;
     property game_index: integer read Fgame_index write Fgame_index;
     property id: integer read Fid write Fid;
-    property is_battle_only: integer read Fis_battle_only write Fis_battle_only;
+    property is_battle_only: boolean read Fis_battle_only write Fis_battle_only;
     property move_damage_class: TResource read Fmove_damage_class write Fmove_damage_class;
     property name: string read Fname write Fname;
     property names: TObjectList<TNames> read Fnames write SetFnames;
@@ -207,8 +189,8 @@ end;
 
 constructor TPokemonStatEntity.TAffectingNatures.Create;
 begin
-  Fdecrease := TObjectList<TDecrease>.Create;
-  Fincrease := TObjectList<TIncrease>.Create;
+  Fdecrease := TObjectList<TResource>.Create;
+  Fincrease := TObjectList<TResource>.Create;
 end;
 
 destructor TPokemonStatEntity.TAffectingNatures.Destroy;
@@ -234,12 +216,12 @@ end;
 
 constructor TPokemonStatEntity.TAffectingNatures.TDecrease.Create;
 begin
-
+  Fmove := TResource.Create;
 end;
 
 destructor TPokemonStatEntity.TAffectingNatures.TDecrease.Destroy;
 begin
-
+  Fmove.Free;
   inherited;
 end;
 
@@ -247,12 +229,12 @@ end;
 
 constructor TPokemonStatEntity.TAffectingNatures.TIncrease.Create;
 begin
-
+  Fmove := TResource.Create;
 end;
 
 destructor TPokemonStatEntity.TAffectingNatures.TIncrease.Destroy;
 begin
-
+  Fmove.Free;
   inherited;
 end;
 

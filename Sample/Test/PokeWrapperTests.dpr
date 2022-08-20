@@ -120,7 +120,8 @@ uses
   PokemonShapeTest in 'Source\PokemonTest\PokemonShapeTest.pas',
   PokemonSpecies.Entity in '..\..\Source\Entities\Pokemon\PokemonSpecies.Entity.pas',
   PokemonSpeciesTest in 'Source\PokemonTest\PokemonSpeciesTest.pas',
-  PokemonStat.Entity in '..\..\Source\Entities\Pokemon\PokemonStat.Entity.pas';
+  PokemonStat.Entity in '..\..\Source\Entities\Pokemon\PokemonStat.Entity.pas',
+  StatTest in 'Source\PokemonTest\StatTest.pas';
 
 {$R *.RES}
 {$IFNDEF TESTINSIGHT}
