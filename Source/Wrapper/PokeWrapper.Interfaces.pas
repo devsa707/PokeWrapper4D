@@ -20,6 +20,7 @@ type
     // Procedure
     procedure GetAsEntity(AObject: TObject; AValue: integer)overload;
     procedure GetAsEntity(AObject: TObject; AValue: string)overload;
+    procedure GetAsEntityFromUrl(AObject: TObject; AURL: string);
   end;
 
 implementation

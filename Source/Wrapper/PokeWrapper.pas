@@ -26,6 +26,7 @@ type
     FMVCRESTClient: IMVCRESTClient;
     FPokeResource: IPokeResource;
     FResource: string;
+    FBaseUrl: string;
     procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
   public
     constructor Create(APokemon: TPokemon); overload;
@@ -36,6 +37,8 @@ type
 
     procedure GetAsEntity(AObject: TObject; AValue: integer)overload;
     procedure GetAsEntity(AObject: TObject; AValue: string)overload;
+    procedure GetAsEntityFromUrl(AObject: TObject; AURL: string);
+
   end;
 
 implementation
@@ -47,7 +50,8 @@ begin
   FPokeResource := TPokeResource.Create;
   FMVCRESTClient := TMVCRESTClient.Create;
   FResource := FPokeResource.GetResourceName(APokemon);
-  FMVCRESTClient.BaseURL('https://pokeapi.co/api/v2/');
+  FBaseUrl := 'https://pokeapi.co/api/v2/';
+  FMVCRESTClient.BaseURL(FBaseUrl);
 end;
 
 function TPokeWrapper.Get(AValue: string): string;
@@ -66,6 +70,21 @@ var
   LMVCRESTResponse: IMVCRESTResponse;
 begin
   LMVCRESTResponse := FMVCRESTClient.Get(Format(FResource, [AValue]));
+  if LMVCRESTResponse.Success then
+  begin
+    JSONResponseToObject(LMVCRESTResponse, AObject);
+  end
+  else
+    raise Exception.Create('Not Found');
+end;
+
+procedure TPokeWrapper.GetAsEntityFromUrl(AObject: TObject; AURL: string);
+var
+  LMVCRESTResponse: IMVCRESTResponse;
+begin
+  FMVCRESTClient.BaseURL(AURL);
+  LMVCRESTResponse := FMVCRESTClient.Get('');
+  FMVCRESTClient.BaseURL(FBaseUrl);
   if LMVCRESTResponse.Success then
   begin
     JSONResponseToObject(LMVCRESTResponse, AObject);
