@@ -9,6 +9,9 @@
         <Projects Include="Test\PokeWrapperTests.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\PokeWrapperMultiDevice.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="PokeWrapperTests:Make">
         <MSBuild Projects="Test\PokeWrapperTests.dproj" Targets="Make"/>
     </Target>
+    <Target Name="PokeWrapperMultiDevice">
+        <MSBuild Projects="Test\PokeWrapperMultiDevice.dproj"/>
+    </Target>
+    <Target Name="PokeWrapperMultiDevice:Clean">
+        <MSBuild Projects="Test\PokeWrapperMultiDevice.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PokeWrapperMultiDevice:Make">
+        <MSBuild Projects="Test\PokeWrapperMultiDevice.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="PokeWrapperConsole;PokeWrapperTests"/>
+        <CallTarget Targets="PokeWrapperConsole;PokeWrapperTests;PokeWrapperMultiDevice"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="PokeWrapperConsole:Clean;PokeWrapperTests:Clean"/>
+        <CallTarget Targets="PokeWrapperConsole:Clean;PokeWrapperTests:Clean;PokeWrapperMultiDevice:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="PokeWrapperConsole:Make;PokeWrapperTests:Make"/>
+        <CallTarget Targets="PokeWrapperConsole:Make;PokeWrapperTests:Make;PokeWrapperMultiDevice:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
