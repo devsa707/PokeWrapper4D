@@ -8,6 +8,12 @@
 
 A Wrapper for Poke API - [pokeapi.co](https://pokeapi.co).
 
+
+
+https://user-images.githubusercontent.com/101226180/192171212-61491eb0-cb6c-4346-8dab-a4778fd1dff5.mp4
+
+
+
 How to use:
 
     
