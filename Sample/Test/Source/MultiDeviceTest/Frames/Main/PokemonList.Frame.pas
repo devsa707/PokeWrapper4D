@@ -3,9 +3,23 @@ unit PokemonList.Frame;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  Skia, FMX.Objects, FMX.Layouts, Skia.FMX, System.StrUtils,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  System.IOUtils,
+  FMX.Types,
+  FMX.Graphics,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  Skia,
+  FMX.Objects,
+  FMX.Layouts,
+  Skia.FMX,
+  System.StrUtils,
   //
   SVG.TypeIcons,
   Pokemon.Types.Constants,
@@ -49,28 +63,28 @@ begin
   inherited Create(AOwner);
   svgType1.Visible := False;
   svgType2.Visible := False;
-  lblName.Text := FirstLetterUpperCase(APokemonEntity.name);
-  lblnumber.Text := Format('#%d', [APokemonEntity.id]);
-  LTypeIcon := TTypeIcon.New;
+  lblName.Text     := FirstLetterUpperCase(APokemonEntity.name);
+  lblnumber.Text   := Format('#%d', [APokemonEntity.id]);
+  LTypeIcon        := TTypeIcon.New;
   DownloadImage(APokemonEntity.sprites.versions.generation_v.black_white.animated.front_default);
   for var I := 0 to APokemonEntity.Types.Count - 1 do
   begin
     case I of
       0:
         begin
-          svgBackground.SVG.OverrideColor := TTypeIcon.New.GetBackGroundColor(APokemonEntity.Types.Items[I].type_.name);
-          lblType1.Text := FirstLetterUpperCase(APokemonEntity.Types.Items[I].type_.name);
-          svgType1.SVG.OverrideColor := LTypeIcon.GetTypeColor(APokemonEntity.Types.Items[I].type_.name);
+          svgBackground.SVG.OverrideColor  := TTypeIcon.New.GetBackGroundColor(APokemonEntity.Types.Items[I].type_.name);
+          lblType1.Text                    := FirstLetterUpperCase(APokemonEntity.Types.Items[I].type_.name);
+          svgType1.SVG.OverrideColor       := LTypeIcon.GetTypeColor(APokemonEntity.Types.Items[I].type_.name);
           lblnumber.TextSettings.FontColor := svgType1.SVG.OverrideColor;
-          svgTypeIcon1.SVG.Source := LTypeIcon.GetTypeIcon(APokemonEntity.Types.Items[I].type_.name);
-          svgType1.Visible := True;
+          svgTypeIcon1.SVG.Source          := LTypeIcon.GetTypeIcon(APokemonEntity.Types.Items[I].type_.name);
+          svgType1.Visible                 := True;
         end;
       1:
         begin
-          lblType2.Text := FirstLetterUpperCase(APokemonEntity.Types.Items[I].type_.name);
+          lblType2.Text              := FirstLetterUpperCase(APokemonEntity.Types.Items[I].type_.name);
           svgType2.SVG.OverrideColor := LTypeIcon.GetTypeColor(APokemonEntity.Types.Items[I].type_.name);
-          svgTypeIcon2.SVG.Source := LTypeIcon.GetTypeIcon(APokemonEntity.Types.Items[I].type_.name);
-          svgType2.Visible := True;
+          svgTypeIcon2.SVG.Source    := LTypeIcon.GetTypeIcon(APokemonEntity.Types.Items[I].type_.name);
+          svgType2.Visible           := True;
         end;
     end;
   end;
@@ -79,22 +93,21 @@ end;
 
 procedure TPokemonListFrame.DownloadImage(AURL: string);
 var
-  LMemoryStream: TMemoryStream;
+  LPath           : string;
   FMVCRESTResponse: IMVCRESTResponse;
-  FMVCRESTClient: IMVCRESTClient;
+  FMVCRESTClient  : IMVCRESTClient;
 begin
-  FMVCRESTClient := TMVCRESTClient.Create;
-  LMemoryStream := TMemoryStream.Create();
-  try
-    FMVCRESTResponse := FMVCRESTClient.Get(AURL);
+  LPath := System.IOUtils.TPath.GetDocumentsPath + PathDelim + System.IOUtils.TPath.GetFileName(AURL);
+  if FileExists(LPath) then
+    aniPokemon.LoadFromFile(LPath)
+  else
+  begin
+    FMVCRESTResponse := TMVCRESTClient.Create.Get(AURL);
     if FMVCRESTResponse.Success then
     begin
-      FMVCRESTResponse.SaveContentToStream(LMemoryStream);
-      LMemoryStream.Position := 0;
-      aniPokemon.LoadFromStream(LMemoryStream);
+      FMVCRESTResponse.SaveContentToFile(LPath);
+      aniPokemon.LoadFromFile(LPath)
     end;
-  finally
-    LMemoryStream.Free;
   end;
 end;
 

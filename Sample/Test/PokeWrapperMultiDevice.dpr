@@ -36,12 +36,15 @@ uses
   MoveTarget.Entity in '..\..\Source\Entities\Moves\MoveTarget.Entity.pas',
   PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
   SVG.TypeIcons in 'Source\MultiDeviceTest\Icons\SVG.TypeIcons.pas',
-  Pokemon.Types.Constants in 'Source\MultiDeviceTest\Icons\Pokemon.Types.Constants.pas';
+  Pokemon.Types.Constants in 'Source\MultiDeviceTest\Icons\Pokemon.Types.Constants.pas',
+  Json.Icons in 'Source\MultiDeviceTest\Icons\Json.Icons.pas';
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
+
 end.
