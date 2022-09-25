@@ -5,10 +5,11 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, Skia, Skia.FMX,
-  FMX.Layouts, FMX.ListBox, PokemonList.Frame, Pokemon.Entity, PokeWrapper.Types, PokeFactory;
+  FMX.Layouts, FMX.ListBox, PokemonList.Frame, Pokemon.Entity, PokeWrapper.Types, PokeFactory,
+  FMX.Controls.Presentation, FMX.Edit;
 
 type
-  TForm1 = class(TForm)
+  TMainForm = class(TForm)
     gridMain: TGridPanelLayout;
     svgLogo: TSkSvg;
     StyleBook1: TStyleBook;
@@ -18,6 +19,7 @@ type
     SkSvg3: TSkSvg;
     framePokemonList: TVertScrollBox;
     SkSvg4: TSkSvg;
+    Edit1: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
   private
@@ -27,18 +29,19 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MainForm: TMainForm;
 
 implementation
 
 {$R *.fmx}
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainForm.FormCreate(Sender: TObject);
 var
   LPokemonListFrame: TPokemonListFrame;
   LPokemonEntity: TPokemonEntity;
 begin
-  for var I := 1 to 25 do
+  framePokemonList.BeginUpdate;
+  for var I := 411 to 450 do
   begin
     LPokemonEntity := TPokemonEntity.Create;
     TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity, I);
@@ -46,9 +49,10 @@ begin
     LPokemonListFrame.Width := framePokemonList.Width;
     framePokemonList.AddObject(LPokemonListFrame);
   end;
+  framePokemonList.EndUpdate;
 end;
 
-procedure TForm1.FormResize(Sender: TObject);
+procedure TMainForm.FormResize(Sender: TObject);
 begin
   if Self.Width > 700 then
   begin

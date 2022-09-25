@@ -3,7 +3,7 @@ program PokeWrapperMultiDevice;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Main.Form in 'Source\MultiDeviceTest\Main.Form.pas' {Form1},
+  Main.Form in 'Source\MultiDeviceTest\Main.Form.pas' {MainForm},
   PokemonList.Frame in 'Source\MultiDeviceTest\Frames\Main\PokemonList.Frame.pas' {PokemonListFrame: TFrame},
   Ability.Entity in '..\..\Source\Entities\Pokemon\Ability.Entity.pas',
   Characteristic.Entity in '..\..\Source\Entities\Pokemon\Characteristic.Entity.pas',
@@ -34,12 +34,14 @@ uses
   MoveDamageClass.Entity in '..\..\Source\Entities\Moves\MoveDamageClass.Entity.pas',
   MoveLearnMethod.Entity in '..\..\Source\Entities\Moves\MoveLearnMethod.Entity.pas',
   MoveTarget.Entity in '..\..\Source\Entities\Moves\MoveTarget.Entity.pas',
-  PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas';
+  PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
+  SVG.TypeIcons in 'Source\MultiDeviceTest\Icons\SVG.TypeIcons.pas',
+  Pokemon.Types.Constants in 'Source\MultiDeviceTest\Icons\Pokemon.Types.Constants.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.

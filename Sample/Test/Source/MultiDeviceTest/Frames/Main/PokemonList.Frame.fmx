@@ -18,14 +18,16 @@ object PokemonListFrame: TPokemonListFrame
       '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
       '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
       'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
-      'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
+      'h="5669px" height="1181px" version="1.0" shape-rendering="geomet' +
       'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
       'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
-      'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
+      'wBox="0 0 566851 118094"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
       'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
       '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
-      'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
-      '19685" ry="29528"/>'#13#10' </g>'#13#10'</svg>'
+      'r"/>'#13#10'  <path fill="#A9ABAE" d="M17714 0l401154 0 147983 59483 0' +
+      ' 40897c0,9742 -7971,17714 -17714,17714l-531423 0c-9743,0 -17714,' +
+      '-7971 -17714,-17714l0 -82666c0,-9743 7971,-17714 17714,-17714z"/' +
+      '>'#13#10' </g>'#13#10'</svg>'
     Svg.WrapMode = Stretch
     object GridMain: TGridPanelLayout
       Align = Client
@@ -38,10 +40,10 @@ object PokemonListFrame: TPokemonListFrame
       TabOrder = 0
       ColumnCollection = <
         item
-          Value = 38.587501204448060000
+          Value = 32.468823744707930000
         end
         item
-          Value = 61.412498795551950000
+          Value = 67.531176255292070000
         end>
       ControlCollection = <
         item
@@ -60,7 +62,7 @@ object PokemonListFrame: TPokemonListFrame
         end>
       object svgPokeballBackGround: TSkSvg
         Align = Client
-        Size.Width = 147.404251098632800000
+        Size.Width = 124.030906677246100000
         Size.Height = 102.000000000000000000
         Size.PlatformDefault = False
         Svg.Source = 
@@ -107,7 +109,7 @@ object PokemonListFrame: TPokemonListFrame
           Margins.Top = 5.000000000000000000
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 137.404251098632800000
+          Size.Width = 114.030906677246100000
           Size.Height = 92.000000000000000000
           Size.PlatformDefault = False
           Data = {
@@ -724,8 +726,12 @@ object PokemonListFrame: TPokemonListFrame
       end
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
-        Size.Width = 234.595748901367200000
-        Size.Height = 102.000000000000000000
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 2.000000000000000000
+        Padding.Bottom = 2.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 257.969085693359400000
+        Size.Height = 97.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         ColumnCollection = <
@@ -740,7 +746,12 @@ object PokemonListFrame: TPokemonListFrame
           end
           item
             Column = 0
-            Control = lblnumber
+            Control = svgType2
+            Row = 2
+          end
+          item
+            Column = 0
+            Control = svgType1
             Row = 1
           end>
         RowCollection = <
@@ -755,8 +766,8 @@ object PokemonListFrame: TPokemonListFrame
           end>
         object lblName: TSkLabel
           Align = Client
-          Size.Width = 234.595748901367200000
-          Size.Height = 30.774600982666020000
+          Size.Width = 247.969085693359400000
+          Size.Height = 25.266040802001950000
           Size.PlatformDefault = False
           StyledSettings = [Style]
           TextSettings.Font.Size = 18.000000000000000000
@@ -765,166 +776,165 @@ object PokemonListFrame: TPokemonListFrame
             item
               Text = 'Bulbasaur'
             end>
-          object SkLabel1: TSkLabel
+        end
+        object svgType2: TSkSvg
+          Align = Left
+          Margins.Left = 2.000000000000000000
+          Margins.Top = 2.000000000000000000
+          Margins.Right = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Position.X = 12.000000000000000000
+          Position.Y = 68.289611816406250000
+          Size.Width = 111.000000000000000000
+          Size.Height = 24.710395812988280000
+          Size.PlatformDefault = False
+          Svg.OverrideColor = claSeagreen
+          Svg.Source = 
+            '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +
+            '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
+            '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
+            'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
+            'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
+            'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
+            'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
+            'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
+            'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
+            '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
+            'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
+            '9449" ry="14173"/>'#13#10' </g>'#13#10'</svg>'
+          Svg.WrapMode = Stretch
+          object lblType2: TSkLabel
             Align = Client
-            Size.Width = 234.595748901367200000
-            Size.Height = 30.774600982666020000
+            Margins.Left = 5.000000000000000000
+            Size.Width = 84.000000000000000000
+            Size.Height = 24.710395812988280000
             Size.PlatformDefault = False
             StyledSettings = [Style]
-            TextSettings.Font.Size = 18.000000000000000000
-            TextSettings.FontColor = claAliceblue
+            TextSettings.Font.Families = 'Myriad Apple'
+            TextSettings.Font.Size = 15.000000000000000000
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Justify
+            TextSettings.Trimming = None
             Words = <
               item
-                Text = 'Bulbasaur'
+                Text = 'Grass'
               end>
           end
+          object svgTypeIcon2: TSkSvg
+            Align = Left
+            Margins.Left = 2.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 2.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Opacity = 0.800000011920929000
+            Position.X = 2.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 18.000000000000000000
+            Size.Height = 18.710395812988280000
+            Size.PlatformDefault = False
+            Svg.Source = 
+              '<svg fill="none" height="512" viewBox="0 0 512 512" width="512" ' +
+              'xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="' +
+              'm97.4121 440.649c-1.7574-1.653-3.4954-3.338-5.2132-5.056-90.6845' +
+              '5-90.684-90.68453-237.713 0-328.397 90.6841-90.6849 379.6401-96.' +
+              '7516 379.6401-96.7516s39.442 334.4646-51.242 425.1486c-80.54 80.' +
+              '54-205.522 89.55-296.005 27.031l72.908-89.471 116.55-25.163-95.1' +
+              '39-9.511 60.462-61.562 68.824-15.077-54.422-16.117 54.422-98.176' +
+              '-77.41 86.828-29.893-42.183 10.523 69.648-53.917 60.782-24.993-7' +
+              '6.9v102.268z" fill="#fff" fill-rule="evenodd"/></svg>'
+          end
         end
-        object lblnumber: TSkLabel
-          Align = Client
-          Size.Width = 234.595748901367200000
-          Size.Height = 36.828907012939450000
+        object svgType1: TSkSvg
+          Align = Left
+          Margins.Left = 2.000000000000000000
+          Margins.Top = 2.000000000000000000
+          Margins.Right = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Position.X = 12.000000000000000000
+          Position.Y = 33.266040802001950000
+          Size.Width = 111.000000000000000000
+          Size.Height = 27.023571014404300000
           Size.PlatformDefault = False
-          StyledSettings = [Style]
-          TextSettings.Font.Size = 18.000000000000000000
-          TextSettings.FontColor = claAliceblue
-          Words = <
-            item
-              Text = '#01'
-            end>
+          Svg.OverrideColor = claSeagreen
+          Svg.Source = 
+            '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +
+            '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
+            '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
+            'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
+            'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
+            'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
+            'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
+            'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
+            'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
+            '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
+            'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
+            '9449" ry="14173"/>'#13#10' </g>'#13#10'</svg>'
+          Svg.WrapMode = Stretch
+          object lblType1: TSkLabel
+            Align = Client
+            Margins.Left = 5.000000000000000000
+            Size.Width = 84.000000000000000000
+            Size.Height = 27.023571014404300000
+            Size.PlatformDefault = False
+            StyledSettings = [Style]
+            TextSettings.Font.Families = 'Myriad Apple'
+            TextSettings.Font.Size = 15.000000000000000000
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Justify
+            TextSettings.Trimming = None
+            Words = <
+              item
+                Text = 'Grass'
+              end>
+          end
+          object svgTypeIcon1: TSkSvg
+            Align = Left
+            Margins.Left = 2.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 2.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Opacity = 0.800000011920929000
+            Position.X = 2.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 18.000000000000000000
+            Size.Height = 21.023571014404300000
+            Size.PlatformDefault = False
+            Svg.Source = 
+              '<svg fill="none" height="512" viewBox="0 0 512 512" width="512" ' +
+              'xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="' +
+              'm97.4121 440.649c-1.7574-1.653-3.4954-3.338-5.2132-5.056-90.6845' +
+              '5-90.684-90.68453-237.713 0-328.397 90.6841-90.6849 379.6401-96.' +
+              '7516 379.6401-96.7516s39.442 334.4646-51.242 425.1486c-80.54 80.' +
+              '54-205.522 89.55-296.005 27.031l72.908-89.471 116.55-25.163-95.1' +
+              '39-9.511 60.462-61.562 68.824-15.077-54.422-16.117 54.422-98.176' +
+              '-77.41 86.828-29.893-42.183 10.523 69.648-53.917 60.782-24.993-7' +
+              '6.9v102.268z" fill="#fff" fill-rule="evenodd"/></svg>'
+          end
         end
       end
     end
     object svgTypeBackground: TSkSvg
       Align = Right
-      Margins.Top = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.X = 392.000000000000000000
-      Position.Y = 10.000000000000000000
+      Position.Y = 5.000000000000000000
       Size.Width = 88.000000000000000000
-      Size.Height = 87.000000000000000000
+      Size.Height = 92.000000000000000000
       Size.PlatformDefault = False
-      object svgType1: TSkSvg
+      object lblnumber: TSkLabel
         Align = Top
-        Margins.Left = 2.000000000000000000
-        Margins.Top = 2.000000000000000000
-        Margins.Right = 2.000000000000000000
-        Margins.Bottom = 2.000000000000000000
-        Position.X = 2.000000000000000000
-        Position.Y = 2.000000000000000000
-        Size.Width = 84.000000000000000000
-        Size.Height = 21.000000000000000000
+        Size.Width = 88.000000000000000000
+        Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        Svg.OverrideColor = claSeagreen
-        Svg.Source = 
-          '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +
-          '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
-          '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
-          'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
-          'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
-          'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
-          'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
-          'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
-          'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
-          '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
-          'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
-          '9449" ry="14173"/>'#13#10' </g>'#13#10'</svg>'
-        object lblType1: TSkLabel
-          Align = Client
-          Size.Width = 84.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Style]
-          TextSettings.Font.Families = 'Myriad Apple'
-          TextSettings.Font.Size = 15.000000000000000000
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Words = <
-            item
-              Text = 'Grass'
-            end>
-        end
-      end
-      object svgType3: TSkSvg
-        Align = Top
-        Margins.Left = 2.000000000000000000
-        Margins.Top = 2.000000000000000000
-        Margins.Right = 2.000000000000000000
-        Margins.Bottom = 2.000000000000000000
-        Position.X = 2.000000000000000000
-        Position.Y = 52.000000000000000000
-        Size.Width = 84.000000000000000000
-        Size.Height = 21.000000000000000000
-        Size.PlatformDefault = False
-        Svg.OverrideColor = claSeagreen
-        Svg.Source = 
-          '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +
-          '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
-          '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
-          'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
-          'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
-          'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
-          'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
-          'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
-          'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
-          '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
-          'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
-          '9449" ry="14173"/>'#13#10' </g>'#13#10'</svg>'
-        object lblType3: TSkLabel
-          Align = Client
-          Size.Width = 84.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Style]
-          TextSettings.Font.Families = 'Myriad Apple'
-          TextSettings.Font.Size = 15.000000000000000000
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Words = <
-            item
-              Text = 'Grass'
-            end>
-        end
-      end
-      object svgType2: TSkSvg
-        Align = Top
-        Margins.Left = 2.000000000000000000
-        Margins.Top = 2.000000000000000000
-        Margins.Right = 2.000000000000000000
-        Margins.Bottom = 2.000000000000000000
-        Position.X = 2.000000000000000000
-        Position.Y = 27.000000000000000000
-        Size.Width = 84.000000000000000000
-        Size.Height = 21.000000000000000000
-        Size.PlatformDefault = False
-        Svg.OverrideColor = claSeagreen
-        Svg.Source = 
-          '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +
-          '/W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-200109' +
-          '04/DTD/svg10.dtd">'#13#10'<!-- Creator: CorelDRAW 2020 (64 Bit) -->'#13#10'<' +
-          'svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" widt' +
-          'h="5906px" height="1772px" version="1.0" shape-rendering="geomet' +
-          'ricPrecision" text-rendering="geometricPrecision" image-renderin' +
-          'g="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"'#13#10'vie' +
-          'wBox="0 0 590551 177165"'#13#10' xmlns:xlink="http://www.w3.org/1999/x' +
-          'link"'#13#10' xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">'#13#10' ' +
-          '<g id="Camada_x0020_1">'#13#10'  <metadata id="CorelCorpID_0Corel-Laye' +
-          'r"/>'#13#10'  <rect fill="#FEFEFE" width="590551" height="177165" rx="' +
-          '9449" ry="14173"/>'#13#10' </g>'#13#10'</svg>'
-        object lblType2: TSkLabel
-          Align = Client
-          Size.Width = 84.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Style]
-          TextSettings.Font.Families = 'Myriad Apple'
-          TextSettings.Font.Size = 15.000000000000000000
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Words = <
-            item
-              Text = 'Grass'
-            end>
-        end
+        StyledSettings = [Style]
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claAliceblue
+        TextSettings.HorzAlign = Trailing
+        Words = <
+          item
+            Text = '#01'
+          end>
       end
     end
   end
