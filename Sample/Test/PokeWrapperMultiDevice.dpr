@@ -37,7 +37,8 @@ uses
   PokeList.Entity in '..\..\Source\Entities\List\PokeList.Entity.pas',
   SVG.TypeIcons in 'Source\MultiDeviceTest\Icons\SVG.TypeIcons.pas',
   Pokemon.Types.Constants in 'Source\MultiDeviceTest\Icons\Pokemon.Types.Constants.pas',
-  Json.Icons in 'Source\MultiDeviceTest\Icons\Json.Icons.pas';
+  Json.Icons in 'Source\MultiDeviceTest\Icons\Json.Icons.pas',
+  DataFinder.DB in 'Source\MultiDeviceTest\DataFinder.DB.pas' {DataFinder: TDataModule};
 
 {$R *.res}
 

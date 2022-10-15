@@ -49,7 +49,7 @@ object MainForm: TMainForm
       end
       item
         Column = 0
-        Control = SkSvg3
+        Control = svgList
         Row = 2
       end>
     RowCollection = <
@@ -1426,7 +1426,7 @@ object MainForm: TMainForm
         '</svg>'
       Svg.WrapMode = Stretch
     end
-    object SkSvg3: TSkSvg
+    object svgList: TSkSvg
       Align = Client
       Size.Width = 400.000000000000000000
       Size.Height = 432.000000000000000000

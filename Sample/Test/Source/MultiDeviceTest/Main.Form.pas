@@ -26,7 +26,10 @@ uses
   PokeWrapper.Types,
   PokeFactory,
   //
-  Json.Icons;
+  DataFinder.DB,
+  //
+  Json.Icons,
+  FMX.ComboEdit;
 
 type
   TMainForm = class(TForm)
@@ -36,7 +39,7 @@ type
     SkSvg1: TSkSvg;
     svgBackgroundList: TSkSvg;
     SkSvg2: TSkSvg;
-    SkSvg3: TSkSvg;
+    svgList: TSkSvg;
     framePokemonList: TVertScrollBox;
     SkSvg4: TSkSvg;
     edtPokemonSearch: TEdit;
@@ -46,6 +49,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     FSkAnimatedImage: TSkAnimatedImage;
+    function FindPokemon(AValue: string): TPokemonEntity;
     procedure BeginLoadingAnimation;
     procedure FinishLoadingAnimation;
     procedure SearchPokemon(APokemon: string = '');
@@ -88,6 +92,42 @@ begin
   AVertScrollBox.EndUpdate;
 end;
 
+function TMainForm.FindPokemon(AValue: string): TPokemonEntity;
+var
+  LDataFinder   : TDataFinder;
+  LGenericEntity: TGenericEntity;
+  LJSON         : string;
+begin
+  LDataFinder := nil;
+  try
+    Result      := TPokemonEntity.Create;
+    LDataFinder := TDataFinder.Create(nil);
+    LJSON       := LDataFinder.Find(AValue, 'pokemon');
+    if LJSON.Equals(EmptyStr) then
+    begin
+      LGenericEntity := nil;
+      try
+        LGenericEntity := TGenericEntity.Create;
+        TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(Result, AValue);
+        LJSON                    := TPokeFactory.New(TPokemon.Pokemon).Get(AValue);
+        LGenericEntity.Id        := Result.Id;
+        LGenericEntity.Name      := Result.Name;
+        LGenericEntity.Json      := LJSON;
+        LGenericEntity.TableName := 'pokemon';
+        LDataFinder.Save(LGenericEntity);
+      finally
+        LGenericEntity.Free;
+      end;
+    end
+    else
+    begin
+      TPokeFactory.New(TPokemon.Pokemon).JsonToObject(LJSON, Result);
+    end;
+  finally
+    LDataFinder.Free;
+  end;
+end;
+
 procedure TMainForm.FinishLoadingAnimation;
 begin
   FSkAnimatedImage.Free;
@@ -115,45 +155,46 @@ var
   LPokemonListFrame: TPokemonListFrame;
   LPokemonEntity   : TPokemonEntity;
 begin
-  BeginLoadingAnimation;
-  LTask := TTask.Run(
-    procedure
-    begin
-      if APokemon.Equals(EmptyStr) then
-        SearchPokemonList(1,700)
-      else
-        try
-          LPokemonEntity := nil;
+  if not framePokemonList.IsUpdating then
+  begin
+    BeginLoadingAnimation;
+    LTask := TTask.Run(
+      procedure
+      begin
+        if APokemon.Equals(EmptyStr) then
+          SearchPokemonList(1, 20)
+        else
           try
-            framePokemonList.BeginUpdate;
-            LPokemonEntity := TPokemonEntity.Create;
-            TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity, LowerCase(APokemon).Trim);
-            ClearList(framePokemonList);
-            LPokemonListFrame := TPokemonListFrame.Create(LPokemonEntity, nil);
-            LPokemonListFrame.Width := framePokemonList.Width;
-            framePokemonList.AddObject(LPokemonListFrame);
-            framePokemonList.EndUpdate;
-          finally
-            LPokemonEntity.Free;
+            LPokemonEntity := nil;
+            try
+              framePokemonList.BeginUpdate;
+              LPokemonEntity := FindPokemon(LowerCase(APokemon).Trim);
+              ClearList(framePokemonList);
+              LPokemonListFrame := TPokemonListFrame.Create(LPokemonEntity, nil);
+              LPokemonListFrame.Width := framePokemonList.Width;
+              framePokemonList.AddObject(LPokemonListFrame);
+              framePokemonList.EndUpdate;
+            finally
+              LPokemonEntity.Free;
+            end;
+          except
+            on E: Exception do
+              framePokemonList.EndUpdate;
           end;
-        except
-          on E: Exception do
-            framePokemonList.EndUpdate;
-        end;
-      TThread.Synchronize(TThread.CurrentThread,
-        procedure
-        begin
-          framePokemonList.RecalcSize;
-        end);
-    end);
-  FinishLoadingAnimation;
+        TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            framePokemonList.RecalcSize;
+          end);
+      end);
+    FinishLoadingAnimation;
+  end;
 end;
 
 procedure TMainForm.SearchPokemonList(AInitialRange: Integer = 1; AFinalRange: Integer = 10);
 var
   LPokemonListFrame: TPokemonListFrame;
   LPokemonEntity   : TPokemonEntity;
-  LTask            : ITask;
 begin
   ClearList(framePokemonList);
   try
@@ -163,8 +204,7 @@ begin
       try
         LPokemonEntity := nil;
         try
-          LPokemonEntity := TPokemonEntity.Create;
-          TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(LPokemonEntity, I);
+          LPokemonEntity          := FindPokemon(I.ToString);
           LPokemonListFrame       := TPokemonListFrame.Create(LPokemonEntity, nil);
           LPokemonListFrame.Width := framePokemonList.Width;
           framePokemonList.AddObject(LPokemonListFrame);
