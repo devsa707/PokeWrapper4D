@@ -24,9 +24,9 @@ type
   TPokeWrapper = class(TInterfacedObject, IPokeWrapper)
   private
     FMVCRESTClient: IMVCRESTClient;
-    FPokeResource: IPokeResource;
-    FResource: string;
-    FBaseUrl: string;
+    FPokeResource : IPokeResource;
+    FResource     : string;
+    FBaseUrl      : string;
     procedure JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
   public
     constructor Create(APokemon: TPokemon); overload;
@@ -35,10 +35,10 @@ type
     function Get(AValue: string): string; overload;
     function GetAsListEntity(AOffset: integer = 0; ALimit: integer = 20): TPokeListEntity;
 
+    procedure JsonToObject(AJson: string; AObject: TObject);
     procedure GetAsEntity(AObject: TObject; AValue: integer)overload;
     procedure GetAsEntity(AObject: TObject; AValue: string)overload;
     procedure GetAsEntityFromUrl(AObject: TObject; AURL: string);
-
   end;
 
 implementation
@@ -47,10 +47,10 @@ implementation
 
 constructor TPokeWrapper.Create(APokemon: TPokemon);
 begin
-  FPokeResource := TPokeResource.Create;
+  FPokeResource  := TPokeResource.Create;
   FMVCRESTClient := TMVCRESTClient.Create;
-  FResource := FPokeResource.GetResourceName(APokemon);
-  FBaseUrl := 'https://pokeapi.co/api/v2/';
+  FResource      := FPokeResource.GetResourceName(APokemon);
+  FBaseUrl       := 'https://pokeapi.co/api/v2/';
   FMVCRESTClient.BaseURL(FBaseUrl);
 end;
 
@@ -133,7 +133,7 @@ end;
 function TPokeWrapper.GetAsListEntity(AOffset, ALimit: integer): TPokeListEntity;
 var
   LMVCRESTResponse: IMVCRESTResponse;
-  LPokeListEntity: TPokeListEntity;
+  LPokeListEntity : TPokeListEntity;
 begin
   LPokeListEntity := TPokeListEntity.Create;
   FMVCRESTClient.AddQueryStringParam('offset', AOffset);
@@ -151,11 +151,26 @@ end;
 procedure TPokeWrapper.JSONResponseToObject(AMVCRESTResponse: IMVCRESTResponse; const AObject: TObject);
 var
   LMVCJSONSerializer: IMVCJSONSerializer;
-  LTJsonObject: TJsonObject;
+  LTJsonObject      : TJsonObject;
 begin
   LTJsonObject := nil;
   try
-    LTJsonObject := AMVCRESTResponse.ToJSONObject;
+    LTJsonObject       := AMVCRESTResponse.ToJSONObject;
+    LMVCJSONSerializer := TMVCJsonDataObjectsSerializer.Create;
+    LMVCJSONSerializer.JsonObjectToObject(LTJsonObject, AObject, stDefault, []);
+  finally
+    LTJsonObject.Free;
+  end;
+end;
+
+procedure TPokeWrapper.JsonToObject(AJson: string; AObject: TObject);
+var
+  LTJsonObject      : TJsonObject;
+  LMVCJSONSerializer: IMVCJSONSerializer;
+begin
+  LTJsonObject := nil;
+  try
+    LTJsonObject       := TMVCJsonDataObjectsSerializer.ParseObject(AJson);
     LMVCJSONSerializer := TMVCJsonDataObjectsSerializer.Create;
     LMVCJSONSerializer.JsonObjectToObject(LTJsonObject, AObject, stDefault, []);
   finally

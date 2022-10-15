@@ -18,6 +18,7 @@ type
     function Get(AValue: integer): string; overload;
     function Get(AValue: string): string; overload;
     // Procedure
+    procedure JsonToObject(AJson: string; AObject: TObject);
     procedure GetAsEntity(AObject: TObject; AValue: integer)overload;
     procedure GetAsEntity(AObject: TObject; AValue: string)overload;
     procedure GetAsEntityFromUrl(AObject: TObject; AURL: string);
