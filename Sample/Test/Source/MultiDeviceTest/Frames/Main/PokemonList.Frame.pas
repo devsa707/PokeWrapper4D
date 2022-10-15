@@ -66,7 +66,10 @@ begin
   lblName.Text     := FirstLetterUpperCase(APokemonEntity.name);
   lblnumber.Text   := Format('#%d', [APokemonEntity.id]);
   LTypeIcon        := TTypeIcon.New;
-  DownloadImage(APokemonEntity.sprites.versions.generation_v.black_white.animated.front_default);
+  if APokemonEntity.sprites.versions.generation_v.black_white.animated.front_default.Equals(EmptyStr) then
+    DownloadImage(APokemonEntity.sprites.other.official_artwork.front_default)
+  else
+    DownloadImage(APokemonEntity.sprites.versions.generation_v.black_white.animated.front_default);
   for var I := 0 to APokemonEntity.Types.Count - 1 do
   begin
     case I of
@@ -95,9 +98,11 @@ procedure TPokemonListFrame.DownloadImage(AURL: string);
 var
   LPath           : string;
   FMVCRESTResponse: IMVCRESTResponse;
-  FMVCRESTClient  : IMVCRESTClient;
 begin
-  LPath := System.IOUtils.TPath.GetDocumentsPath + PathDelim + System.IOUtils.TPath.GetFileName(AURL);
+  LPath := System.IOUtils.TPath.GetDocumentsPath + PathDelim + 'images';
+  if not DirectoryExists(LPath) then
+    ForceDirectories(LPath);
+  LPath := LPath + PathDelim + System.IOUtils.TPath.GetFileName(AURL);
   if FileExists(LPath) then
     aniPokemon.LoadFromFile(LPath)
   else
