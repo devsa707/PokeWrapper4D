@@ -7,6 +7,6 @@ viewBox="0 0 9983 17450"
  xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
  <g id="Camada_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <rect fill="#D2D3D5" transform="matrix(9.51283E-15 0.41857 -0.239456 7.39042E-15 9983 -0.000117699)" width="41690" height="41690" rx="4047" ry="4047"/>
+  <path fill="#D2D3D5" d="M9983 969l0 15512c0,533 -436,969 -969,969l-8045 0c-533,0 -969,-436 -969,-969l0 -15512c0,-533 436,-969 969,-969l8045 0c533,0 969,436 969,969z"/>
  </g>
 </svg>
