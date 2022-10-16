@@ -23,10 +23,7 @@ uses
   //
   PokemonList.Frame,
   Pokemon.Entity,
-  PokeWrapper.Types,
-  PokeFactory,
-  //
-  DataFinder.DB,
+  PokemonFinder,
   //
   Json.Icons,
   FMX.ComboEdit;
@@ -41,9 +38,10 @@ type
     SkSvg2: TSkSvg;
     svgList: TSkSvg;
     framePokemonList: TVertScrollBox;
-    SkSvg4: TSkSvg;
+    svgLogoBackground: TSkSvg;
     edtPokemonSearch: TEdit;
     svgSearch: TSkSvg;
+    gridDetail: TGridLayout;
     procedure FormResize(Sender: TObject);
     procedure svgSearchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -56,7 +54,6 @@ type
     procedure SearchPokemonList(AInitialRange: Integer = 1; AFinalRange: Integer = 10);
     procedure ClearList(AVertScrollBox: TVertScrollBox);
   public
-    { Public declarations }
   end;
 
 var
@@ -93,39 +90,8 @@ begin
 end;
 
 function TMainForm.FindPokemon(AValue: string): TPokemonEntity;
-var
-  LDataFinder   : TDataFinder;
-  LGenericEntity: TGenericEntity;
-  LJSON         : string;
 begin
-  LDataFinder := nil;
-  try
-    Result      := TPokemonEntity.Create;
-    LDataFinder := TDataFinder.Create(nil);
-    LJSON       := LDataFinder.Find(AValue, 'pokemon');
-    if LJSON.Equals(EmptyStr) then
-    begin
-      LGenericEntity := nil;
-      try
-        LGenericEntity := TGenericEntity.Create;
-        TPokeFactory.New(TPokemon.Pokemon).GetAsEntity(Result, AValue);
-        LJSON                    := TPokeFactory.New(TPokemon.Pokemon).Get(AValue);
-        LGenericEntity.Id        := Result.Id;
-        LGenericEntity.Name      := Result.Name;
-        LGenericEntity.Json      := LJSON;
-        LGenericEntity.TableName := 'pokemon';
-        LDataFinder.Save(LGenericEntity);
-      finally
-        LGenericEntity.Free;
-      end;
-    end
-    else
-    begin
-      TPokeFactory.New(TPokemon.Pokemon).JsonToObject(LJSON, Result);
-    end;
-  finally
-    LDataFinder.Free;
-  end;
+  Result := TPokemonFinder.New.FindPokemon(AValue);
 end;
 
 procedure TMainForm.FinishLoadingAnimation;
