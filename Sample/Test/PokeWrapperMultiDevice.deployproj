@@ -5,7 +5,7 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'"/>
-        <DeviceId Condition="'$(Platform)'=='Android64'">8674179d</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='Win64'">
         <DeployFile Include="$(SKIADIR)\Binary\Win64\Release\sk4d.dll" Condition="'$(Config)'=='Release'">
@@ -41,6 +41,15 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
     <ItemGroup Condition="'$(Platform)'=='Android64'">
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PokeWrapperMultiDevice\</RemoteDir>
+            <RemoteName>segoeuib.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android64\Debug\libPokeWrapperMultiDevice.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\library\lib\arm64-v8a\</RemoteDir>
             <RemoteName>libPokeWrapperMultiDevice.so</RemoteName>
@@ -87,7 +96,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(SKIADIR)\Binary\Android64\Release\libsk4d.so" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="$(SKIADIR)\Binary\Android64\Release\libsk4d.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\library\lib\arm64-v8a\</RemoteDir>
             <RemoteName>libsk4d.so</RemoteName>
             <DeployClass>Skia</DeployClass>
@@ -169,7 +178,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(SKIADIR)\Binary\Android64\Release\libsk4d.so" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="$(SKIADIR)\Binary\Android64\Release\libsk4d.so" Condition="'$(Config)'=='Release'">
             <RemoteDir>PokeWrapperMultiDevice\library\lib\arm64-v8a\</RemoteDir>
             <RemoteName>libsk4d.so</RemoteName>
             <DeployClass>Skia</DeployClass>
@@ -224,6 +233,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\seguisb_0.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>seguisb_0.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\library\lib\armeabi\</RemoteDir>
             <RemoteName>libPokeWrapperMultiDevice.so</RemoteName>
@@ -238,6 +256,15 @@
             <RemoteName>libPokeWrapperMultiDevice.so</RemoteName>
             <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\seguisb_0.ttf" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>seguisb_0.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -332,6 +359,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\..\..\..\data\data.db" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>data.db</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\..\..\..\data\data.db" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
             <RemoteName>data.db</RemoteName>
@@ -355,15 +391,6 @@
             <RemoteName>ic_launcher.png</RemoteName>
             <DeployClass>Android_LauncherIcon96</DeployClass>
             <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\..\..\..\data\data.db" Condition="'$(Config)'=='Release'">
-            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
-            <RemoteName>data.db</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -504,15 +531,23 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(SKIADIR)\Binary\Android\Release\libsk4d.so" Condition="'$(Config)'=='Release' And '$(AndroidAppBundle)'=='true'">
-            <RemoteDir>PokeWrapperMultiDevice\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>libsk4d.so</RemoteName>
-            <DeployClass>Skia</DeployClass>
-            <Operation>1</Operation>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeui.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>segoeui.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
-            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeui.ttf" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>segoeui.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\res\drawable-xxhdpi\</RemoteDir>
@@ -533,6 +568,16 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="$(SKIADIR)\Binary\Android\Release\libsk4d.so" Condition="'$(Config)'=='Debug' And '$(AndroidAppBundle)'=='true'">
+            <RemoteDir>PokeWrapperMultiDevice\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libsk4d.so</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(SKIADIR)\Binary\Android\Release\libsk4d.so" Condition="'$(Config)'=='Release' And '$(AndroidAppBundle)'=='true'">
             <RemoteDir>PokeWrapperMultiDevice\library\lib\armeabi-v7a\</RemoteDir>
             <RemoteName>libsk4d.so</RemoteName>
             <DeployClass>Skia</DeployClass>
@@ -565,6 +610,15 @@
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage470</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+            <RemoteName>segoeuib.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

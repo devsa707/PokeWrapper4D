@@ -38,7 +38,10 @@ uses
   SVG.TypeIcons in 'Source\MultiDeviceTest\Icons\SVG.TypeIcons.pas',
   Pokemon.Types.Constants in 'Source\MultiDeviceTest\Icons\Pokemon.Types.Constants.pas',
   Json.Icons in 'Source\MultiDeviceTest\Icons\Json.Icons.pas',
-  DataFinder.DB in 'Source\MultiDeviceTest\DataFinder.DB.pas' {DataFinder: TDataModule};
+  DataFinder.DB in 'Source\MultiDeviceTest\DataFinder.DB.pas' {DataFinder: TDataModule},
+  PokemonList.Detail in 'Source\MultiDeviceTest\Frames\Detail\PokemonList.Detail.pas' {PokemonListDetail},
+  PokemonFinder in 'Source\MultiDeviceTest\PokemonFinder.pas',
+  StringCapitalHelper in 'Source\MultiDeviceTest\Commom\StringCapitalHelper.pas';
 
 {$R *.res}
 
