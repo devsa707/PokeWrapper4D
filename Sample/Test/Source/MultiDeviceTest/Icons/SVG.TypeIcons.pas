@@ -14,20 +14,22 @@ type
     function GetTypeColor(AType: string): TAlphaColor;
     function GetBackGroundColor(AType: string): TAlphaColor;
     function GetTypeIcon(AType: string): string;
+    function GetGradientPrimaryColor(AType: string): string;
+    function GetGradientSecondaryColor(AType: string): string;
   end;
 
   TTypeIcon = class(TInterfacedObject, ITypeIcon)
     class function New: ITypeIcon;
     function GetTypeColor(AType: string): TAlphaColor;
     function GetBackGroundColor(AType: string): TAlphaColor;
+    function GetGradientPrimaryColor(AType: string): string;
+    function GetGradientSecondaryColor(AType: string): string;
     function GetTypeIcon(AType: string): string;
   end;
 
 implementation
 
-
-
-  { TTypeIcon }
+{ TTypeIcon }
 
 function TTypeIcon.GetBackGroundColor(AType: string): TAlphaColor;
 begin
@@ -71,6 +73,55 @@ begin
   else
     Exit($C8A8A77A);
   end;
+end;
+
+function TTypeIcon.GetGradientPrimaryColor(AType: string): string;
+begin
+  case IndexStr(AType, POKEMON_TYPES) of
+    0:
+      Exit('#A8A77A');
+    1:
+      Exit('#EE8130');
+    2:
+      Exit('#6390F0');
+    3:
+      Exit('#F7D02C');
+    4:
+      Exit('#7AC74C');
+    5:
+      Exit('#96D9D6');
+    6:
+      Exit('#C22E28');
+    7:
+      Exit('#E2BF65');
+    8:
+      Exit('#A98FF3');
+    9:
+      Exit('#F95587');
+    10:
+      Exit('#A6B91A');
+    11:
+      Exit('#B6A136');
+    12:
+      Exit('#735797');
+    13:
+      Exit('#6F35FC');
+    14:
+      Exit('#705746');
+    15:
+      Exit('#B7B7CE');
+    16:
+      Exit('#D685AD');
+    17:
+      Exit('#A33EA1');
+  else
+    Exit('#A8A77A');
+  end;
+end;
+
+function TTypeIcon.GetGradientSecondaryColor(AType: string): string;
+begin
+
 end;
 
 function TTypeIcon.GetTypeColor(AType: string): TAlphaColor;
