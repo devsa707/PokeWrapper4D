@@ -9,6 +9,7 @@ uses
   System.Classes,
   System.Variants,
   System.IOUtils,
+  System.StrUtils,
   FMX.Types,
   FMX.Graphics,
   FMX.Controls,
@@ -19,11 +20,12 @@ uses
   FMX.Objects,
   FMX.Layouts,
   Skia.FMX,
-  System.StrUtils,
   //
+  StringCapitalHelper,
   SVG.TypeIcons,
-  Pokemon.Types.Constants,
+  PokemonList.Detail,
   Pokemon.Entity,
+  PokemonFinder,
   //
   MVCFramework.RESTClient,
   MVCFramework.RESTClient.Intf;
@@ -44,8 +46,11 @@ type
     svgType1: TSkSvg;
     lblType1: TSkLabel;
     svgTypeIcon1: TSkSvg;
+    procedure FrameClick(Sender: TObject);
+    procedure FrameTap(Sender: TObject; const Point: TPointF);
   private
-    function FirstLetterUpperCase(AValue: string): string;
+    FId: integer;
+    procedure ShowPokemonDetails;
     procedure DownloadImage(AURL: string);
   public
     constructor Create(APokemonEntity: TPokemonEntity; AOwner: TComponent); reintroduce;
@@ -54,7 +59,10 @@ type
 implementation
 
 {$R *.fmx}
+
 { TPokemonListFrame }
+uses
+  Main.Form;
 
 constructor TPokemonListFrame.Create(APokemonEntity: TPokemonEntity; AOwner: TComponent);
 var
@@ -64,7 +72,8 @@ begin
   svgType1.Visible := False;
   svgType2.Visible := False;
   lblName.Text     := FirstLetterUpperCase(APokemonEntity.name);
-  lblnumber.Text   := Format('#%d', [APokemonEntity.id]);
+  FId              := APokemonEntity.id;
+  lblnumber.Text   := Format('#%d', [FId]);
   LTypeIcon        := TTypeIcon.New;
   if APokemonEntity.sprites.versions.generation_v.black_white.animated.front_default.Equals(EmptyStr) then
     DownloadImage(APokemonEntity.sprites.other.official_artwork.front_default)
@@ -91,7 +100,11 @@ begin
         end;
     end;
   end;
-
+{$IFDEF MSWINDOWS}
+  self.OnClick := FrameClick;
+{$ELSE}
+  self.OnTap := FrameTap;
+{$ENDIF}
 end;
 
 procedure TPokemonListFrame.DownloadImage(AURL: string);
@@ -116,9 +129,30 @@ begin
   end;
 end;
 
-function TPokemonListFrame.FirstLetterUpperCase(AValue: string): string;
+procedure TPokemonListFrame.FrameClick(Sender: TObject);
 begin
-  Result := Uppercase(Copy(AValue, 1, 1)) + Lowercase(Copy(AValue, 2, Length(AValue)));
+  ShowPokemonDetails;
+end;
+
+procedure TPokemonListFrame.FrameTap(Sender: TObject; const Point: TPointF);
+begin
+  ShowPokemonDetails;
+end;
+
+procedure TPokemonListFrame.ShowPokemonDetails;
+var
+  LPokemonEntity    : TPokemonEntity;
+  LPokemonListDetail: TPokemonListDetail;
+begin
+  LPokemonEntity     := nil;
+  LPokemonListDetail := nil;
+  try
+    LPokemonEntity     := TPokemonFinder.New.FindPokemon(FId.ToString);
+    LPokemonListDetail := TPokemonListDetail.Create(LPokemonEntity, nil);
+    LPokemonListDetail.Show;
+  finally
+    LPokemonEntity.Free;
+  end;
 end;
 
 end.

@@ -31,6 +31,7 @@ object PokemonListFrame: TPokemonListFrame
     Svg.WrapMode = Stretch
     object GridMain: TGridPanelLayout
       Align = Client
+      HitTest = False
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
@@ -726,6 +727,7 @@ object PokemonListFrame: TPokemonListFrame
       end
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
+        HitTest = False
         Padding.Left = 10.000000000000000000
         Padding.Top = 2.000000000000000000
         Padding.Bottom = 2.000000000000000000
@@ -770,6 +772,7 @@ object PokemonListFrame: TPokemonListFrame
           Size.Height = 25.266040802001950000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          TextSettings.Font.Families = 'Segoe UI'
           TextSettings.Font.Size = 18.000000000000000000
           TextSettings.FontColor = claAliceblue
           Words = <
@@ -810,7 +813,7 @@ object PokemonListFrame: TPokemonListFrame
             Size.Height = 24.710395812988280000
             Size.PlatformDefault = False
             StyledSettings = [Style]
-            TextSettings.Font.Families = 'Myriad Apple'
+            TextSettings.Font.Families = 'Segoe UI'
             TextSettings.Font.Size = 15.000000000000000000
             TextSettings.FontColor = claWhite
             TextSettings.HorzAlign = Justify
@@ -877,7 +880,7 @@ object PokemonListFrame: TPokemonListFrame
             Size.Height = 27.023571014404300000
             Size.PlatformDefault = False
             StyledSettings = [Style]
-            TextSettings.Font.Families = 'Myriad Apple'
+            TextSettings.Font.Families = 'Segoe UI'
             TextSettings.Font.Size = 15.000000000000000000
             TextSettings.FontColor = claWhite
             TextSettings.HorzAlign = Justify
