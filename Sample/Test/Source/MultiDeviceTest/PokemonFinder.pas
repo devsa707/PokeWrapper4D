@@ -31,28 +31,36 @@ var
 begin
   LDataFinder := nil;
   try
-    Result      := TPokemonEntity.Create;
-    LDataFinder := TDataFinder.Create(nil);
-    LJSON       := LDataFinder.Find(AValue, 'pokemon');
-    if LJSON.Equals(EmptyStr) then
-    begin
-      LGenericEntity := nil;
-      try
-        LGenericEntity := TGenericEntity.Create;
-        TPokeFactory.New(TPokemon.pokemon).GetAsEntity(Result, AValue);
-        LJSON                    := TPokeFactory.New(TPokemon.pokemon).Get(AValue);
-        LGenericEntity.Id        := Result.Id;
-        LGenericEntity.Name      := Result.Name;
-        LGenericEntity.Json      := LJSON;
-        LGenericEntity.TableName := 'pokemon';
-        LDataFinder.Save(LGenericEntity);
-      finally
-        LGenericEntity.Free;
+    Result := TPokemonEntity.Create;
+    try
+      LDataFinder := TDataFinder.Create(nil);
+      LJSON       := LDataFinder.Find(AValue, 'pokemon');
+      if LJSON.Equals(EmptyStr) then
+      begin
+        LGenericEntity := nil;
+        try
+          LGenericEntity := TGenericEntity.Create;
+          TPokeFactory.New(TPokemon.pokemon).GetAsEntity(Result, AValue);
+          LJSON                    := TPokeFactory.New(TPokemon.pokemon).Get(AValue);
+          LGenericEntity.Id        := Result.Id;
+          LGenericEntity.Name      := Result.Name;
+          LGenericEntity.Json      := LJSON;
+          LGenericEntity.TableName := 'pokemon';
+          LDataFinder.Save(LGenericEntity);
+        finally
+          LGenericEntity.Free;
+        end;
+      end
+      else
+      begin
+        TPokeFactory.New(TPokemon.pokemon).JsonToObject(LJSON, Result);
       end;
-    end
-    else
-    begin
-      TPokeFactory.New(TPokemon.pokemon).JsonToObject(LJSON, Result);
+    except
+      on E: Exception do
+      begin
+        FreeAndNil(Result);
+        raise Exception.Create(E.Message);
+      end;
     end;
   finally
     LDataFinder.Free;

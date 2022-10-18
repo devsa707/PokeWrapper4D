@@ -74,11 +74,11 @@ object PokemonListDetail: TPokemonListDetail
         Value = 200.000000000000000000
       end
       item
-        Value = 100.000000000000000000
+        SizeStyle = Absolute
+        Value = 350.000000000000000000
       end
       item
-        SizeStyle = Absolute
-        Value = 40.000000000000000000
+        Value = 100.000000000000000000
       end>
     object aniPokemon: TSkAnimatedImage
       Align = Client
@@ -6488,7 +6488,7 @@ object PokemonListDetail: TPokemonListDetail
           Align = Client
           Anchors = []
           Size.Width = 257.465301513671900000
-          Size.Height = 40.000000000000000000
+          Size.Height = 40.000125885009770000
           Size.PlatformDefault = False
           StyledSettings = []
           TextSettings.Font.Families = 'Segoe UI'
@@ -6510,7 +6510,7 @@ object PokemonListDetail: TPokemonListDetail
           Position.X = 272.000000000000000000
           Position.Y = 8.000000000000000000
           Size.Width = 96.000000000000000000
-          Size.Height = 24.000000000000000000
+          Size.Height = 24.000125885009770000
           Size.PlatformDefault = False
           Svg.OverrideColor = claSeagreen
           Svg.Source = 
@@ -6531,7 +6531,7 @@ object PokemonListDetail: TPokemonListDetail
             Align = Client
             Margins.Left = 5.000000000000000000
             Size.Width = 69.000000000000000000
-            Size.Height = 24.000000000000000000
+            Size.Height = 24.000125885009770000
             Size.PlatformDefault = False
             StyledSettings = [Style]
             TextSettings.Font.Families = 'Segoe UI'
@@ -6554,7 +6554,7 @@ object PokemonListDetail: TPokemonListDetail
             Position.X = 2.000000000000000000
             Position.Y = 3.000000000000000000
             Size.Width = 18.000000000000000000
-            Size.Height = 18.000000000000000000
+            Size.Height = 18.000125885009770000
             Size.PlatformDefault = False
             Svg.Source = 
               '<svg fill="none" height="512" viewBox="0 0 512 512" width="512" ' +
@@ -6575,7 +6575,7 @@ object PokemonListDetail: TPokemonListDetail
           Margins.Right = 2.000000000000000000
           Margins.Bottom = 8.000000000000000000
           Position.X = 272.000000000000000000
-          Position.Y = 48.000000000000000000
+          Position.Y = 48.000125885009770000
           Size.Width = 96.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -6641,7 +6641,7 @@ object PokemonListDetail: TPokemonListDetail
       Align = Client
       HitTest = True
       Size.Width = 370.000000000000000000
-      Size.Height = 321.000000000000000000
+      Size.Height = 350.000000000000000000
       Size.PlatformDefault = False
       Svg.Source = 
         '<?xml version="1.0" encoding="UTF-8"?>'#13#10'<!DOCTYPE svg PUBLIC "-/' +

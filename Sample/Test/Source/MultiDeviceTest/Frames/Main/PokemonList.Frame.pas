@@ -144,8 +144,7 @@ var
   LPokemonEntity    : TPokemonEntity;
   LPokemonListDetail: TPokemonListDetail;
 begin
-  LPokemonEntity     := nil;
-  LPokemonListDetail := nil;
+  LPokemonEntity := nil;
   try
     LPokemonEntity     := TPokemonFinder.New.FindPokemon(FId.ToString);
     LPokemonListDetail := TPokemonListDetail.Create(LPokemonEntity, nil);

@@ -41,8 +41,8 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
     <ItemGroup Condition="'$(Platform)'=='Android64'">
-        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Release'">
-            <RemoteDir>PokeWrapperMultiDevice\</RemoteDir>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
             <RemoteName>segoeuib.ttf</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -215,7 +215,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>PokeWrapperMultiDevice\res\drawable-large\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage640</DeployClass>
@@ -224,7 +224,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>PokeWrapperMultiDevice\res\drawable-large\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage640</DeployClass>
@@ -614,8 +614,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>PokeWrapperMultiDevice\assets\internal\</RemoteDir>
+        <DeployFile Include="Source\MultiDeviceTest\Fonts\segoeuib.ttf" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PokeWrapperMultiDevice\</RemoteDir>
             <RemoteName>segoeuib.ttf</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>

@@ -131,16 +131,15 @@ begin
   qryData.Open;
   if not qryData.IsEmpty then
   begin
+    Result := TList<string>.Create;
     while not qryData.Eof do
     begin
-      Result := TList<string>.Create;
       Result.Add(qryDataname.AsString);
       qryData.Next;
     end;
     Exit(Result);
-  end
-  else
-    Exit(nil);
+  end;
+  Exit(nil);
 end;
 
 procedure TDataFinder.Save(AGenericEntity: TGenericEntity);

@@ -121,7 +121,46 @@ end;
 
 function TTypeIcon.GetGradientSecondaryColor(AType: string): string;
 begin
-
+  case IndexStr(AType, POKEMON_TYPES) of
+    0:
+      Exit('#D1D0AA');
+    1:
+      Exit('#FCBD8D');
+    2:
+      Exit('#B8CEFF');
+    3:
+      Exit('#FFEDA6');
+    4:
+      Exit('#B9F596');
+    5:
+      Exit('#CFFFFD');
+    6:
+      Exit('#FF9F9C');
+    7:
+      Exit('#FFEAB5');
+    8:
+      Exit('#DFD4FF');
+    9:
+      Exit('#FFADC6');
+    10:
+      Exit('#E6F573');
+    11:
+      Exit('#F2DF80');
+    12:
+      Exit('#CEB4F0');
+    13:
+      Exit('#C4ADFF');
+    14:
+      Exit('#DBBAA4');
+    15:
+      Exit('#E3E3FA');
+    16:
+      Exit('#FAC3DF');
+    17:
+      Exit('#ED9CEC');
+  else
+    Exit('#EDECBB');
+  end;
 end;
 
 function TTypeIcon.GetTypeColor(AType: string): TAlphaColor;

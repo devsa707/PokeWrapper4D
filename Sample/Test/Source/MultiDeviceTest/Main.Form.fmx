@@ -1294,6 +1294,7 @@ object MainForm: TMainForm
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         TextPrompt = 'Search Pokemon'
+        OnKeyDown = edtPokemonSearchKeyDown
         object svgSearch: TSkSvg
           Align = Right
           HitTest = True
@@ -2594,6 +2595,12 @@ object MainForm: TMainForm
         #13#10'  <rect fill="#FEFEFE" width="17856" height="17856"/>'#13#10' </g>'#13#10 +
         '</svg>'
       Svg.WrapMode = Stretch
+      object SkAnimatedImage1: TSkAnimatedImage
+        Align = Client
+        Size.Width = 400.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+      end
     end
     object SkSvg2: TSkSvg
       Align = Client

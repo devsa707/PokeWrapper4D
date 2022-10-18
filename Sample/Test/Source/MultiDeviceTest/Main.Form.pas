@@ -42,14 +42,16 @@ type
     edtPokemonSearch: TEdit;
     svgSearch: TSkSvg;
     gridDetail: TGridLayout;
+    SkAnimatedImage1: TSkAnimatedImage;
     procedure FormResize(Sender: TObject);
     procedure svgSearchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure edtPokemonSearchKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
   private
     FSkAnimatedImage: TSkAnimatedImage;
-    function FindPokemon(AValue: string): TPokemonEntity;
     procedure BeginLoadingAnimation;
     procedure FinishLoadingAnimation;
+    procedure Search(APokemon: string = '');
     procedure SearchPokemon(APokemon: string = '');
     procedure SearchPokemonList(AInitialRange: Integer = 1; AFinalRange: Integer = 10);
     procedure ClearList(AVertScrollBox: TVertScrollBox);
@@ -69,13 +71,14 @@ var
 begin
   LStringStream := nil;
   try
-    LStringStream    := TStringStream.Create(ANIMATION_LOADING);
-    FSkAnimatedImage := TSkAnimatedImage.Create(framePokemonList);
-    FSkAnimatedImage.BringToFront;
+    LStringStream           := TStringStream.Create(ANIMATION_LOADING);
+    FSkAnimatedImage        := TSkAnimatedImage.Create(Self);
+    FSkAnimatedImage.Parent := Self;
     FSkAnimatedImage.Align  := TAlignLayout.Center;
     FSkAnimatedImage.Width  := 200;
     FSkAnimatedImage.Height := 200;
     FSkAnimatedImage.LoadFromStream(LStringStream);
+    FSkAnimatedImage.Redraw;
   finally
     LStringStream.Free;
   end;
@@ -85,13 +88,14 @@ procedure TMainForm.ClearList(AVertScrollBox: TVertScrollBox);
 begin
   AVertScrollBox.BeginUpdate;
   for var I := AVertScrollBox.Content.ChildrenCount - 1 downto 0 do
-    AVertScrollBox.Content.Children[I].Free;
+    AVertScrollBox.Content.Children[I].DisposeOf;
   AVertScrollBox.EndUpdate;
 end;
 
-function TMainForm.FindPokemon(AValue: string): TPokemonEntity;
+procedure TMainForm.edtPokemonSearchKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
 begin
-  Result := TPokemonFinder.New.FindPokemon(AValue);
+  if Key = 13 then
+    Search(edtPokemonSearch.Text);
 end;
 
 procedure TMainForm.FinishLoadingAnimation;
@@ -101,7 +105,7 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  SearchPokemon;
+  Search;
 end;
 
 procedure TMainForm.FormResize(Sender: TObject);
@@ -115,45 +119,53 @@ begin
     gridMain.Align := TAlignLayout.Client;
 end;
 
-procedure TMainForm.SearchPokemon(APokemon: string = '');
+procedure TMainForm.Search(APokemon: string = '');
 var
-  LTask            : ITask;
-  LPokemonListFrame: TPokemonListFrame;
-  LPokemonEntity   : TPokemonEntity;
+  LTask: ITask;
 begin
   if not framePokemonList.IsUpdating then
   begin
-    BeginLoadingAnimation;
+    ClearList(framePokemonList);
     LTask := TTask.Run(
       procedure
       begin
+        framePokemonList.Visible := False;
+        BeginLoadingAnimation;
         if APokemon.Equals(EmptyStr) then
           SearchPokemonList(1, 20)
         else
-          try
-            LPokemonEntity := nil;
-            try
-              framePokemonList.BeginUpdate;
-              LPokemonEntity := FindPokemon(LowerCase(APokemon).Trim);
-              ClearList(framePokemonList);
-              LPokemonListFrame := TPokemonListFrame.Create(LPokemonEntity, nil);
-              LPokemonListFrame.Width := framePokemonList.Width;
-              framePokemonList.AddObject(LPokemonListFrame);
-              framePokemonList.EndUpdate;
-            finally
-              LPokemonEntity.Free;
-            end;
-          except
-            on E: Exception do
-              framePokemonList.EndUpdate;
-          end;
+          SearchPokemon(APokemon);
         TThread.Synchronize(TThread.CurrentThread,
           procedure
           begin
+            framePokemonList.Visible := True;
             framePokemonList.RecalcSize;
+            FinishLoadingAnimation;
           end);
       end);
-    FinishLoadingAnimation;
+  end;
+end;
+
+procedure TMainForm.SearchPokemon(APokemon: string);
+var
+  LPokemonListFrame: TPokemonListFrame;
+  LPokemonEntity   : TPokemonEntity;
+begin
+  LPokemonEntity := nil;
+  try
+    try
+      framePokemonList.BeginUpdate;
+      LPokemonEntity          := TPokemonFinder.New.FindPokemon(LowerCase(APokemon).Trim);
+      LPokemonListFrame       := TPokemonListFrame.Create(LPokemonEntity, nil);
+      LPokemonListFrame.Width := framePokemonList.Width;
+      framePokemonList.AddObject(LPokemonListFrame);
+    except
+      on E: Exception do
+        framePokemonList.EndUpdate;
+    end;
+  finally
+    framePokemonList.EndUpdate;
+    LPokemonEntity.Free;
   end;
 end;
 
@@ -162,24 +174,25 @@ var
   LPokemonListFrame: TPokemonListFrame;
   LPokemonEntity   : TPokemonEntity;
 begin
-  ClearList(framePokemonList);
   try
     framePokemonList.BeginUpdate;
     for var I := AInitialRange to AFinalRange do
     begin
+      LPokemonEntity := nil;
       try
-        LPokemonEntity := nil;
         try
-          LPokemonEntity          := FindPokemon(I.ToString);
+          LPokemonEntity          := TPokemonFinder.New.FindPokemon(I.ToString);
           LPokemonListFrame       := TPokemonListFrame.Create(LPokemonEntity, nil);
           LPokemonListFrame.Width := framePokemonList.Width;
           framePokemonList.AddObject(LPokemonListFrame);
-        finally
-          LPokemonEntity.Free;
+        except
+          on E: Exception do
+          begin
+            framePokemonList.EndUpdate;
+          end;
         end;
-      except
-        on E: Exception do
-          framePokemonList.EndUpdate;
+      finally
+        LPokemonEntity.Free;
       end;
     end;
   finally
@@ -189,7 +202,7 @@ end;
 
 procedure TMainForm.svgSearchClick(Sender: TObject);
 begin
-  SearchPokemon(edtPokemonSearch.Text);
+  Search(edtPokemonSearch.Text);
 end;
 
 end.

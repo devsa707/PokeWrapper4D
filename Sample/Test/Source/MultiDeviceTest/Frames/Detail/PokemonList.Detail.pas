@@ -48,7 +48,7 @@ type
     procedure SetStats(AName: string; AValue: integer);
     procedure SetGraphValue;
     procedure SetGradientColor(APokemonType: string);
-    procedure SetData(APokemonEntity: TPokemonEntity);
+    procedure SetPokemonData(APokemonEntity: TPokemonEntity);
   public
     constructor Create(APokemonEntity: TPokemonEntity; AOwner: TComponent); reintroduce;
   end;
@@ -64,7 +64,7 @@ begin
   svgType1.Visible := False;
   svgType2.Visible := False;
   DownloadImage(APokemonEntity.sprites.other.official_artwork.front_default);
-  SetData(APokemonEntity);
+  SetPokemonData(APokemonEntity);
   SetGradientColor(APokemonEntity.Types.First.type_.name);
   SetGraphValue;
 end;
@@ -87,7 +87,7 @@ begin
   end;
 end;
 
-procedure TPokemonListDetail.SetData(APokemonEntity: TPokemonEntity);
+procedure TPokemonListDetail.SetPokemonData(APokemonEntity: TPokemonEntity);
 var
   LTypeIcon: ITypeIcon;
 begin
@@ -155,7 +155,6 @@ begin
   LSkSVGNode := svgBackground.SVG.DOM.FindNodeById('primary_color');
   if Assigned(LSkSVGNode) then
     LSkSVGNode.TrySetAttribute('stop-color', TTypeIcon.New.GetGradientPrimaryColor(APokemonType));
-  LSkSVGNode.TrySetAttribute('offset', '1');
 
   LSkSVGNode := svgBackground.SVG.DOM.FindNodeById('secondary_color');
   if Assigned(LSkSVGNode) then
