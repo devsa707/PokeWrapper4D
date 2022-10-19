@@ -1,9 +1,10 @@
 <br/>
 <div align="center">
 
-![pokewrapper](https://user-images.githubusercontent.com/101226180/185762654-a153d56b-5646-4841-8fae-caeda22986ed.svg)
 
-<br/>
+
+<br/>![Logo](https://user-images.githubusercontent.com/101226180/196569825-2c070bef-0d40-4b89-b402-036dc5ab4dd4.svg)
+
 </div>
 
 A Wrapper for Poke API - [pokeapi.co](https://pokeapi.co).
